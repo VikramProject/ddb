@@ -17,20 +17,19 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 	{
 		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$passd=$row["Password"];
-		
-		//echo"$passd";
-		
 		if($pass==$passd)
 		{
 			$_SESSION["rollno"]=$row["UID"];
+
+			echo "Success";
 			header("Location:student_home.php");
 		}
-		/*else
+		else
 		{
 			$_SESSION["Error"]="Incorrect Details";
-          		$_SESSION["Revert"]="index.php";
+			$_SESSION["Revert"]="index.php";
 			header("Location:UnSuccessful.php");
-		}*/
+		}
 	}
 	/*else
 	{

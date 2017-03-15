@@ -2,27 +2,25 @@
 session_start();
 include("config.php");
 
-if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["mobile"]))
+if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
 {
 	$roll=$_POST["rollno"];
 	$name=$_POST["name"];
 	$pass=$_POST["Password"];
 	$email=$_POST["email"];
-	$mobile=$_POST["mobile"];
+	$nearest=$_POST["nearest"];
 	
-	
-	$query="select * from student where UID='$roll'";
+
+	$query="select * from conc_dtb where UID='$roll'";
 	$result=mysqli_query($db_var,$query) or die(mysql_error());
 	$rows=mysqli_num_rows($result);
-	
 	if($rows==0)
 	{
-		$query="insert into student(UID,Password,Name,Email,Mobile) values('$roll','$pass','$name','$email','$mobile')";
+        $query="insert into student(UID,Password,Name,Email) values('$roll','$pass','$name','$email')";
 		$result=mysqli_query($db_var,$query) or die(mysql_error());
-		
+        $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
+        $result=mysqli_query($db_var,$query) or die(mysql_error());
 		header("Location:index.php");
-		
-	
 	}
 	else if($rows==1)
 	{
@@ -91,7 +89,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>Railway Concession</strong>Form System</a>
+                <a class="navbar-brand" href="index.php"><strong>Railway Concession</strong>Form System</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -99,7 +97,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Register</a></li>
+                    <li><a href="index.php">Login</a></li>
                     
 
                     <li class="dropdown">
@@ -151,8 +149,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                         <input type="email" class="form-control" name="email" required="required" placeholder="Email Id"> 
                     </div>
                     <div class="form-group"> 
-                        <label class="control-label" for="\Mobile">Mobile</label>                         
-                        <input type="number" class="form-control" name="mobile" required="required" placeholder="Phone No." onkeypress="phoneno()" maxlength="10"> 
+                        <label class="control-label" for="\Nearest">Nearest Station</label>
+                        <input type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
                     </div>
                                          
                     <button type="submit" class="btn btn-large btn-success">Submit</button>                     
