@@ -1,11 +1,15 @@
 <?php
-session_start();
-
 include("config.php");
-
 $msg=$_SESSION["rollno"];
+include("nav_bar.php");
 
-echo"Welcome Student $msg";
+if(!isset($_SESSION["rollno"]))
+    header("location:index.php");
+if(isset($_POST["Nearest_stn"]))
+
+
+
+//echo"Welcome Student $msg";
 
 
 
@@ -13,76 +17,7 @@ echo"Welcome Student $msg";
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>SPIT Railway Concession Form System</title>
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="jumbotron-narrow.css" rel="stylesheet">
-    <!-- Fontawesome core CSS -->
-    <link href="assets1/css/font-awesome.min.css" rel="stylesheet" />
-    <!--GOOGLE FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!--Slide Show Css -->
-    <link href="assets1/ItemSlider/css/main-style.css" rel="stylesheet" />
-    <!-- custom CSS here -->
-    <link href="assets1/css/style.css" rel="stylesheet" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.php"><strong>Railway Concession</strong>Form System</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="register.php">Register</a></li>
-
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
-                        <li><a href="#"><strong>Mail: </strong>www.spit.ac.in</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><strong>Address: </strong>
-                                <div>
-                                    Main Office,<br />
-                                    Sardar Patel Institute of Technology,Andheri
-                                </div>
-                            </a></li>
-                    </ul>
-                </li>
-            </ul>
-
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
 <div class="container">
     <div class="header clearfix">
         <nav>
@@ -92,20 +27,25 @@ echo"Welcome Student $msg";
         <h3 class="text-muted">SPIT Railway Concession Form System</h3>
     </div>
     <div class="jumbotron">
-        <h1>Welcome</h1>
+        <h1>Welcome
+        </h1>
         <h4>Enter details for Railway Pass</h4>
         <form role="form" method="POST" action="student_home.php">
             <div class="form-group">
+                <label class="control-label" for="/Nearest Station">Nearest Station</label>
+                <input type="text" class="form-control" name="Nearest_stn" required="required" placeholder="Nearest Station">
+            </div>
+            <div class="form-group">
                 <label class="control-label" for="UID">Class</label>
-                <input type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID">
+                <input type="text" class="form-control" name="Class" required="required" placeholder="Class">
             </div>
             <div class="form-group">
                 <label class="control-label" for="\Password">Period</label>
-                <input type="password" class="form-control" name="Password" required="required" placeholder="Password">
+                <input type="number" class="form-control" min=1 name="Period" required="required" placeholder="Period in Months">
             </div>
             <div class="form-group">
-                <label class="control-label" for="\Password">Date</label>
-                <input type="password" class="form-control" name="Password" required="required" placeholder="Password">
+                <label class="control-label" for="\Date">Date</label>
+                <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
             </div>
             <button type="submit" class="btn btn-large btn-success">Submit</button>
         </form>

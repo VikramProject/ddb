@@ -4,17 +4,20 @@ include("config.php");
 
 if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 {
+
 	$rollno=$_POST["rollno"];
 	$pass=$_POST["Password"];
-	//echo "$rollno,$pass";
-	$query="select * from student where UID='$rollno'";
+    //echo "$rollno";
+	echo "$rollno,$pass";
+	$query="select * from student where UID=$rollno";
 	
 	$result=mysqli_query($db_var,$query) or die(mysql_error());
-	$no_rows=mysqli_num_rows($result);
-	
-	
+    $no_rows=mysqli_num_rows($result);
+
+    //echo "$no_rows";
 	if($no_rows==1)
 	{
+		echo "Hello";
 		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$passd=$row["Password"];
 		if($pass==$passd)

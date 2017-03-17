@@ -1,35 +1,53 @@
 <?php
-session_start();
 include("config.php");
+include("nav_bar.php");
 
+$flg=0;
 if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
 {
+
 	$roll=$_POST["rollno"];
 	$name=$_POST["name"];
 	$pass=$_POST["Password"];
 	$email=$_POST["email"];
 	$nearest=$_POST["nearest"];
+
+
+	$query="select * from clg_dtb where UID='$roll'";
+    $result=mysqli_query($db_var,$query) or die(mysql_error());
+    $rows=mysqli_num_rows($result);
+    if($rows==0)
+    {
+        $message = "Sorry There is No such UID present Please recheck Your UID";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+    else
+    {
+        $query="select * from conc_dtb where UID='$roll'";
+        $result=mysqli_query($db_var,$query) or die(mysql_error());
+        $rows=mysqli_num_rows($result);
+        if($rows==0)
+        {
+            $query="insert into student(UID,Password,Name,Email) values('$roll','$pass','$name','$email')";
+            $result=mysqli_query($db_var,$query) or die(mysql_error());
+            $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
+            $result=mysqli_query($db_var,$query) or die(mysql_error());
+            header("Location:index.php");
+        }
+        else if($rows==1)
+        {
+            echo "Already Registered";
+        }
+        else
+        {
+            echo"Something went wrong";
+        }
+    }
+
+
 	
 
-	$query="select * from conc_dtb where UID='$roll'";
-	$result=mysqli_query($db_var,$query) or die(mysql_error());
-	$rows=mysqli_num_rows($result);
-	if($rows==0)
-	{
-        $query="insert into student(UID,Password,Name,Email) values('$roll','$pass','$name','$email')";
-		$result=mysqli_query($db_var,$query) or die(mysql_error());
-        $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
-        $result=mysqli_query($db_var,$query) or die(mysql_error());
-		header("Location:index.php");
-	}
-	else if($rows==1)
-	{
-		echo "Already Registered";
-	}
-	else
-	{
-		echo"Something went wrong";
-	}
+
 	
 	
 	
@@ -51,76 +69,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
             });
         }
        </script>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>SPIT Railway Concession Form System</title>
-        <!-- Bootstrap core CSS -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="jumbotron-narrow.css" rel="stylesheet">
-        <!-- Fontawesome core CSS -->
-	    <link href="assets1/css/font-awesome.min.css" rel="stylesheet" />
-	    <!--GOOGLE FONT -->
-	    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-	    <!--Slide Show Css -->
-	    <link href="assets1/ItemSlider/css/main-style.css" rel="stylesheet" />
-	    <!-- custom CSS here -->
-	    <link href="assets1/css/style.css" rel="stylesheet" />
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    </head>
-    <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php"><strong>Railway Concession</strong>Form System</a>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.php">Login</a></li>
-                    
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
-                            <li><a href="#"><strong>Mail: </strong>www.spit.ac.in</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><strong>Address: </strong>
-                                <div>
-                                    Main Office,<br />
-                                    Sardar Patel Institute of Technology,Andheri
-                                </div>
-                            </a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
         <div class="container">
             <div class="header clearfix">
                 <nav>
@@ -152,9 +101,30 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                         <label class="control-label" for="\Nearest">Nearest Station</label>
                         <input type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
                     </div>
-                                         
-                    <button type="submit" class="btn btn-large btn-success">Submit</button>                     
+
+
+                    <button type=\"submit\" class=\"btn btn-large btn-success\">Submit</button>
+
                 </form>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Some text in the modal.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <footer class="footer">
                 <p>&copy Sardar Patel Institute of Technology</p>

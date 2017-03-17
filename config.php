@@ -1,6 +1,6 @@
 <?php
  //Currency Character or code
-
+session_start();
 $db_username = 'root';
 $db_password = '';
 $db_name = 'railway concession';
