@@ -1,7 +1,15 @@
 <?php
 session_start();
-include("nav_bar.php");
+if(isset($_SESSION["rollno"]))
+{
+    $rollno=$_SESSION["rollno"];
+    if ($rollno==2014130999)
+        header("Location:admin_page.php");
+    else
+        header("location:student_home.php");
+}
 
+include("nav_bar.php");
 ?>
             <div class="jumbotron">
                 <h2>Log In</h2>

@@ -5,17 +5,10 @@ include("nav_bar.php");
 
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
-if(isset($_POST["Nearest_stn"]))
-
-
-
-//echo"Welcome Student $msg";
-
-
-
-
-
-
+if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
+{
+    //Add into database
+}
 ?>
 
 

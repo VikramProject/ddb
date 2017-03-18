@@ -22,8 +22,10 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 		{
 			$_SESSION["rollno"]=$row["UID"];
 
-			echo "Success";
-			header("Location:student_home.php");
+			if ($row['UID']==2014130999)
+                header("Location:admin_page.php");
+			else
+				header("Location:student_home.php");
 		}
 		else
 		{

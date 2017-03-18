@@ -47,12 +47,18 @@
                 <?php
                 if("$_SERVER[REQUEST_URI]"=="/ddb/register.php")
                     echo "<li><a href=\"index.php\">Login</a></li>";
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home")
+                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php")
                 {
-                    $query="select name from student where UID='$msg'";
+                    $rollno=$_SESSION['rollno'];
+                    $query="select name from student where UID='$rollno'";
                     $res=mysqli_query($db_var,$query);
                     $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
                     echo "<li><a href=\"#\">Welcome $row[name]</a></li> <li><a href=\"logout.php\">Logout</a></li>";
+                }
+                else if("$_SERVER[REQUEST_URI]"=="/ddb/UnSuccessful")
+                {
+                    echo"<li><a href=\"register.php\">Register</a></li>";
+                    echo "<li><a href=\"index.php\">Login</a></li>";
                 }
                 else
                 {
