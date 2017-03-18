@@ -9,6 +9,9 @@ include('config.php');
 include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
+$rollno=$_SESSION["rollno"];
+if ($rollno!=2014130999)
+    header("Location:student_home.php");
 ?>
 
 
