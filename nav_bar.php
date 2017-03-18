@@ -47,7 +47,7 @@
                 <?php
                 if("$_SERVER[REQUEST_URI]"=="/ddb/register.php")
                     echo "<li><a href=\"index.php\">Login</a></li>";
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/index.php")
+                else if("$_SERVER[REQUEST_URI]"=="/ddb/index.php"||"$_SERVER[REQUEST_URI]"=="/ddb/")
                     echo"<li><a href=\"register.php\">Register</a></li>";
                 else
                 {
