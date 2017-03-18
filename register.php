@@ -71,16 +71,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         }
        </script>
 
-        <div class="container">
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-</ul>
-                </nav>
-                <h3 class="text-muted">SPIT Railway Concession Form System</h3>
-            </div>
             <div class="jumbotron">
-                <h1>Register</h1>
+                <h2>Register</h2>
                 <form role="form" method="POST" action="register.php"> 
                     <div class="form-group"> 
                         <label class="control-label" for="UID">Roll No.(UID)</label>                         

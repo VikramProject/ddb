@@ -18,14 +18,7 @@ if(isset($_POST["Nearest_stn"]))
 
 ?>
 
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-            </ul>
-        </nav>
-        <h3 class="text-muted">SPIT Railway Concession Form System</h3>
-    </div>
+
     <div class="jumbotron">
         <h1>Welcome
         </h1>
