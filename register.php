@@ -36,7 +36,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         }
         else if($rows==1)
         {
-            echo "Already Registered";
+            $message = "Alraedy Registered Please Login";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
         else
         {
