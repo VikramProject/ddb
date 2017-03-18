@@ -36,7 +36,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         }
         else if($rows==1)
         {
-            echo "Already Registered";
+            $message = "Alraedy Registered Please Login";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
         else
         {
@@ -103,7 +104,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                     </div>
 
 
-                    <button type=\"submit\" class=\"btn btn-large btn-success\">Submit</button>
+                    <button type="submit" class="btn btn-large btn-success">Submit</button>
 
                 </form>
                 <div class="modal fade" id="myModal" role="dialog">
