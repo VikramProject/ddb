@@ -36,7 +36,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         }
         else if($rows==1)
         {
-            echo "Already Registered";
+            $message = "Alraedy Registered Please Login";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
         else
         {
@@ -70,16 +71,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         }
        </script>
 
-        <div class="container">
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-</ul>
-                </nav>
-                <h3 class="text-muted">SPIT Railway Concession Form System</h3>
-            </div>
             <div class="jumbotron">
-                <h1>Register</h1>
+                <h2>Register</h2>
                 <form role="form" method="POST" action="register.php"> 
                     <div class="form-group"> 
                         <label class="control-label" for="UID">Roll No.(UID)</label>                         
@@ -103,7 +96,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                     </div>
 
 
-                    <button type=\"submit\" class=\"btn btn-large btn-success\">Submit</button>
+                    <button type="submit" class="btn btn-large btn-success">Submit</button>
 
                 </form>
                 <div class="modal fade" id="myModal" role="dialog">

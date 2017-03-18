@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("config.php");
 
 if(isset($_POST["rollno"])&&isset($_POST["Password"]))
@@ -17,15 +16,16 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
     //echo "$no_rows";
 	if($no_rows==1)
 	{
-		echo "Hello";
 		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$passd=$row["Password"];
 		if($pass==$passd)
 		{
 			$_SESSION["rollno"]=$row["UID"];
 
-			echo "Success";
-			header("Location:student_home.php");
+			if ($row['UID']==2014130999)
+                header("Location:admin_page.php");
+			else
+				header("Location:student_home.php");
 		}
 		else
 		{
@@ -34,12 +34,12 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 			header("Location:UnSuccessful.php");
 		}
 	}
-	/*else
+	else
 	{
-		$_SESSION["Error"]="Incorrect Details";
+		$_SESSION["Error"]="Incorrect Details Or Not Registered";
           	$_SESSION["Revert"]="index.php";
 		header("Location:UnSuccessful.php");		
-	}*/
+	}
 }
 
 ?>
