@@ -8,9 +8,21 @@ if(!isset($_SESSION["rollno"]))
 $rollno=$_SESSION["rollno"];
 if ($rollno==2014130999)
     header("Location:admin_page.php");
+$query="select * from conc_dtb where UID=$rollno";
+$result=mysqli_query($db_var,$query) or die(mysql_error());
+$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+$status=$row["Status"];
+if($status == "requested")
+    header("Location:await_results.html");
 if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
-    //Add into database
+    $class = $_POST["Class"];
+    $per = $_POST["Period"];
+    $issue = $_POST["Issue_date"];
+    $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue', Status='requested' WHERE UID='$rollno'";
+    $result=mysqli_query($db_var,$query) or die(mysql_error());
+
+    header("Location:await_results.html");
 }
 ?>
 
