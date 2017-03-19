@@ -14,12 +14,16 @@ $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 $status=$row["Status"];
 if($status == "requested")
     header("Location:await_results.html");
-if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
+if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     $class = $_POST["Class"];
     $per = $_POST["Period"];
     $issue = $_POST["Issue_date"];
-    $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue', Status='requested' WHERE UID='$rollno'";
+    $exp = strtotime($issue);
+    $exp = strtotime(" +{$per} month",$exp);
+    $exp = strtotime("-1 week", $exp);
+    $exp = date('Y-m-d',$exp);
+    $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
 
     header("Location:await_results.html");
@@ -33,16 +37,18 @@ if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])
         <h4>Enter details for Railway Pass</h4>
         <form role="form" method="POST" action="student_home.php">
             <div class="form-group">
-                <label class="control-label" for="/Nearest Station">Nearest Station</label>
-                <input type="text" class="form-control" name="Nearest_stn" required="required" placeholder="Nearest Station">
-            </div>
-            <div class="form-group">
                 <label class="control-label" for="UID">Class</label>
-                <input type="text" class="form-control" name="Class" required="required" placeholder="Class">
+                <select class="form-control" name="Class" required="required" placeholder="Class">
+                    <option value="first">First</option>
+                    <option value="second">Second</option>
+                </select>
             </div>
             <div class="form-group">
                 <label class="control-label" for="\Password">Period</label>
-                <input type="number" class="form-control" min=1 name="Period" required="required" placeholder="Period in Months">
+                <select class="form-control" name="Period" required="required" placeholder="Period">
+                    <option value="1">Monthly</option>
+                    <option value="4">Quarterly</option>
+                </select>
             </div>
             <div class="form-group">
                 <label class="control-label" for="\Date">Date</label>
