@@ -5,6 +5,9 @@ include("nav_bar.php");
 
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
+$rollno=$_SESSION["rollno"];
+if ($rollno==2014130999)
+    header("Location:admin_page.php");
 if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     //Add into database
