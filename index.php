@@ -1,19 +1,18 @@
 <?php
 session_start();
+if(isset($_SESSION["rollno"]))
+{
+    $rollno=$_SESSION["rollno"];
+    if ($rollno==2014130999)
+        header("Location:admin_page.php");
+    else
+        header("location:student_home.php");
+}
+
 include("nav_bar.php");
-
 ?>
-
-        <div class="container">
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-</ul>
-                </nav>
-                <h3 class="text-muted">SPIT Railway Concession Form System</h3>
-            </div>
             <div class="jumbotron">
-                <h1>Log In</h1>
+                <h2>Log In</h2>
                 <form role="form" method="POST" action="login.php"> 
                     <div class="form-group"> 
                         <label class="control-label" for="UID">Roll No.(UID)</label>                         

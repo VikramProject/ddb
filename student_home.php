@@ -5,27 +5,16 @@ include("nav_bar.php");
 
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
-if(isset($_POST["Nearest_stn"]))
-
-
-
-//echo"Welcome Student $msg";
-
-
-
-
-
-
+$rollno=$_SESSION["rollno"];
+if ($rollno==2014130999)
+    header("Location:admin_page.php");
+if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
+{
+    //Add into database
+}
 ?>
 
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-            </ul>
-        </nav>
-        <h3 class="text-muted">SPIT Railway Concession Form System</h3>
-    </div>
+
     <div class="jumbotron">
         <h1>Welcome
         </h1>
