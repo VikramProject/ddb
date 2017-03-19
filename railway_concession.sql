@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 18, 2017 at 06:58 PM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Host: localhost
+-- Generation Time: Mar 19, 2017 at 08:47 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,8 +63,16 @@ CREATE TABLE `conc_dtb` (
   `Nearest_stn` varchar(50) NOT NULL,
   `Class` varchar(10) DEFAULT NULL,
   `Period` int(10) DEFAULT NULL,
-  `Issue_date` date DEFAULT NULL
+  `Issue_date` date DEFAULT NULL,
+  `Status` varchar(20) NOT NULL DEFAULT 'unlocked'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `conc_dtb`
+--
+
+INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Status`) VALUES
+(1, 2014130053, 'borivali', 'first', 4, '2017-03-21', 'requested');
 
 -- --------------------------------------------------------
 
@@ -85,7 +93,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`) VALUES
-(1, 2014130999, 'spitadmin', 'Admin', 'admin@gmail.com');
+(1, 2014130999, 'spitadmin', 'Admin', 'admin@gmail.com'),
+(2, 2014130053, 'qwerty', 'Nishanth', 'uch@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -104,13 +113,15 @@ ALTER TABLE `clg_dtb`
 -- Indexes for table `conc_dtb`
 --
 ALTER TABLE `conc_dtb`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `delete_of_std` (`UID`);
 
 --
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `UID` (`UID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -125,12 +136,22 @@ ALTER TABLE `clg_dtb`
 -- AUTO_INCREMENT for table `conc_dtb`
 --
 ALTER TABLE `conc_dtb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `conc_dtb`
+--
+ALTER TABLE `conc_dtb`
+  ADD CONSTRAINT `delete_of_std` FOREIGN KEY (`UID`) REFERENCES `student` (`UID`) ON DELETE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
