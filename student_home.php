@@ -13,7 +13,7 @@ $result=mysqli_query($db_var,$query) or die(mysql_error());
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 $status=$row["Status"];
 if($status == "requested")
-    header("Location:await_results.html");
+    header("Location:await_results.php");
 if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     $class = $_POST["Class"];
@@ -26,7 +26,7 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
     $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
 
-    header("Location:await_results.html");
+    header("Location:await_results.php");
 }
 ?>
 
@@ -37,21 +37,21 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
         <h4>Enter details for Railway Pass</h4>
         <form role="form" method="POST" action="student_home.php">
             <div class="form-group">
-                <label class="control-label" for="UID">Class</label>
+                <label class="control-label" ">Class</label>
                 <select class="form-control" name="Class" required="required" placeholder="Class">
                     <option value="first">First</option>
                     <option value="second">Second</option>
                 </select>
             </div>
             <div class="form-group">
-                <label class="control-label" for="\Password">Period</label>
+                <label class="control-label" ">Period</label>
                 <select class="form-control" name="Period" required="required" placeholder="Period">
                     <option value="1">Monthly</option>
                     <option value="4">Quarterly</option>
                 </select>
             </div>
             <div class="form-group">
-                <label class="control-label" for="\Date">Date</label>
+                <label class="control-label" ">Date</label>
                 <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
             </div>
             <button type="submit" class="btn btn-large btn-success">Submit</button>
