@@ -12,13 +12,15 @@ if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])
 {
     //Add into database
 }
+
+$dat=date('d/m/Y');
+echo "$dat";
 ?>
 
 
     <div class="jumbotron">
-        <h1>Welcome
-        </h1>
-        <h4>Enter details for Railway Pass</h4>
+
+        <h2>Enter details for Railway Pass</h2>
         <form role="form" method="POST" action="student_home.php">
             <div class="form-group">
                 <label class="control-label" for="/Nearest Station">Nearest Station</label>
@@ -26,7 +28,7 @@ if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])
             </div>
             <div class="form-group">
                 <label class="control-label" for="UID">Class</label>
-                <input type="text" class="form-control" name="Class" required="required" placeholder="Class">
+                <input type="text" class="form-control" min=name="Class" required="required" placeholder="Class">
             </div>
             <div class="form-group">
                 <label class="control-label" for="\Password">Period</label>
@@ -34,7 +36,7 @@ if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])
             </div>
             <div class="form-group">
                 <label class="control-label" for="\Date">Date</label>
-                <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
+                <input type="date" class="form-control" min="\<?php echo date('d/m/Y'); ?>\" name="Issue_date" required="required" placeholder="Date You want Issue">
             </div>
             <button type="submit" class="btn btn-large btn-success">Submit</button>
         </form>
