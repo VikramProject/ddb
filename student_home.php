@@ -8,35 +8,51 @@ if(!isset($_SESSION["rollno"]))
 $rollno=$_SESSION["rollno"];
 if ($rollno==2014130999)
     header("Location:admin_page.php");
-if(isset($_POST["Nearest_stn"])&&isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
+$query="select * from conc_dtb where UID=$rollno";
+$result=mysqli_query($db_var,$query) or die(mysql_error());
+$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+$status=$row["Status"];
+if($status == "requested")
+    header("Location:await_results.php");
+if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
-    //Add into database
-}
+    $class = $_POST["Class"];
+    $per = $_POST["Period"];
+    $issue = $_POST["Issue_date"];
+    $exp = strtotime($issue);
+    $exp = strtotime(" +{$per} month",$exp);
+    $exp = strtotime("-1 week", $exp);
+    $exp = date('Y-m-d',$exp);
+    $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
+    $result=mysqli_query($db_var,$query) or die(mysql_error());
 
-$dat=date('d/m/Y');
-echo "$dat";
+    header("Location:await_results.php");
+}
 ?>
 
 
     <div class="jumbotron">
-
-        <h2>Enter details for Railway Pass</h2>
+        <h1>Welcome
+        </h1>
+        <h4>Enter details for Railway Pass</h4>
         <form role="form" method="POST" action="student_home.php">
             <div class="form-group">
-                <label class="control-label" for="/Nearest Station">Nearest Station</label>
-                <input type="text" class="form-control" name="Nearest_stn" required="required" placeholder="Nearest Station">
+                <label class="control-label" ">Class</label>
+                <select class="form-control" name="Class" required="required" placeholder="Class">
+                    <option value="first">First</option>
+                    <option value="second">Second</option>
+                </select>
             </div>
             <div class="form-group">
-                <label class="control-label" for="UID">Class</label>
-                <input type="text" class="form-control" min=name="Class" required="required" placeholder="Class">
+                <label class="control-label" ">Period</label>
+                <select class="form-control" name="Period" required="required" placeholder="Period">
+                    <option value="1">Monthly</option>
+                    <option value="4">Quarterly</option>
+                </select>
             </div>
             <div class="form-group">
-                <label class="control-label" for="\Password">Period</label>
-                <input type="number" class="form-control" min=1 name="Period" required="required" placeholder="Period in Months">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="\Date">Date</label>
-                <input type="date" class="form-control" min="\<?php echo date('d/m/Y'); ?>\" name="Issue_date" required="required" placeholder="Date You want Issue">
+                <label class="control-label" ">Date</label>
+                <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
             </div>
             <button type="submit" class="btn btn-large btn-success">Submit</button>
         </form>
