@@ -6,8 +6,12 @@
  * Time: 15:05
  */
 include("config.php");
-$record = $_GET['action'];
-$query="update from conc_dtb set Status='locked' where UID=$record";
+if(isset($_REQUEST["q"])){
+$record = $_REQUEST["q"];
+$query="update conc_dtb set Status='locked' where UID=$record";
 $result=mysqli_query($db_var,$query) or die(mysql_error());
+echo "query string received";}
+else
+{ echo "query string not received";
+}
 
-?>
