@@ -14,12 +14,30 @@ if ($rollno!=2014130999)
     header("Location:student_home.php");
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    function showHint(str) {
+        if (str.length == 0) {
+            this.innerHTML = "Not Found";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    this.parentNode.removeChild(this);
+                }
+            };
+            xmlhttp.open("GET", "gethint.php?q=" + str, true);
+            xmlhttp.send();
+        }
+    }
+</script>
 
 <div class="jumbotron">
     <h2>Welcome Admin
 
     <h4>Requests For Passes</h4>
-</div>
+
 <!--    <div class="contianer">-->
 <!--        <div class="row">-->
 <!--            <div class="col-lg-3">name</div>-->
@@ -51,17 +69,31 @@ if ($rollno!=2014130999)
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
                 //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                 while($obj = $result->fetch_object()){
-                    if($obj->Status == "requested"){
+                    if($obj->Status == "requested")
+                    {
                         echo "<div class=\"row\">
-                            <div class=\"col-lg-3\">$obj->Name</div>
-                            <div class=\"col-lg-3\">$obj->Nearest_stn</div>
-                            <div class=\"col-lg-3\">$obj->Class</div>
-                            <div class=\"col-lg-3\">$obj->Period<button type='submit' class='btn-success'  >Approve</button></div>
-                        </div>
-";                    }
+                            <div class=\"col-lg-2\">$obj->UID</div>
+                            <div class=\"col-lg-2\">$obj->Name</div>
+                            <div class=\"col-lg-2\">$obj->Nearest_stn</div>
+                            <div class=\"col-lg-2\">$obj->Class</div>";
+                            if($obj->Period==1)
+                            {
+                                echo"<div class=\"col-lg-2\">Monthly</div>";
+                            }
+                            else
+                            {
+                                echo "<div class=\"col-lg-2\">Quaterly</div>";
+                            }
+                        echo"<div class=\"col-lg-2\"><form><button type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" onclick=\"showHint($obj->UID)\">Submit</button></form></div></div>";
+
+
+
+
+                   }
                 }
             ?>
         </div>
+</div>
 </div>
 <br>
 <footer class="footer">
