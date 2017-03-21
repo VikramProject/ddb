@@ -14,6 +14,9 @@ $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 $status=$row["Status"];
 if($status == "requested")
     header("Location:await_results.php");
+//else if($status == "disapproved")
+    //disapproved code
+
 if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     $class = $_POST["Class"];
