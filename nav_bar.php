@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
                 if("$_SERVER[REQUEST_URI]"=="/ddb/register.php")
-                    echo "<li><a href=\"index.php\">Login</a></li>";
+                    echo ">Login</a></li>";
                 else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php")
                 {
                     $rollno=$_SESSION['rollno'];
