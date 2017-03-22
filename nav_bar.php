@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><strong>Railway Concession</strong>Form System</a>
+            <a class="navbar-brand" href="index.php">Railway Concession Form System</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +46,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
                 if("$_SERVER[REQUEST_URI]"=="/ddb/register.php")
-                    echo ">Login</a></li>";
+                {
+                    echo "<li><a href=\"index.php\">Login</a></li>";
+
+                }
+
                 else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php")
                 {
                     $rollno=$_SESSION['rollno'];
@@ -79,6 +83,7 @@
                             </a></li>
                     </ul>
                 </li>
+
             </ul>
 
         </div>
