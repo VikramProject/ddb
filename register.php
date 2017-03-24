@@ -70,7 +70,17 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
             });
         }
        </script>
-
+<head>
+    <style type="text/css">
+    #station {
+    position: relative;
+    z-index: 10000;
+    }
+    .autocomplete {
+    z-index: 9999 !important;
+    }
+        </style>
+</head>
             <div class="jumbotron">
                 <h2>Register</h2>
                 <form role="form" method="POST" action="register.php"> 
@@ -90,9 +100,9 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                         <label class="control-label" for="\Email">Email</label>                         
                         <input type="email" class="form-control" name="email" required="required" placeholder="Email Id"> 
                     </div>
-                    <div class="form-group"> 
+                    <div class="ui-widget form-group">
                         <label class="control-label" for="\Nearest">Nearest Station</label>
-                        <input type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
+                        <input  id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
                     </div>
 
 
@@ -131,5 +141,18 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-    </body>
-</html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+
+    $(function() {
+        $( "#station" ).autocomplete({
+            source: 'search.php'
+        });
+    });
+</script>
+
+
+
+

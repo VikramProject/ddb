@@ -1,9 +1,10 @@
+
 -- phpMyAdmin SQL Dump
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2017 at 06:13 PM
+-- Generation Time: Mar 24, 2017 at 09:30 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -68,6 +69,156 @@ CREATE TABLE `conc_dtb` (
   `Status` varchar(20) NOT NULL DEFAULT 'unlocked'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `conc_dtb`
+--
+
+INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Expiry_date`, `Status`) VALUES
+(6, 2014130052, 'Kandivali', 'first', 1, '2017-03-24', '2017-04-17', 'requested'),
+(7, 2014130051, 'Kandivali', 'first', 1, '2017-03-24', '2017-04-17', 'requested');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `station`
+--
+
+CREATE TABLE `station` (
+  `id` int(11) NOT NULL,
+  `station` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `station`
+--
+
+INSERT INTO `station` (`id`, `station`) VALUES
+(1, 'Ambernath'),
+(2, 'Ambivili '),
+(3, 'Asangaon'),
+(4, 'Atgaon '),
+(5, 'Badlapur '),
+(6, 'Bhandup '),
+(7, 'Bhivpuri'),
+(8, 'Byculla '),
+(9, 'Chinchpokli'),
+(10, 'CurreyRoad '),
+(11, 'Dadar'),
+(12, 'Diva'),
+(13, 'Dolavi'),
+(14, 'Dombivili'),
+(15, 'Ghatkopar'),
+(16, 'Kalwa'),
+(17, 'Kalyan'),
+(18, 'Kanjurmarg'),
+(19, 'Karjat'),
+(20, 'Kasara'),
+(21, 'Kelave '),
+(22, 'Khadavli '),
+(23, 'Khardi '),
+(24, 'Khopoli '),
+(25, 'Kopar '),
+(26, 'Kurla '),
+(27, 'Lowjee '),
+(28, 'Masjid '),
+(29, 'Matunga '),
+(30, 'Mulund '),
+(31, 'Mumbai_CST '),
+(32, 'Mumbra '),
+(33, 'Nahur '),
+(34, 'Neral '),
+(35, 'Palasdari '),
+(36, 'Parel '),
+(37, 'Sandurst Road '),
+(38, 'Shahad '),
+(39, 'Shelu '),
+(40, 'Sion '),
+(41, 'Thakurli '),
+(42, 'Thane '),
+(43, 'Titwala '),
+(44, 'Ulhasnagar '),
+(45, 'Vangani '),
+(46, 'Vasind '),
+(47, 'Vidhyavihar '),
+(48, 'Vikhroli '),
+(49, 'Vithalwadi '),
+(50, 'Andheri '),
+(51, 'Bandra '),
+(52, 'Bhayander '),
+(53, 'Borivali '),
+(54, 'Charni Rd '),
+(55, 'Churchgate '),
+(56, 'Dadar '),
+(57, 'Dahisar '),
+(58, 'Elphinstone rd '),
+(59, 'Goregaon '),
+(60, 'Grant Rd '),
+(61, 'Jogeshwari '),
+(62, 'Kandivali '),
+(63, 'Khar Rd '),
+(64, 'Lower Parel '),
+(65, 'Mahalakshmi '),
+(66, 'Mahim '),
+(67, 'Malad '),
+(68, 'Marine Lines '),
+(69, 'Matunga Rd '),
+(70, 'Mira Rd '),
+(71, 'Mumbai Central '),
+(72, 'Naigaon '),
+(73, 'Nalla Sopara '),
+(74, 'Santa Cruz '),
+(75, 'Vasai Rd '),
+(76, 'Vile Parle '),
+(77, 'Virar '),
+(78, 'Andheri '),
+(79, 'Bandra '),
+(80, 'Belapur CBD '),
+(81, 'Chembur '),
+(82, 'Chunabhatti '),
+(83, 'Cotton Green '),
+(84, 'Dockyard Road '),
+(85, 'Govandi '),
+(86, 'GTB Nagar '),
+(87, 'Juinagar '),
+(88, 'Khandeshwar '),
+(89, 'Khar Road '),
+(90, 'Kharghar '),
+(91, 'Kings Circle '),
+(92, 'Kurla '),
+(93, 'Mahim Jn '),
+(94, 'Mankhurd '),
+(95, 'Mansarovar '),
+(96, 'Masjid '),
+(97, 'Mumbai CST '),
+(98, 'Nerul '),
+(99, 'Panvel '),
+(100, 'Reay Road '),
+(101, 'Sandhurst Road '),
+(102, 'Sanpada '),
+(103, 'Santacruz '),
+(104, 'Seawood Darave '),
+(105, 'Sewri '),
+(106, 'Tilaknagar '),
+(107, 'Vashi '),
+(108, 'Vile Parle '),
+(109, 'Wadala Rd '),
+(110, 'Airoli '),
+(111, 'Belapur CBD '),
+(112, 'Ghansoli '),
+(113, 'Juinagar '),
+(114, 'Khandeshwar '),
+(115, 'Kharghar '),
+(116, 'Koparkhairne '),
+(117, 'Manasarovar '),
+(118, 'Nerul '),
+(119, 'Panvel '),
+(120, 'Rabale '),
+(121, 'Sanpada '),
+(122, 'Seawood Darave '),
+(123, 'Thane '),
+(124, 'Turbhe '),
+(125, 'Vashi ');
+
 -- --------------------------------------------------------
 
 --
@@ -87,7 +238,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`) VALUES
-(1, 2014130999, 'spitadmin', 'Admin', 'admin@gmail.com');
+(1, 2014130999, 'spitadmin', 'Admin', 'admin@gmail.com'),
+(7, 2014130052, 'om', 'Rohan', 'rohan@gmail.com'),
+(8, 2014130051, 'om', 'rohit', 'rohansheth17@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -110,6 +263,12 @@ ALTER TABLE `conc_dtb`
   ADD KEY `delete_of_std` (`UID`);
 
 --
+-- Indexes for table `station`
+--
+ALTER TABLE `station`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -129,12 +288,17 @@ ALTER TABLE `clg_dtb`
 -- AUTO_INCREMENT for table `conc_dtb`
 --
 ALTER TABLE `conc_dtb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `station`
+--
+ALTER TABLE `station`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --
@@ -148,3 +312,5 @@ ALTER TABLE `conc_dtb`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
