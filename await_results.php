@@ -10,6 +10,5 @@ include("nav_bar.php");
 </head>
 <body>
     <p>Your form has still not been reviewed by the personnel. Do come back to check on your status!</p>
-    <a href="logout.php">Logout</a>
 </body>
 </html>

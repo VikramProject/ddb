@@ -51,7 +51,7 @@
 
                 }
 
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php")
+                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"||"$_SERVER[REQUEST_URI]"=="/ddb/await_results.php")
                 {
                     $rollno=$_SESSION['rollno'];
                     $query="select name from student where UID='$rollno'";
