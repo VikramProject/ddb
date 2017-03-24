@@ -1,3 +1,8 @@
+<?php
+include('config.php');
+include('nav_bar.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
