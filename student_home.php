@@ -12,7 +12,7 @@ $query="select * from conc_dtb where UID=$rollno";
 $result=mysqli_query($db_var,$query) or die(mysql_error());
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 $status=$row["Status"];
-if($status == "requested")
+if(!($status == "unlocked"))
     header("Location:await_results.php");
 if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
@@ -47,12 +47,17 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
                 <label class="control-label" ">Period</label>
                 <select class="form-control" name="Period" required="required" placeholder="Period">
                     <option value="1">Monthly</option>
-                    <option value="4">Quarterly</option>
+                    <option value="3">Quarterly</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="control-label" ">Date</label>
-                <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
+                <?php $curr = date("Y-m-d");
+                $curr = strtotime($curr);
+                $curr = strtotime(" +3 day",$curr);
+                $curr = date('Y-m-d',$curr);
+                ?>
+                <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>"max="<?php echo $curr; ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
             </div>
             <button type="submit" class="btn btn-large btn-success">Submit</button>
         </form>
