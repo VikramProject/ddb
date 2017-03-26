@@ -21,8 +21,8 @@ if ($rollno!=2014130999)
     $(document).ready(function(){
         $(".apply").click(function(){
             var rollno = $(this).attr('id');
-            var name = $(this).parent().siblings().find(".Name").val();
-            var email = $(this).parent().siblings().find(".Email").val();
+            //var name = $(this).parent().siblings().find(".Name").val();
+            //var email = $(this).parent().siblings().find(".Email").val();
             var near = $(this).parent().siblings().find(".Nearest_stn").val();
             var classn = $(this).parent().siblings().find(".Class").val();
             var period = $(this).parent().siblings().find(".Period").val();
@@ -32,7 +32,7 @@ if ($rollno!=2014130999)
             $.ajax({
                 type: "POST",
                 url: "change_student_info.php",
-                data: {roll:rollno, name:name, email:email, near:near, classn:classn, period:period},
+                data: {roll:rollno, near:near, classn:classn, period:period},
                 cache: false,
                 context: this,
                 success: function(){
@@ -51,10 +51,10 @@ if ($rollno!=2014130999)
             $result=mysqli_query($db_var,$query) or die(mysql_error());
             while($obj = $result->fetch_object()){
                 echo "<div class=\"row\" style=\"margin-top: 10px;\">
-                        <div class=\"col-lg-2\"><textarea class=\"form-control Name\" rows=\"1\" col='Name' val='$obj->Name'>$obj->Name</textarea></div>
-                        <div class=\"col-lg-3\"><textarea class=\"form-control Email\" rows=\"1\" col='Email' val='$obj->Email'>$obj->Email</textarea></div>
+                        <div class=\"col-lg-2\">$obj->UID</div>
+                        <div class=\"col-lg-2\">$obj->Name</div>
                         <div class=\"col-lg-2\"><textarea class=\"form-control Nearest_stn\" rows=\"1\" col='Nearest_stn' val='$obj->Nearest_stn'>$obj->Nearest_stn</textarea></div>
-                        <div class=\"col-lg-1\">
+                        <div class=\"col-lg-2\">
                         <select class=\"form-control Class\" name=\"Class\" required=\"required\" placeholder=\"Class\">";
                         if($obj->Class == "first"){
                             echo "<option value=\"first\" selected='selected'>First</option>
