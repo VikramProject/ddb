@@ -16,6 +16,7 @@ if ($rollno!=2014130999)
 <style>
     textarea {resize: none;}
     .form-control{font-size: 16px;}
+    .colhead{font-weight: 900;margin-bottom: 15px;padding-left: 30px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type = "text/javascript" language = "javascript">
@@ -50,6 +51,13 @@ if ($rollno!=2014130999)
             <?php
             $query = "select * from conc_dtb inner join student on conc_dtb.UID=student.UID";
             $result=mysqli_query($db_var,$query) or die(mysql_error());
+            echo "<div class='row'>
+                <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic; padding-left: 35px;'>UID</div>
+                <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Name</div>
+                <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Nearest Stn</div>
+                <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Train Class</div>
+                <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Period</div>
+                </div>";
             while($obj = $result->fetch_object()){
                 echo "<div class=\"row\" style=\"margin-top: 10px;\">
                         <div class=\"col-lg-2\" style='font-size: 16px; padding-top: 7px;'>$obj->UID</div>
