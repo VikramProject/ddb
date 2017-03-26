@@ -14,7 +14,8 @@ if ($rollno!=2014130999)
     header("Location:student_home.php");
 ?>
 <style>
-    textarea {resize: none}
+    textarea {resize: none;}
+    .form-control{font-size: 16px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type = "text/javascript" language = "javascript">
@@ -51,9 +52,9 @@ if ($rollno!=2014130999)
             $result=mysqli_query($db_var,$query) or die(mysql_error());
             while($obj = $result->fetch_object()){
                 echo "<div class=\"row\" style=\"margin-top: 10px;\">
-                        <div class=\"col-lg-2\">$obj->UID</div>
-                        <div class=\"col-lg-2\">$obj->Name</div>
-                        <div class=\"col-lg-2\"><textarea class=\"form-control Nearest_stn\" rows=\"1\" col='Nearest_stn' val='$obj->Nearest_stn'>$obj->Nearest_stn</textarea></div>
+                        <div class=\"col-lg-2\" style='font-size: 16px; padding-top: 7px;'>$obj->UID</div>
+                        <div class=\"col-lg-2\" style='font-size: 16px; padding-top: 7px;'>$obj->Name</div>
+                        <div class=\"col-lg-2\"><textarea class=\"form-control Nearest_stn\" rows=\"1\" col='Nearest_stn' val='$obj->Nearest_stn' >$obj->Nearest_stn</textarea></div>
                         <div class=\"col-lg-2\">
                         <select class=\"form-control Class\" name=\"Class\" required=\"required\" placeholder=\"Class\">";
                         if($obj->Class == "first"){
@@ -87,7 +88,7 @@ if ($rollno!=2014130999)
 </div>
 <br>
 <footer class="footer">
-    <p>&copy Sardar Patel Institute of Technology</p>
+    <p style="font-size: 16px">&copy Sardar Patel Institute of Technology</p>
 </footer>
 </div>
 <!-- /container -->
