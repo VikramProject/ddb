@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Railway Concession Form System</a>
+            <a class="navbar-brand" href="index.php">SPIT Railway Concession Form System</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,7 +57,7 @@
                     $query="select name from student where UID='$rollno'";
                     $res=mysqli_query($db_var,$query);
                     $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
-                    echo "<li><a href=\"#\">Welcome $row[name]</a></li><li><a href=\"changepass.php\">Change Password</a></li>";
+                    echo "<li><a href=\"changepass.php\">Change Password</a></li>";
                     if("$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"){
                         echo "<li><a href=\"change_info.php\">Change Student Info</a></li>";
                     }
@@ -103,10 +103,10 @@
     <!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <div class="header clearfix">
+<!--    <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
             </ul>
         </nav>
         <h3 class="text-muted">SPIT Railway Concession Form System</h3>
-    </div>
+    </div>-->
