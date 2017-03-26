@@ -40,7 +40,7 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
                 <label class="control-label" ">Class</label>
                 <select class="form-control" name="Class" required="required" placeholder="Class">
                     <option value="first">First</option>
-                    <option value="second">Second</option>
+                    <option value="sec">Second</option>
                 </select>
             </div>
             <div class="form-group">

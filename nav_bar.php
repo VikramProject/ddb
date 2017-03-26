@@ -51,13 +51,20 @@
 
                 }
 
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"||"$_SERVER[REQUEST_URI]"=="/ddb/await_results.php")
+                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"||"$_SERVER[REQUEST_URI]"=="/ddb/await_results.php" || "$_SERVER[REQUEST_URI]"=="/ddb/change_info.php")
                 {
                     $rollno=$_SESSION['rollno'];
                     $query="select name from student where UID='$rollno'";
                     $res=mysqli_query($db_var,$query);
                     $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
-                    echo "<li><a href=\"#\">Welcome $row[name]</a></li> <li><a href=\"logout.php\">Logout</a></li> <li><a href=\"changepass.php\">Change Password</a></li>";
+                    echo "<li><a href=\"#\">Welcome $row[name]</a></li><li><a href=\"changepass.php\">Change Password</a></li>";
+                    if("$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"){
+                        echo "<li><a href=\"change_info.php\">Change Student Info</a></li>";
+                    }
+                    if("$_SERVER[REQUEST_URI]"=="/ddb/change_info.php"){
+                        echo "<li><a href=\"admin_page.php\">Requests List</a></li>";
+                    }
+                    echo "<li><a href=\"logout.php\">Logout</a></li>";
                 }
                 else if("$_SERVER[REQUEST_URI]"=="/ddb/changepass.php")
                 {
