@@ -17,7 +17,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 	{
 		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$passd=$row["Password"];
-		if($pass==$passd)
+		if(password_verify($pass, $passd))
 		{
 			$_SESSION["rollno"]=$row["UID"];
 

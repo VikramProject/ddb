@@ -14,12 +14,13 @@ if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST[
     $result=mysqli_query($db_var,$query) or die(mysql_error());
     if(mysqli_num_rows($result)==1){
         $row = mysqli_fetch_assoc($result);
-        if($currpassword!=$row["Password"]){
+        if(!password_verify($currpassword,$row["Password"])){
 
             echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
 			Please enter the correct password</span>";
         }
         else if($newpassword==$confnewpassword){
+            $confnewpassword=password_hash($confnewpassword,PASSWORD_BCRYPT,['cost' => 12]);
 
             $sql="UPDATE student SET Password = '$confnewpassword' WHERE UID='$rollno'";
             mysqli_query($db_var, $sql);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 24, 2017 at 09:30 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Host: localhost
+-- Generation Time: Mar 27, 2017 at 06:43 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -67,14 +67,6 @@ CREATE TABLE `conc_dtb` (
   `Expiry_date` date NOT NULL,
   `Status` varchar(20) NOT NULL DEFAULT 'unlocked'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `conc_dtb`
---
-
-INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Expiry_date`, `Status`) VALUES
-(6, 2014130052, 'Kandivali', 'first', 1, '2017-03-24', '2017-04-17', 'requested'),
-(7, 2014130051, 'Kandivali', 'first', 1, '2017-03-24', '2017-04-17', 'requested');
 
 -- --------------------------------------------------------
 
@@ -227,7 +219,7 @@ INSERT INTO `station` (`id`, `station`) VALUES
 CREATE TABLE `student` (
   `id` int(11) NOT NULL,
   `UID` int(10) NOT NULL,
-  `Password` varchar(50) NOT NULL,
+  `Password` varchar(200) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -237,9 +229,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`) VALUES
-(1, 2014130999, 'spitadmin', 'Admin', 'admin@gmail.com'),
-(7, 2014130052, 'om', 'Rohan', 'rohan@gmail.com'),
-(8, 2014130051, 'om', 'rohit', 'rohansheth17@gmail.com');
+(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com');
 
 --
 -- Indexes for dumped tables
