@@ -16,12 +16,12 @@ $status=$row["Status"];
 //$exp_dt=date("Y-m-d",$exp_dt);
 if($status == "requested")
 {
-    $_SESSION["msg"]="Your form has still not been reviewed by the personnel. Do come back to check on your status!";
+    $_SESSION["msgAwait"]="Your form has still not been reviewed by the personnel. Do come back to check on your status!";
     header("Location:await_results.php");
 }
 if($status == "locked")
 {
-    $_SESSION["msg"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked untill next time";
+    $_SESSION["msgAwait"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked untill next time";
     header("Location:await_results.php");
 }
 
@@ -37,7 +37,7 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
     $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
 
-    header("Location:await_results.php");
+    header("Location:student_home.php");
 }
 ?>
 
