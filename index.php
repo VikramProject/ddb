@@ -1,5 +1,5 @@
 <?php
-
+include("config.php");
 if(isset($_SESSION["rollno"]))
 {
     $rollno=$_SESSION["rollno"];
@@ -13,8 +13,8 @@ include("nav_bar.php");
 ?>
             <div class="jumbotron">
                 <h2>Log In</h2>
-                <form role="form" method="POST" action="login.php"> 
-                    <div class="form-group"> 
+                <form role="form" method="POST" action="login.php">
+                    <div class="form-group">
                         <label class="control-label" for="UID">Roll No.(UID)</label>                         
                         <input type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID"> 
                     </div>                     

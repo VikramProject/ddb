@@ -9,6 +9,17 @@ include("nav_bar.php");
     <title>Awaiting Review</title>
 </head>
 <body>
-    <p>Your form has still not been reviewed by the personnel. Do come back to check on your status!</p>
+    <p><?php
+        if(isset($_SESSION["msg"]))
+        {
+            $message=$_SESSION["msg"];
+            echo "$message";
+        }
+        else
+        {
+            echo "No session message";
+        }
+
+        ?></p>
 </body>
 </html>
