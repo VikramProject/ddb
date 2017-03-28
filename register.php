@@ -9,6 +9,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 	$roll=$_POST["rollno"];
 	$name=$_POST["name"];
 	$pass=$_POST["Password"];
+	$pass=password_hash($pass,PASSWORD_BCRYPT,['cost' => 12]);
 	$email=$_POST["email"];
 	$nearest=$_POST["nearest"];
 

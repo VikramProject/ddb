@@ -33,34 +33,46 @@ $(document).ready(function(){
     });
 });
 </script>
+<style>
+    .info{padding-top: 5px; font-size: 16px;}
+    .colhead{font-weight: 900;margin-bottom: 15px;}
+</style>
 
 <div class="jumbotron">
-    <h2>Welcome Admin
-
-    <h4>Requests For Passes</h4>
+    <h2 style="margin-top: -20px;">Requests For Passes</h2>
 
         <div class="container">
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
+                echo "<div class='row'>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic; padding-left: 35px;'>UID</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Name</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Nearest Stn</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Train Class</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Period</div>
+                    </div>";
                 while($obj = $result->fetch_object()){
                     if($obj->Status == "requested")
                     {
-                        echo "<div class=\"row\">
-                            <div class=\"col-lg-2\">$obj->UID</div>
-                            <div class=\"col-lg-2\">$obj->Name</div>
-                            <div class=\"col-lg-2\">$obj->Nearest_stn</div>
-                            <div class=\"col-lg-2\">$obj->Class</div>";
+                        echo "<div class=\"row\" style='margin-top: 15px;'>
+                            <div class=\"col-lg-2 info\">$obj->UID</div>
+                            <div class=\"col-lg-2 info\">$obj->Name</div>
+                            <div class=\"col-lg-2 info\">$obj->Nearest_stn</div>";
+                            if($obj->Class == "first")
+                                echo "<div class=\"col-lg-2 info\">First</div>";
+                            else
+                                echo "<div class=\"col-lg-2 info\">Second</div>";
                             if($obj->Period==1)
                             {
-                                echo"<div class=\"col-lg-2\">Monthly</div>";
+                                echo"<div class=\"col-lg-2 info\">Monthly</div>";
                             }
                             else
                             {
-                                echo "<div class=\"col-lg-2\">Quarterly</div>";
+                                echo "<div class=\"col-lg-2 info\">Quarterly</div>";
                             }
                         echo "<div class=\"col-lg-2\">
-                                <button type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" onclick=\"showHint($obj->UID); return false\">Submit</button>
+                                <button type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top: 7px;' \">Approve</button>
                               </div>
                             </div>";
 
