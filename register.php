@@ -100,8 +100,14 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                         <input type="text" class="form-control" name="name" required="required" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="\Sex">Sex</label>
-                        <input type="text" class="form-control" name="sex" required="required" placeholder="F / M">
+                        <label class="control-label " for="\Gender">Gender:  </label>
+                        <input type="radio" name="gender" value="male" style="margin-left: 10px;"> Male
+                        <input type="radio" name="gender" value="female" style="margin-left: 10px;"> Female
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ">Caste:  </label>
+                        <input type="radio" name="caste" value="SC/ST" style="margin-left: 23px;"> SC/ST
+                        <input type="radio" name="caste" value="Open" checked style="margin-left: 10px;"> Open<br>
                     </div>
                     <div class="form-group"> 
                         <label class="control-label" for="\Email">Email</label>                         
