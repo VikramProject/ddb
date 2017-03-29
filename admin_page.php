@@ -25,7 +25,8 @@ $(document).ready(function(){
             data: {q:blah},
             cache: false,
             context: this,
-            success: function(){
+            success: function(data){
+                alert (data);
                 $(this).parent().parent().remove();
                 //alert("Record successfully updated");
             }
