@@ -7,7 +7,6 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 	$rollno=$_POST["rollno"];
 	$pass=$_POST["Password"];
     //echo "$rollno";
-	echo "$rollno,$pass";
 	$query="select * from student where UID=$rollno";
 	
 	$result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -18,14 +17,31 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 	{
 		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$passd=$row["Password"];
-		if($pass==$passd)
+		if(password_verify($pass, $passd))
 		{
 			$_SESSION["rollno"]=$row["UID"];
 
 			if ($row['UID']==2014130999)
                 header("Location:admin_page.php");
 			else
+			{
+                $query="select * from conc_dtb where UID=$rollno";
+                $result=mysqli_query($db_var,$query) or die(mysql_error());
+                $no_rows=mysqli_num_rows($result);
+                if($no_rows==1)
+                {
+                    $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+                    $exp_date=strtotime($row["Expiry_date"]);
+                    $exp_date=date("Y-m-d",$exp_date);
+                    if(strtotime($exp_date)==strtotime(date("Y-m-d")))
+					{
+                        $query="update conc_dtb set status = 'unlocked' where UID=$rollno";
+                        $result=mysqli_query($db_var,$query) or die(mysql_error());
+					}
+                }
 				header("Location:student_home.php");
+			}
+
 		}
 		else
 		{
