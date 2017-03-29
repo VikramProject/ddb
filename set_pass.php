@@ -10,7 +10,6 @@ include ("nav_bar.php");
 if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPassword"]))
 {
 
-    echo"ok";
     $resetUID = $_POST["resetUID"];
     $Password = $_POST["Password"];
     $confnewpassword = $_POST["ConfNewPassword"];
