@@ -12,7 +12,7 @@ include("nav_bar.php");
     <p><?php
         if(isset($_SESSION["msgAwait"]))
         {
-            $message=$_SESSION["msg"];
+            $message=$_SESSION["msgAwait"];
             echo "$message";
         }
         else

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2017 at 06:43 PM
+-- Generation Time: Mar 29, 2017 at 01:15 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -66,6 +66,37 @@ CREATE TABLE `conc_dtb` (
   `Issue_date` date DEFAULT NULL,
   `Expiry_date` date NOT NULL,
   `Status` varchar(20) NOT NULL DEFAULT 'unlocked'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `conc_dtb`
+--
+
+INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Expiry_date`, `Status`) VALUES
+(8, 2014130048, 'Mira Road', 'first', 1, '2017-03-28', '2017-04-21', 'locked'),
+(9, 2014130047, 'Virar', 'first', 1, '2017-03-28', '2017-04-21', 'locked'),
+(10, 2014130049, 'Virar', NULL, NULL, NULL, '0000-00-00', 'unlocked');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_dtb`
+--
+
+CREATE TABLE `report_dtb` (
+  `Id` int(10) NOT NULL,
+  `UID` int(20) NOT NULL,
+  `Sr_no` int(20) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Age` varchar(10) NOT NULL,
+  `Sex` varchar(1) NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `Period` int(10) NOT NULL,
+  `From_stn` varchar(30) NOT NULL,
+  `To_stn` varchar(30) NOT NULL DEFAULT 'Andheri',
+  `Class` varchar(5) NOT NULL,
+  `Issued_date` date NOT NULL,
+  `DOB` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -221,15 +252,22 @@ CREATE TABLE `student` (
   `UID` int(10) NOT NULL,
   `Password` varchar(200) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL
+  `Email` varchar(50) NOT NULL,
+  `Age` varchar(20) NOT NULL DEFAULT '0Y_0M',
+  `Sex` varchar(1) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL,
+  `DOB` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`) VALUES
-(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com');
+INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`, `Age`, `Sex`, `Address`, `DOB`) VALUES
+(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com', '0Y_0M', NULL, NULL, '0000-00-00'),
+(9, 2014130048, '$2y$12$LqTqM/MBTBApYxp5pigHA.2mCSZ65uTFHQDTAf3Jd4jNVEniDiBSy', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', '0Y_0M', NULL, NULL, '0000-00-00'),
+(10, 2014130047, '$2y$12$mSqAYOkekLzPwWncmE6I3.36I.mXdlAH51dyD4ggfv0CZTNy/VntS', 'Siddhey Sankhe', 'siddhey@gmail.com', '0Y_0M', NULL, NULL, '0000-00-00'),
+(11, 2014130049, '$2y$12$4y4GVIw1212X5Rm19gGn6eZkUn5JPTqg4/82cgbIDEf5KG4n2at7m', 'Darshan Shah', 'blah@blah.com', '0Y_0M', 'M', 'blah, blah(w)', '1997-01-01');
 
 --
 -- Indexes for dumped tables
@@ -250,6 +288,13 @@ ALTER TABLE `clg_dtb`
 ALTER TABLE `conc_dtb`
   ADD PRIMARY KEY (`id`),
   ADD KEY `delete_of_std` (`UID`);
+
+--
+-- Indexes for table `report_dtb`
+--
+ALTER TABLE `report_dtb`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Sr_no` (`Sr_no`);
 
 --
 -- Indexes for table `station`
@@ -277,7 +322,12 @@ ALTER TABLE `clg_dtb`
 -- AUTO_INCREMENT for table `conc_dtb`
 --
 ALTER TABLE `conc_dtb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `report_dtb`
+--
+ALTER TABLE `report_dtb`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `station`
 --
@@ -287,7 +337,7 @@ ALTER TABLE `station`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --

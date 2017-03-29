@@ -12,7 +12,9 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 	$pass=password_hash($pass,PASSWORD_BCRYPT,['cost' => 12]);
 	$email=$_POST["email"];
 	$nearest=$_POST["nearest"];
-
+    $sex = $_POST["sex"];
+    $dob = $_POST["dob"];
+    $addr = $_POST["addr"];
 
 	$query="select * from clg_dtb where UID='$roll'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -29,7 +31,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         $rows=mysqli_num_rows($result);
         if($rows==0)
         {
-            $query="insert into student(UID,Password,Name,Email) values('$roll','$pass','$name','$email')";
+            $query="insert into student(UID,Password,Name,Email,Sex,DOB,Address) values('$roll','$pass','$name','$email','$sex','$dob','$addr')";
             $result=mysqli_query($db_var,$query) or die(mysql_error());
             $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
             $result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -92,10 +94,14 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                     <div class="form-group"> 
                         <label class="control-label" for="\Password">Password</label>                         
                         <input type="password" class="form-control" name="Password" required="required" placeholder="Password"> 
-                    </div>                    
+                    </div>
                     <div class="form-group"> 
                         <label class="control-label" for="\Name">Name</label>                         
-                        <input type="text" class="form-control" name="name" required="required" placeholder="Name"> 
+                        <input type="text" class="form-control" name="name" required="required" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="\Sex">Sex</label>
+                        <input type="text" class="form-control" name="sex" required="required" placeholder="F / M">
                     </div>
                     <div class="form-group"> 
                         <label class="control-label" for="\Email">Email</label>                         
@@ -105,8 +111,14 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                         <label class="control-label" for="\Nearest">Nearest Station</label>
                         <input  id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
                     </div>
-
-
+                    <div class="form-group">
+                        <label class="control-label" for="\Address">Address</label>
+                        <input type="text" class="form-control" name="addr" required="required" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ">Date Of Birth </label>
+                        <input type="date" class="form-control" name="dob" required="required" placeholder="Date Of Birth">
+                    </div>
                     <button type="submit" class="btn btn-large btn-success">Submit</button>
 
                 </form>
