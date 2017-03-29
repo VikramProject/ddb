@@ -14,54 +14,76 @@ if ($rollno!=2014130999)
     header("Location:student_home.php");
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type = "text/javascript" language = "javascript">
+$(document).ready(function(){
+    $(".approve").click(function(){
+        var blah = $(this).attr('id');
+        $.ajax({
+            type: "GET",
+            url: "update.php",
+            data: {q:blah},
+            cache: false,
+            context: this,
+            success: function(){
+                $(this).parent().parent().remove();
+                //alert("Record successfully updated");
+            }
+        });
+    });
+});
+</script>
+<style>
+    .info{padding-top: 5px; font-size: 16px;}
+    .colhead{font-weight: 900;margin-bottom: 15px;}
+</style>
 
 <div class="jumbotron">
-    <h2>Welcome Admin
+    <h2 style="margin-top: -20px;">Requests For Passes</h2>
 
-    <h4>Requests For Passes</h4>
-</div>
-<!--    <div class="contianer">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-3">name</div>-->
-<!--            <div class="col-lg-3">UID</div>-->
-<!--            <div class="col-lg-3">Station</div>-->
-<!--        </div>-->
-<!--    <form role="form" method="POST" action="#">-->
-<!--        <div class="form-group">-->
-<!--            <label class="control-label" for="/Nearest Station">Nearest Station</label>-->
-<!--            <input type="text" class="form-control" name="Nearest_stn" required="required" placeholder="Nearest Station">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label class="control-label" for="UID">Class</label>-->
-<!--            <input type="text" class="form-control" name="Class" required="required" placeholder="Class">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label class="control-label" for="\Password">Period</label>-->
-<!--            <input type="number" class="form-control" min=1 name="Period" required="required" placeholder="Period in Months">-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label class="control-label" for="\Date">Date</label>-->
-<!--            <input type="date" class="form-control" min="--><?php //echo date("Y-m-d"); ?><!--" name="Issue_date" required="required" placeholder="Date You want Issue">-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-large btn-success">Submit</button>-->
-<!--    </form>-->
         <div class="container">
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
-                //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+                echo "<div class='row'>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic; padding-left: 35px;'>UID</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Name</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Nearest Stn</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Train Class</div>
+                    <div class=\"col-lg-2 colhead\" style='font-size: 16px; padding-top: 7px;font-style: italic'>Period</div>
+                    </div>";
                 while($obj = $result->fetch_object()){
-                    if($obj->Status == "requested"){
-                        echo "<div class=\"row\">
-                            <div class=\"col-lg-3\">$obj->Name</div>
-                            <div class=\"col-lg-3\">$obj->Nearest_stn</div>
-                            <div class=\"col-lg-3\">$obj->Class</div>
-                            <div class=\"col-lg-3\">$obj->Period<button type='submit' class='btn-success'  >Approve</button></div>
-                        </div>
-";                    }
+                    if($obj->Status == "requested")
+                    {
+                        echo "<div class=\"row\" style='margin-top: 15px;'>
+                            <div class=\"col-lg-2 info\">$obj->UID</div>
+                            <div class=\"col-lg-2 info\">$obj->Name</div>
+                            <div class=\"col-lg-2 info\">$obj->Nearest_stn</div>";
+                            if($obj->Class == "first")
+                                echo "<div class=\"col-lg-2 info\">First</div>";
+                            else
+                                echo "<div class=\"col-lg-2 info\">Second</div>";
+                            if($obj->Period==1)
+                            {
+                                echo"<div class=\"col-lg-2 info\">Monthly</div>";
+                            }
+                            else
+                            {
+                                echo "<div class=\"col-lg-2 info\">Quarterly</div>";
+                            }
+                        echo "<div class=\"col-lg-2\">
+                                <button type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top: 7px;' \">Approve</button>
+                              </div>
+                            </div>";
+
+
+
+
+                   }
                 }
             ?>
         </div>
+</div>
 </div>
 <br>
 <footer class="footer">
