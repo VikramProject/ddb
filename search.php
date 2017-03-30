@@ -9,7 +9,7 @@ include("config.php");
 
 $searchTerm = $_GET['term'];
 
-$query =$db_var->query("SELECT * FROM stations WHERE station LIKE '%".$searchTerm."%' ORDER BY station ASC limit 0,5");
+$query =$db_var->query("SELECT * FROM station WHERE station LIKE '%".$searchTerm."%' ORDER BY station ASC limit 0,5");
 
 while ($row = $query->fetch_assoc()) {
     $data[]= $row['station'];
