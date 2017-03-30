@@ -12,13 +12,13 @@ if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
 {
     $start=$_POST['start_sr'];
     $end=$_POST['end_sr'];
-    $query="select *from report_dtb into outfile '/Downloads/report.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' where sr_no BETWEEN '$start' and '$end'";
+    $query="select * from report_dtb into outfile '/Users/nishanthuchil/Downloads/report.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' where sr_no BETWEEN '$start' and '$end'";
     $result=mysqli_query($db_var,$query);
 
 
     /*SELECT order_id,product_name,qty FROM orders
 INTO OUTFILE '/tmp/orders.csv'
-FIELDS TERMINATED BY ','
+FIELDS TERMINATED B Y ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'*/
 
