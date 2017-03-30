@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2017 at 01:15 PM
+-- Generation Time: Mar 29, 2017 at 04:02 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -98,6 +98,13 @@ CREATE TABLE `report_dtb` (
   `Issued_date` date NOT NULL,
   `DOB` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `report_dtb`
+--
+
+INSERT INTO `report_dtb` (`Id`, `UID`, `Sr_no`, `Name`, `Age`, `Sex`, `Address`, `Period`, `From_stn`, `To_stn`, `Class`, `Issued_date`, `DOB`) VALUES
+(8, 2014130048, 0, 'Zain Ahmed Sayed', '0Y_0M', '', '', 1, 'Mira Road', 'Andheri', 'first', '2017-03-28', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -327,7 +334,7 @@ ALTER TABLE `conc_dtb`
 -- AUTO_INCREMENT for table `report_dtb`
 --
 ALTER TABLE `report_dtb`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `station`
 --
