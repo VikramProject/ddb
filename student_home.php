@@ -21,7 +21,12 @@ if($status == "requested")
 }
 if($status == "locked")
 {
-    $_SESSION["msgAwait"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked untill next time";
+    $query = "select Expiry_date from conc_dtb where UID='$rollno'";
+    $result=mysqli_query($db_var,$query) or die(mysql_error());
+    $object = $result->fetch_object();
+    $date = date("d-m-Y",strtotime($object->Expiry_date));
+    //$expDate =
+    $_SESSION["msgAwait"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked until $date ";
     header("Location:await_results.php");
 }
 
