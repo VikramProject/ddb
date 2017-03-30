@@ -173,7 +173,7 @@ if ($rollno!=2014130999)
       <div class=\"modal-body\"><div class=\"row\">
     <div class=\"col-sm-12 head-containerbs3\">
         <div class=\"col-sm-7 name-date\">
-            <div class=\"row\">Details
+            <div class=\"row\">
                 <span class=\"item-titlebs3\">$obj->Name</span>
             </div>
             <div class=\"row item-date-div\">
@@ -307,7 +307,7 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">$age</span>
+                <span class=\"value-details\" id='age'>$age</span>
             </div>
         </div>
 </div>
@@ -351,14 +351,15 @@ if ($rollno!=2014130999)
         $(".approve").click(function(){
             var blah = $(this).attr('id');
             var ser = $('#ser_no').val();
+            var age =$('#age').text();
             $.ajax({
                 type: "GET",
                 url: "update.php",
-                data: {q:blah,c:ser},
+                data: {q:blah,c:ser,age:age},
                 cache: false,
                 context: this,
                 success: function(){
-                    alert("serial no is: "+ser);
+                    alert("serial no is: "+age);
                     $('[data-id='+blah+']').parents('tr').remove();
                 }
             });
