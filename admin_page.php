@@ -141,8 +141,8 @@ if ($rollno!=2014130999)
                 while($obj = $result->fetch_object()){
                     if($obj->Status == "requested")
                     {
-                        echo "<tr class=\"danger\">
-                            <td>$obj->UID</td>
+                        echo "<tr class=\"danger\" id='$obj->UID'>
+                            <td data-id='$obj->UID'>$obj->UID</td>
                             <td>$obj->Name</td>
                             <td>$obj->Nearest_stn</td>";
                             if($obj->Class == "first")
@@ -162,7 +162,7 @@ if ($rollno!=2014130999)
                         $age = $birthdate->diff($today)->y;
 
                         echo "<td>
-                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->id\" data-backdrop=\"static\" data-keyboard=\"false\" \" > Details</button >
+                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->id\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
                                 
                              
                               </td>
@@ -173,7 +173,7 @@ if ($rollno!=2014130999)
       <div class=\"modal-body\"><div class=\"row\">
     <div class=\"col-sm-12 head-containerbs3\">
         <div class=\"col-sm-7 name-date\">
-            <div class=\"row\">
+            <div class=\"row\">Details
                 <span class=\"item-titlebs3\">$obj->Name</span>
             </div>
             <div class=\"row item-date-div\">
@@ -182,9 +182,9 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"col-sm-5 amount-div-details\"><div class=\"row\">
           
-           <label class=\"control-label col-sm-4\" for=\"pwd\">SERIAL NO</label>
+           <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter Serial Number\">
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" placeholder=\"Enter Serial Number\">
       </div>
             </div></div>
     </div>
@@ -350,15 +350,16 @@ if ($rollno!=2014130999)
     $(document).ready(function(){
         $(".approve").click(function(){
             var blah = $(this).attr('id');
+            var ser = $('#ser_no').val();
             $.ajax({
                 type: "GET",
                 url: "update.php",
-                data: {q:blah},
+                data: {q:blah,c:ser},
                 cache: false,
                 context: this,
                 success: function(){
-                    $(this).parent().parent().remove();
-                    //alert("Record successfully updated");
+                    alert("serial no is: "+ser);
+                    $('[data-id='+blah+']').parents('tr').remove();
                 }
             });
         });
