@@ -130,9 +130,9 @@ if ($rollno!=2014130999)
                 <tr>
                   <th>Sr No.</th>
                   <th>Name</th>
-                  <th>Category/Source</th>
-                  <th>Amount</th>
-                  <th>Date</th>
+                  <th>Station</th>
+                  <th>Class</th>
+                  <th>Period</th>
                     <th> Details </th>
                 </tr>
               </thead>
