@@ -122,7 +122,7 @@ if ($rollno!=2014130999)
 
         <table class="container">
             <?php
-                $query="select * from conc_dtb inner join clg_dtb on conc_dtb.UID=clg_dtb.UID where status='requested'ORDER BY Issue_date ASC ";
+                $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
 
                 echo " <table class=\"table table-bordered\">
