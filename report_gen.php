@@ -10,14 +10,15 @@ include("nav_bar.php");
 
 if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
 {
-
     $start=$_POST['start_sr'];
     $end=$_POST['end_sr'];
-    echo"$start,$end";
-    $query="select *from report_dtb into outfile 'C:\Users\Rohan\Downloads\report.csv'  where sr_no BETWEEN '$start' and '$end'";
+    $query="select *from report_dtb into outfile '/Downloads/report.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' where sr_no BETWEEN '$start' and '$end'";
     $result=mysqli_query($db_var,$query);
 
+    echo"<table>
 
+        <>
+";
 
     /*SELECT order_id,product_name,qty FROM orders
 INTO OUTFILE '/tmp/orders.csv'
