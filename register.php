@@ -19,13 +19,13 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 	$query="select * from clg_dtb where UID='$roll'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
     $rows=mysqli_num_rows($result);
-    if($rows==0)
+   /* if($rows==0)
     {
         $message = "Sorry There is No such UID present Please recheck Your UID";
         echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-    else
-    {
+    }*/
+ //   else
+//    {
         $query="select * from conc_dtb where UID='$roll'";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
         $rows=mysqli_num_rows($result);
@@ -46,7 +46,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         {
             echo"Something went wrong";
         }
-    }
+  //  }
 
 
 	
