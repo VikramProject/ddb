@@ -19,13 +19,13 @@ if(isset($_POST["UID"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset
 	$query="select * from clg_dtb where UID='$roll'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
     $rows=mysqli_num_rows($result);
-    if($rows==0)
+   /* if($rows==0)
     {
         $message = "Sorry There is No such UID present Please recheck Your UID";
         echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-    else
-    {
+    }*/
+ //   else
+//    {
         $query="select * from conc_dtb where UID='$roll'";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
         $rows=mysqli_num_rows($result);
@@ -35,7 +35,8 @@ if(isset($_POST["UID"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset
             $result=mysqli_query($db_var,$query) or die(mysql_error());
             $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
             $result=mysqli_query($db_var,$query) or die(mysql_error());
-            header("Location:index.php");
+            $message = "Sucessfully Registered";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
         else if($rows==1)
         {
@@ -46,7 +47,7 @@ if(isset($_POST["UID"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset
         {
             echo"Something went wrong";
         }
-    }
+  //  }
 
 
 	
@@ -101,8 +102,8 @@ if(isset($_POST["UID"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset
                     </div>
                     <div class="form-group">
                         <label class="control-label " for="\Gender">Gender:  </label>
-                        <input type="radio" name="gender" value="male" style="margin-left: 10px;"> Male
-                        <input type="radio" name="gender" value="female" style="margin-left: 10px;"> Female
+                        <input type="radio" name="gender" value="Male" style="margin-left: 10px;"> Male
+                        <input type="radio" name="gender" value="Female" style="margin-left: 10px;"> Female
                     </div>
                     <div class="form-group">
                         <label class="control-label" ">Caste:  </label>

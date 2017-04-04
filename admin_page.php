@@ -203,21 +203,20 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">$obj->Issue_date</span>
+                <span class=\"value-details\">".date("d-m-Y",strtotime($obj->Issue_date))."</span>
             </div>
         </div>
-        <!-- account -->
+        <!-- address -->
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"label-details\">Address</span>
+                <span class=\"label-details\">Age</span>
             </div>
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">$obj->Address</span>
+                <span class=\"value-details\" id='age'>$age</span>
             </div>
         </div>
-
         <!-- vat id -->
                 <!-- external reference -->
 
@@ -298,18 +297,19 @@ if ($rollno!=2014130999)
             </div>
         </div>
         <!-- account -->
-          
+        <div class=\"row\">
+            <div class=\"col-sm-12\">
+                <span class=\"label-details\">Address</span>
+            </div>
+        </div>
+        <div class=\"row\">
+            <div class=\"col-sm-12\">
+                <span class=\"value-details\">$obj->Address</span>
+            </div>
+        </div>
+  
            
-        <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"label-details\">Age</span>
-            </div>
-        </div>
-        <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"value-details\" id='age'>$age</span>
-            </div>
-        </div>
+        
 </div>
 
 </div>
