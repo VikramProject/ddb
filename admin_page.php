@@ -159,7 +159,8 @@ if ($rollno!=2014130999)
                             }
                         $birthdate = new DateTime($obj->DOB);
                         $today   = new DateTime('today');
-                        $age = $birthdate->diff($today)->y;
+                        $ageY = $birthdate->diff($today)->y;
+                        $ageM = $birthdate->diff($today)->m;
 
                         echo "<td>
                                 <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
@@ -214,7 +215,7 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\" id='age'>$age</span>
+                <span class=\"value-details\" id='age'>Y: $ageY  M: $ageM</span>
             </div>
         </div>
         <!-- vat id -->
@@ -224,20 +225,8 @@ if ($rollno!=2014130999)
             <div class=\"col-sm-12 horizontal-separator-in\"></div>
         </div>
 
-                <div class=\"row\">
-            <div class=\"col-sm-6\">
-                <!-- tax -->
-                <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"label-details\">Sex</span>
-                    </div>
-                </div>
-                <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"value-details\">Male</span>
-                    </div>
-                </div>
-            </div>
+        <div class=\"row\">
+            
             <div class=\"col-sm-6\">
                 <!-- tax deductable -->
                 <div class=\"row\">
@@ -250,6 +239,19 @@ if ($rollno!=2014130999)
                         <span class=\"value-details\">$obj->Class</span>
                     </div>
                 </div>
+            </div>
+            <div class=\"col-sm-6\">
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"label-details\">Period</span>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"value-details\">$obj->Period</span>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <div class=\"row\">
@@ -285,7 +287,16 @@ if ($rollno!=2014130999)
       
                 <div class=\"row\"></div>
    
-     
+        <div class=\"row\">
+             <div class=\"col-sm-12\">
+                  <span class=\"label-details\">Gender</span>
+             </div>
+        </div>
+        <div class=\"row\">
+            <div class=\"col-sm-12\">
+                  <span class=\"value-details\">$obj->Sex</span>
+            </div>
+       `</div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
                 <span class=\"label-details\">Date of Birth:</span>
