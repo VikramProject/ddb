@@ -40,13 +40,13 @@ else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Change Password</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Change Password</title>-->
+<!--</head>-->
+<!--<body>-->
 
 <div class="jumbotron">
     <h2>Enter the following details:</h2>

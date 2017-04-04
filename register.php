@@ -13,9 +13,9 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
     $sex = $_POST["gender"];
     $dob = $_POST["dob"];
     $addr = $_POST["addr"];
-    $query="select * from clg_dtb where UID='$roll'";
-    $result=mysqli_query($db_var,$query) or die(mysql_error());
-    $rows=mysqli_num_rows($result);
+//    $query="select * from clg_dtb where UID='$roll'";
+//    $result=mysqli_query($db_var,$query) or die(mysqli_error());
+//    $rows=mysqli_num_rows($result);
     /* if($rows==0)
      {
          $message = "Sorry There is No such UID present Please recheck Your UID";

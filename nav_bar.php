@@ -46,39 +46,63 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                if("$_SERVER[REQUEST_URI]"=="/ddb/register.php")
+                $request="$_SERVER[REQUEST_URI]";
+                if(strpos($request,'register'))
                 {
                     echo "<li><a href=\"index.php\">Login</a></li>";
 
                 }
-
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/student_home.php"||"$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"||"$_SERVER[REQUEST_URI]"=="/ddb/await_results.php" || "$_SERVER[REQUEST_URI]"=="/ddb/change_info.php")
+                elseif(strpos($request,"index"))
                 {
-                    $rollno=$_SESSION['rollno'];
-                    $query="select name from student where UID='$rollno'";
-                    $res=mysqli_query($db_var,$query);
-                    $row=mysqli_fetch_array($res,MYSQLI_ASSOC);
-                    echo "<li><a href=\"changepass.php\">Change Password</a></li>";
-                    if("$_SERVER[REQUEST_URI]"=="/ddb/admin_page.php"){
-                        echo "<li><a href=\"change_info.php\">Change Student Info</a></li>";
-                    }
-                    if("$_SERVER[REQUEST_URI]"=="/ddb/change_info.php"){
-                        echo "<li><a href=\"admin_page.php\">Requests List</a></li>";
-                    }
-                    echo "<li><a href=\"logout.php\">Logout</a></li>";
+                    echo"<li><a href=\"register.php\">Register</a></li>";
                 }
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/changepass.php")
-                {
-                    echo "<li><a href=\"logout.php\">Logout</a></li>";
-                }
-                else if("$_SERVER[REQUEST_URI]"=="/ddb/UnSuccessful")
+                else if(strpos($request,"UnSuccessful"))
                 {
                     echo"<li><a href=\"register.php\">Register</a></li>";
                     echo "<li><a href=\"index.php\">Login</a></li>";
                 }
-                else
+                //student
+                else //(strpos($request,"student_home")||strpos($request,"await_results")||strpos($request,"changepass"))
                 {
-                    echo"<li><a href=\"register.php\">Register</a></li>";
+                    if(isset($_SESSION['rollno']))
+                    {
+                        $rollno = $_SESSION['rollno'];
+                        $query = "select name from student where UID='$rollno'";
+                        $res = mysqli_query($db_var, $query);
+                        $row = $res->fetch_object();
+                        //admin
+                        if($rollno==2014130999)
+                        {
+                            echo "<li class=\"dropdown\">
+                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Welcome $row->name<b class=\"caret\"></b></a>
+                            <ul class=\"dropdown-menu\">";
+                            if(!strpos($request,"admin_page"))
+                                echo"<li><a href=\"admin_page.php\"><strong>Requests</strong></a></li>";
+                            if(!strpos($request,"report_gen"))
+                                echo"<li><a href=\"report_gen.php\"><strong>Generate A Report</strong></a></li>";
+                            if(!strpos($request,"info"))
+                                echo"<li><a href=\"change_info.php\"><strong>Change Student Info</strong></a></li>";
+//                            if(!strpos($request,"changepass"))
+//                                echo"<li><a href=\"changepass.php\"><strong>Change Your Password</strong></a></li>";
+                            if(!strpos($request,"set_pass"))
+                                echo"<li><a href=\"set_pass.php\"><strong>Set Student Password</strong></a></li>";
+                        
+                            echo"</ul>
+                        </li>";
+
+                        }
+                        else
+                        {
+                            echo "<li><a href=\"#\">Welcome $row->name</a></li>";
+                            if(!strpos($request,"changepass"))
+                                echo "<li><a href=\"changepass.php\">Change Password</a></li>";
+                            if(!strpos($request,"student_home"))
+                                echo"<li><a href=\"student_home.php\">Request Page</a></li>";
+
+
+                        }
+                        echo "<li><a href=\"logout.php\">Logout</a></li>";
+                    }
                 }
                 ?>
                 <li class="dropdown">
@@ -94,7 +118,7 @@
                                 </div>
                             </a></li>
                     </ul>
-                </li>;
+                </li>
 
             </ul>
 
