@@ -23,7 +23,7 @@ if(isset($_POST["rollno"]))
     }*/
     if($rows == 0)
     {
-        $_SESSION["msgF"] = "Student has not been registered. Try Again :)";
+        $_SESSION["msgF"] = "Student has not been registered. Recheck credentials :)";
         //echo "<script type='text/javascript'>alert('$message');</script>";
         header("Location:change_info.php");
     }
