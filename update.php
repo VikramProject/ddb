@@ -34,6 +34,7 @@ $result=mysqli_query($db_var,$query) or die(mysqli_error());
 //$query="insert into report_dtb(UID,Name,Age,Sex,Address,From_stn,Class,Period,Issued_date,DOB) values('$row[UID]','$row[name]','$row[Age]','$row[Sex]','$row[Address]','$row[Nearest_stn]','$row[Class]','$row[Period]','$row[Issue_date]','$row[DOB]') ";
     $query="insert into report_dtb(UID,Name,Age,Sex,Address,From_stn,Class,Period,Issued_date,DOB,Sr_no) values('$obj->UID','$obj->Name','$age','$obj->Sex','$obj->Address','$obj->Nearest_stn','$obj->Class','$obj->Period','$obj->Issue_date','$obj->DOB','$ser') ";
     $result=mysqli_query($db_var,$query) or die (mysqli_error());
+    include ('mail.php');
 
 }
 else

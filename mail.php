@@ -1,42 +1,33 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zainahmeds
- * Date: 25/3/17
- * Time: 11:27 PM
- */
-$to = "zainahmeds123@gmail.com";
-$subject = "HTML email";
 
-$message = "
-<html>
-<head>
-<title>HTML email</title>
-</head>
-<body>
-<p>This email contains HTML Tags!</p>
-<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-</tr>
-<tr>
-<td>John</td>
-<td>Doe</td>
-</tr>
-</table>
-</body>
-</html>
-";
+$query="Select Email from student where UID='$record'";
+$result=mysqli_query($db_var,$query) or die(mysqli_error());
+$res=$result->fetch_object();
+    $email = $res->Email;
 
-// Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    require 'PHPMailer/PHPMailerAutoload.php';
 
-// More headers
-$headers .= 'From: <Spit Railway>' . "\r\n";
-$headers .= 'Cc: myboss@example.com' . "\r\n";
+    $mail = new PHPMailer;
+    $mail->isSMTP(); // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true; // Enable SMTP authentication
+    $mail->Username = 'onlinegrocerystores@gmail.com'; // SMTP username
+    $mail->Password = 'nahibatanaja'; // SMTP password
+    $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587; // TCP port to connect to
+    $mail->setFrom('onlinegrocerystores@gmail.com', 'Online Grocery Stores');
+    $mail->addAddress($email); // Add a recipient
+    $mail->isHTML(true); // Set email format to HTML
+    $mail->Subject = "Form Approval";
+    $mail->Body = "Form has been Approved You can collect";
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    if (!$mail->send())
+    {
+        echo "Sorry. The Mail could not be sent to $email Due to some network Issues. Please Try Again From The SignUp Process";
+    }
+    else
+    {
+        echo "Message has been sent to $email";
+    }
 
-mail($to,$subject,$message,$headers);
-echo "sent";
 ?>
