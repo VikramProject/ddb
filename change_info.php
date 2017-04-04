@@ -7,6 +7,12 @@
  */
 include('config.php');
 include('nav_bar.php');
+if(isset($_SESSION["msgF"]))
+{
+    $message=$_SESSION["msgF"];
+    echo "<script type=text/javascript>alert('$message')</script>";
+    $_SESSION["msgF"]=null;
+}
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
