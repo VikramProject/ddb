@@ -359,8 +359,9 @@ if ($rollno!=2014130999)
     $(document).ready(function(){
         $(".approve").click(function(){
             var blah1 = $(this).parents('.modal').attr('id');
-            //alert("ID: "+blah);
             var blah = $(this).attr('id');
+//            alert("ID: "+blah);
+
             var ser = $(this).parents('.modal').find('#ser_no').val();
             var ser1 = $(this).parents('.modal').find('#ser_no');
             //alert("ser_no is "+ser);

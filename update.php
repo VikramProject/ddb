@@ -18,7 +18,7 @@ $age =$_REQUEST["age"];
 $query="update conc_dtb set Status='locked' where UID=$record";
 $result=mysqli_query($db_var,$query) or die(mysqli_error());
 
-    $query="select UID,Name,Age,Sex,Address,DOB,Nearest_stn,Class,Period,Issue_date from student join conc_dtb USING(UID) where UID=$record";
+    $query="select UID,Name,Sex,Address,DOB,Nearest_stn,Class,Period,Issue_date from student join conc_dtb USING(UID) where UID=$record";
     $result=mysqli_query($db_var,$query) or die(mysqli_error());
     $no_rows=mysqli_num_rows($result);
     if($no_rows==1){
