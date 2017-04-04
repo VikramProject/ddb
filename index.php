@@ -1,5 +1,7 @@
 <?php
 include("config.php");
+
+
 if(isset($_SESSION["rollno"]))
 {
     $rollno=$_SESSION["rollno"];
@@ -12,23 +14,31 @@ if(isset($_SESSION["rollno"]))
 include("nav_bar.php");
 ?>
             <div class="jumbotron">
-                <h2>Log In</h2>
+                <h2><legend>Log In</legend></h2>
+                <div class="container">
                 <form role="form" method="POST" action="login.php">
                     <div class="form-group">
-                        <label class="control-label" for="UID">Roll No.(UID)</label>                         
-                        <input type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID"> 
-                    </div>                     
-                    <div class="form-group"> 
-                        <label class="control-label" for="\Password">Password</label>                         
-                        <input type="password" class="form-control" name="Password" required="required" placeholder="Password"> 
-                    </div>                     
-                    <button type="submit" class="btn btn-large btn-success">Submit</button>                     
+                        <div class="col-xs-4">
+                        <label class="control-label" for="UID">Roll No.(UID)</label>
+                        <input type="text" id="ex3" class="form-control" name="rollno" required="required" placeholder="Enter UID">
+                        </div>
+                    </div>
+                </br></br></br></br>
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                        <label class="control-label" for="\Password">Password</label>
+                        <input type="password" id="ex3" class="form-control" name="Password" required="required" placeholder="Password">
+                        </div>
+                    </div>
+                    </br></br></br></br>
+                    <button type="submit" class="btn btn-large btn-success">Submit</button>
                 </form>
+                </div>
             </div>
             <footer class="footer">
                 <p>&copy Sardar Patel Institute of Technology</p>
             </footer>
-        </div>         
+        </div>
         <!-- /container -->
         <!-- Bootstrap core JavaScript
     ================================================== -->

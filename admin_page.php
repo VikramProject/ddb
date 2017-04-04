@@ -162,12 +162,12 @@ if ($rollno!=2014130999)
                         $age = $birthdate->diff($today)->y;
 
                         echo "<td>
-                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->id\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
+                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
                                 
                              
                               </td>
                             </tr>
-                            <div class=\"modal fade\" id=\"$obj->id\" role=\"dialog\">
+                            <div class=\"modal fade\" id=\"$obj->UID\" role=\"dialog\">
                        <div class=\"modal-dialog modal-lg\" role=\"document\">
     <div class=\"modal-content\">
       <div class=\"modal-body\"><div class=\"row\">
@@ -349,8 +349,11 @@ if ($rollno!=2014130999)
 <script type = "text/javascript" language = "javascript">
     $(document).ready(function(){
         $(".approve").click(function(){
+            var blah1 = $(this).parents('.modal').attr('id');
+            //alert("ID: "+blah);
             var blah = $(this).attr('id');
-            var ser = $('#ser_no').val();
+            var ser = $(this).parents('.modal').find('#ser_no').val();
+            //alert("ser_no is "+ser);
             var age =$('#age').text();
             $.ajax({
                 type: "GET",
@@ -359,7 +362,7 @@ if ($rollno!=2014130999)
                 cache: false,
                 context: this,
                 success: function(){
-                    alert("serial no is: "+age);
+                    alert("serial no is: "+ser);
                     $('[data-id='+blah+']').parents('tr').remove();
                 }
             });
