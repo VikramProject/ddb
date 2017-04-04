@@ -165,7 +165,7 @@ if ($rollno!=2014130999)
                              
                               </td>
                             </tr>
-                            <div class=\"modal fade\" id=\"$obj->UID\" role=\"dialog\" data-keyboard=\"true\">
+                            <div class=\"modal fade\" id=\"$obj->UID\" role=\"dialog\" data-keyboard=\"true\" tabindex='-1'>
                        <div class=\"modal-dialog modal-lg\" role=\"document\">
     <div class=\"modal-content\">
       <div class=\"modal-body\"><div class=\"row\">
@@ -367,6 +367,7 @@ if ($rollno!=2014130999)
             //alert("ser_no is "+ser);
             var age =$('#age').text();
             if(ser.length <= 0){
+                alert("Please fill Serial No");
                 $(ser1).attr("placeholder","****Should not be empty****");
                 $(ser1).addClass('error');
             }
