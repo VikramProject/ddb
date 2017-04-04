@@ -162,7 +162,7 @@ if ($rollno!=2014130999)
                         $age = $birthdate->diff($today)->y;
 
                         echo "<td>
-                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->id\" data-backdrop=\"static\" data-keyboard=\"false\" \" > Details</button >
+                                <button type=\"button\" class=\"btn btn-large btn-success \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->id\" data-backdrop=\"static\" data-keyboard=\"false\" \" > Details</button >
                                 
                              
                               </td>
