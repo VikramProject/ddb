@@ -3,7 +3,7 @@ include("config.php");
 include("nav_bar.php");
 
 $flg=0;
-if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
+if(isset($_POST["UID"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
 {
 
 	$roll=$_POST["rollno"];
