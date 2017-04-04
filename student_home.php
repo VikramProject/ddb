@@ -16,7 +16,7 @@ $status=$row["Status"];
 //$exp_dt=date("Y-m-d",$exp_dt);
 if($status == "requested")
 {
-    $_SESSION["msgAwait"]="Your form has still not been reviewed. Do come back to check on your status";
+    $_SESSION["msgAwait"]="Your Form Has Been Submitted. \nThe form has still not been reviewed. Do come back to check on your status";
     header("Location:await_results.php");
 }
 if($status == "locked")
@@ -34,9 +34,13 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     $class = $_POST["Class"];
     $per = $_POST["Period"];
+    if($per=="Monthly")
+        $period=1;
+    elseif ($per=="Quarterly")
+        $period=3;
     $issue = $_POST["Issue_date"];
     $exp = strtotime($issue);
-    $exp = strtotime(" +{$per} month",$exp);
+    $exp = strtotime(" +{$period} month",$exp);
     $exp = strtotime("-1 week", $exp);
     $exp = date('Y-m-d',$exp);
     $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
