@@ -82,8 +82,8 @@
                                 echo"<li><a href=\"report_gen.php\"><strong>Generate A Report</strong></a></li>";
                             if(!strpos($request,"info"))
                                 echo"<li><a href=\"change_info.php\"><strong>Change Student Info</strong></a></li>";
-//                            if(!strpos($request,"changepass"))
-//                                echo"<li><a href=\"changepass.php\"><strong>Change Your Password</strong></a></li>";
+                            if(!strpos($request,"changepass"))
+                                echo"<li><a href=\"changepass.php\"><strong>Change Your Password</strong></a></li>";
                             if(!strpos($request,"set_pass"))
                                 echo"<li><a href=\"set_pass.php\"><strong>Set Student Password</strong></a></li>";
                         
