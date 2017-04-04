@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2017 at 04:02 PM
+-- Generation Time: Apr 04, 2017 at 12:58 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -62,7 +62,7 @@ CREATE TABLE `conc_dtb` (
   `UID` int(50) NOT NULL,
   `Nearest_stn` varchar(50) NOT NULL,
   `Class` varchar(10) DEFAULT NULL,
-  `Period` int(10) DEFAULT NULL,
+  `Period` varchar(15) DEFAULT NULL,
   `Issue_date` date DEFAULT NULL,
   `Expiry_date` date NOT NULL,
   `Status` varchar(20) NOT NULL DEFAULT 'unlocked'
@@ -73,9 +73,12 @@ CREATE TABLE `conc_dtb` (
 --
 
 INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Expiry_date`, `Status`) VALUES
-(8, 2014130048, 'Mira Road', 'first', 1, '2017-03-28', '2017-04-21', 'locked'),
-(9, 2014130047, 'Virar', 'first', 1, '2017-03-28', '2017-04-21', 'locked'),
-(10, 2014130049, 'Virar', NULL, NULL, NULL, '0000-00-00', 'unlocked');
+(8, 2014130048, 'Mira Road', 'Second', 'Quarterly', '2017-04-07', '1969-12-25', 'locked'),
+(9, 2014130047, 'Virar', 'first', '1', '2017-03-28', '2017-04-21', 'locked'),
+(10, 2014130049, 'Virar', 'First', 'Monthly', '2017-04-05', '1969-12-25', 'locked'),
+(11, 2147483647, 'Borivali ', NULL, NULL, NULL, '0000-00-00', 'unlocked'),
+(12, 2014130053, 'Borivali ', 'first', '1', '2017-04-05', '2017-04-28', 'locked'),
+(13, 2014130054, 'Kandivali ', 'Second', 'Quarterly', '2017-04-04', '1969-12-25', 'locked');
 
 -- --------------------------------------------------------
 
@@ -88,7 +91,7 @@ CREATE TABLE `report_dtb` (
   `UID` int(20) NOT NULL,
   `Sr_no` int(20) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `Age` varchar(10) NOT NULL,
+  `Age` varchar(20) NOT NULL,
   `Sex` varchar(1) NOT NULL,
   `Address` varchar(100) NOT NULL,
   `Period` int(10) NOT NULL,
@@ -104,7 +107,10 @@ CREATE TABLE `report_dtb` (
 --
 
 INSERT INTO `report_dtb` (`Id`, `UID`, `Sr_no`, `Name`, `Age`, `Sex`, `Address`, `Period`, `From_stn`, `To_stn`, `Class`, `Issued_date`, `DOB`) VALUES
-(8, 2014130048, 0, 'Zain Ahmed Sayed', '0Y_0M', '', '', 1, 'Mira Road', 'Andheri', 'first', '2017-03-28', '0000-00-00');
+(8, 2014130048, 0, 'Zain Ahmed Sayed', '0Y_0M', '', '', 1, 'Mira Road', 'Andheri', 'first', '2017-03-28', '0000-00-00'),
+(11, 2014130048, 123344, 'Zain Ahmed Sayed', 'Years: 201', '', '', 1, 'Mira Road', 'Andheri', 'first', '2017-03-28', '0000-00-00'),
+(15, 2014130048, 123, 'Zain Ahmed Sayed', 'Y: 2017  M', '', '', 0, 'Mira Road', 'Andheri', 'Secon', '2017-04-07', '0000-00-00'),
+(16, 2014130054, 124, 'Divita Vora', 'Y: 2017  M', 'F', 'A-12, Borivali(E)', 0, 'Kandivali ', 'Andheri', 'Secon', '2017-04-04', '1996-09-17');
 
 -- --------------------------------------------------------
 
@@ -260,7 +266,6 @@ CREATE TABLE `student` (
   `Password` varchar(200) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Age` varchar(20) NOT NULL DEFAULT '0Y_0M',
   `Sex` varchar(1) DEFAULT NULL,
   `Address` varchar(100) DEFAULT NULL,
   `DOB` date NOT NULL
@@ -270,11 +275,14 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`, `Age`, `Sex`, `Address`, `DOB`) VALUES
-(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com', '0Y_0M', NULL, NULL, '0000-00-00'),
-(9, 2014130048, '$2y$12$LqTqM/MBTBApYxp5pigHA.2mCSZ65uTFHQDTAf3Jd4jNVEniDiBSy', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', '0Y_0M', NULL, NULL, '0000-00-00'),
-(10, 2014130047, '$2y$12$mSqAYOkekLzPwWncmE6I3.36I.mXdlAH51dyD4ggfv0CZTNy/VntS', 'Siddhey Sankhe', 'siddhey@gmail.com', '0Y_0M', NULL, NULL, '0000-00-00'),
-(11, 2014130049, '$2y$12$4y4GVIw1212X5Rm19gGn6eZkUn5JPTqg4/82cgbIDEf5KG4n2at7m', 'Darshan Shah', 'blah@blah.com', '0Y_0M', 'M', 'blah, blah(w)', '1997-01-01');
+INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`, `Sex`, `Address`, `DOB`) VALUES
+(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com', NULL, NULL, '0000-00-00'),
+(9, 2014130048, '$2y$12$LqTqM/MBTBApYxp5pigHA.2mCSZ65uTFHQDTAf3Jd4jNVEniDiBSy', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', NULL, NULL, '0000-00-00'),
+(10, 2014130047, '$2y$12$mSqAYOkekLzPwWncmE6I3.36I.mXdlAH51dyD4ggfv0CZTNy/VntS', 'Siddhey Sankhe', 'siddhey@gmail.com', NULL, NULL, '0000-00-00'),
+(11, 2014130049, '$2y$12$4y4GVIw1212X5Rm19gGn6eZkUn5JPTqg4/82cgbIDEf5KG4n2at7m', 'Darshan Shah', 'blah@blah.com', 'M', 'blah, blah(w)', '1997-01-01'),
+(12, 2147483647, '$2y$12$Y5NAEA6Ritypzn/4WtT9QuOTW7avumAUtjSF8o2yIMuPeLekca6lq', 'Aashvi Vora', 'aashvi@gmail.com', 'f', 'A-12, Borivali(E)', '1996-03-15'),
+(13, 2014130053, '$2y$12$U5SH0bliTrutLt4T2fOz1On8Qmw0c/WmkAF5DHqsUWAxc340IRFa6', 'Aashvi Vora', 'aashvi@gmail.com', 'f', 'A-12, Borivali(E)', '1996-12-15'),
+(14, 2014130054, '$2y$12$riJyGoWZN5m6Z1aQlCIrwucJq2OXJ9SfmbhKxBYTFBjKxiJK2bdga', 'Divita Vora', 'divita@gmail.com', 'F', 'A-12, Borivali(E)', '1996-09-17');
 
 --
 -- Indexes for dumped tables
@@ -329,12 +337,12 @@ ALTER TABLE `clg_dtb`
 -- AUTO_INCREMENT for table `conc_dtb`
 --
 ALTER TABLE `conc_dtb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `report_dtb`
 --
 ALTER TABLE `report_dtb`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `station`
 --
@@ -344,7 +352,7 @@ ALTER TABLE `station`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --

@@ -62,8 +62,8 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
             <div class="form-group">
                 <label class="control-label" ">Period</label>
                 <select class="form-control" name="Period" required="required" placeholder="Period">
-                    <option value="1">Monthly</option>
-                    <option value="3">Quarterly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
                 </select>
             </div>
             <div class="form-group">
