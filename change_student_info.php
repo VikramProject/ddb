@@ -82,7 +82,7 @@ if(isset($_POST["rollno"]))
         </div>
         <div class="ui-widget form-group">
             <label class="control-label" for="\Nearest" style="font-weight:lighter">Nearest Station</label>
-            <input  id="station" type="text" class="form-control" id="nearest" required="required" value="<?php echo $obj->Nearest_stn; ?>">
+            <input  id="station" type="text" class="form-control" required="required" value="<?php echo $obj->Nearest_stn; ?>">
         </div>
         <div class="form-group">
             <label class="control-label" for="\Address">Address</label>
@@ -138,7 +138,7 @@ if(isset($_POST["rollno"]))
     });
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 <script type = "text/javascript" language = "javascript">
     $(document).ready(function(){
@@ -146,22 +146,22 @@ if(isset($_POST["rollno"]))
             var name = $('#name').val();
             //alert("name: "+name);
             var email = $('#email').val();
-            var nearest = $('#nearest').val();
+            var nearest = $('#station').val();
             var dob = $('#dob').val();
             var addr = $('#addr').val();
             var roll = $('.jumbotron').attr('id');
-            //alert("name: "+roll);
-            /*$.ajax({
+            //alert("name: "+nearest);
+            $.ajax({
                 type: "GET",
                 url: "change_info_database.php",
                 data: {name:name,email:email,nearest:nearest,dob:dob,roll:roll,addr:addr},
                 cache: false,
                 context: this,
                 success: function(data){
-                    alert(data);
-                    //location.reload();
+                    //alert(data);
+                    location.reload();
                 }
-            });*/
+            });
         });
     });
 </script>

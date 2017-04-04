@@ -314,7 +314,7 @@ if ($rollno!=2014130999)
 
 </div>
       <div class=\"modal-footer\">
-      <a type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top:7px;' data-dismiss=\"modal\"\">Approve</a >
+      <a type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top:7px;' >Approve</a >
         <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
       </div>
     </div>
@@ -355,6 +355,10 @@ if ($rollno!=2014130999)
             var ser = $(this).parents('.modal').find('#ser_no').val();
             //alert("ser_no is "+ser);
             var age =$('#age').text();
+            if(ser.length <= 0){
+                alert("Serial no. should not be empty");
+                return;
+            }
             $.ajax({
                 type: "GET",
                 url: "update.php",
@@ -362,8 +366,14 @@ if ($rollno!=2014130999)
                 cache: false,
                 context: this,
                 success: function(){
-                    alert("serial no is: "+ser);
+                    //alert("serial no is: "+ser);
                     $('[data-id='+blah+']').parents('tr').remove();
+                    //data-dismiss="modal"
+                    //$(this).attr("data-dismiss","modal");
+                    //$('#'+blah).modal.close();
+                    var blah2 = $(this).parents('.modal');
+                    //$(blah2).modal('hide');
+                    //$(blah2).modal('hide');
                 }
             });
         });

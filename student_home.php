@@ -16,7 +16,7 @@ $status=$row["Status"];
 //$exp_dt=date("Y-m-d",$exp_dt);
 if($status == "requested")
 {
-    $_SESSION["msgAwait"]="Your form has still not been reviewed by the personnel. Do come back to check on your status!";
+    $_SESSION["msgAwait"]="Your form has still not been reviewed. Do come back to check on your status";
     header("Location:await_results.php");
 }
 if($status == "locked")
@@ -26,7 +26,7 @@ if($status == "locked")
     $object = $result->fetch_object();
     $date = date("d-m-Y",strtotime($object->Expiry_date));
     //$expDate =
-    $_SESSION["msgAwait"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked until $date ";
+    $_SESSION["msgAwait"]="Your Form has been Approved and can be collected from the office. This Account will be locked until $date ";
     header("Location:await_results.php");
 }
 
