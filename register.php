@@ -35,7 +35,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
             $result=mysqli_query($db_var,$query) or die(mysql_error());
             $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
             $result=mysqli_query($db_var,$query) or die(mysql_error());
-            header("Location:index.php");
+            $message = "Sucessfully Registered";
+            echo "<script type='text/javascript'>alert('$message');</script>";
         }
         else if($rows==1)
         {
@@ -101,8 +102,8 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
                     </div>
                     <div class="form-group">
                         <label class="control-label " for="\Gender">Gender:  </label>
-                        <input type="radio" name="gender" value="male" style="margin-left: 10px;"> Male
-                        <input type="radio" name="gender" value="female" style="margin-left: 10px;"> Female
+                        <input type="radio" name="gender" value="Male" style="margin-left: 10px;"> Male
+                        <input type="radio" name="gender" value="Female" style="margin-left: 10px;"> Female
                     </div>
                     <div class="form-group">
                         <label class="control-label" ">Caste:  </label>
