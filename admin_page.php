@@ -137,32 +137,25 @@ if ($rollno!=2014130999)
                   <th>Station</th>
                   <th>Class</th>
                   <th>Period</th>
-                    <th> Details </th>
+                  <th> Details </th>
                 </tr>
               </thead>
               ";
 
                 while($obj = $result->fetch_object()){
-                    if($obj->Status == "requested")
-                    {
+                    if($obj->Status == "requested") {
                         echo "<tr class=\"danger\" id='$obj->UID'>
                             <td data-id='$obj->UID'>$obj->UID</td>
                             <td>$obj->Name</td>
-                            <td>$obj->Nearest_stn</td>";
-                            if($obj->Class == "first")
-                                echo "<td>First</td>";
-                            else
-                                echo "<td>Second</td>";
-                            if($obj->Period==1)
-                            {
-                                echo"<td>Monthly</td>";
-                            }
-                            else
-                            {
-                                echo "<td>Quarterly</td>";
-                            }
+                            <td>$obj->Nearest_stn</td>
+                            <td>$obj->Class</td>";
+                        if ($obj->Period == 1) {
+                            echo "<td>Monthly</td>";
+                        } else {
+                            echo "<td>Quarterly</td>";
+                        }
                         $birthdate = new DateTime($obj->DOB);
-                        $today   = new DateTime('today');
+                        $today = new DateTime('today');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
 
@@ -209,7 +202,7 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">".date("d-m-Y",strtotime($obj->Issue_date))."</span>
+                <span class=\"value-details\">" . date("d-m-Y", strtotime($obj->Issue_date)) . "</span>
             </div>
         </div>
         <!-- address -->
@@ -343,7 +336,7 @@ if ($rollno!=2014130999)
 
                              ";
 
-                   }
+                    }
                 }
             ?>
         </table>

@@ -33,7 +33,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
                     $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                     $exp_date=strtotime($row["Expiry_date"]);
                     $exp_date=date("Y-m-d",$exp_date);
-                    if(strtotime($exp_date)==strtotime(date("Y-m-d")))
+                    if(strtotime($exp_date)<=strtotime(date("Y-m-d")))
 					{
                         $query="update conc_dtb set status = 'unlocked' where UID=$rollno";
                         $result=mysqli_query($db_var,$query) or die(mysql_error());
