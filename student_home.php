@@ -26,7 +26,7 @@ if($status == "locked")
     $object = $result->fetch_object();
     $date = date("d-m-Y",strtotime($object->Expiry_date));
     //$expDate =
-    $_SESSION["msgAwait"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked until $date ";
+    $_SESSION["msgAwait"]="The Form has been Approved, You can collect your form from the office. Now Your Account will be locked until $date ";
     header("Location:await_results.php");
 }
 

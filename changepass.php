@@ -1,6 +1,9 @@
 <?php
 include('config.php');
-include('nav_bar.php');
+include("nav_bar.php");
+
+if(!isset($_SESSION["rollno"]))
+    header("location:index.php");
 
 $rollno=$_SESSION["rollno"];
 
