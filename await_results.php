@@ -13,7 +13,7 @@ include("nav_bar.php");
         if(isset($_SESSION["msgAwait"]))
         {
             $message=$_SESSION["msgAwait"];
-            echo "$message";
+            echo "<div style='margin-top: 20px; font-size: 20px'>$message</div>";
         }
         else
         {

@@ -3,7 +3,7 @@ include('config.php');
 include('nav_bar.php');
 
 $rollno=$_SESSION["rollno"];
-
+echo"<div class=\"jumbotron\">";
 if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST["ConfNewPassword"])) {
     $currpassword = $_POST["CurrentPassword"];
     $newpassword = $_POST["NewPassword"];
@@ -40,15 +40,15 @@ else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Change Password</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Change Password</title>-->
+<!--</head>-->
+<!--<body>-->
 
-<div class="jumbotron">
+
     <h2>Enter the following details:</h2>
     <form role="form" method="POST" action="changepass.php">
         <div class="form-group">

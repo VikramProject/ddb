@@ -7,27 +7,18 @@
  */
 include("config.php");
 include("nav_bar.php");
-
+if(!isset($_SESSION["rollno"]))
+    header("location:index.php");
+$rollno=$_SESSION["rollno"];
+if ($rollno!=2014130999)
+    header("Location:student_home.php");
 if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
 {
     $start=$_POST['start_sr'];
     $end=$_POST['end_sr'];
-    $query="select * from report_dtb into outfile '/Users/nishanthuchil/Downloads/report.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' where sr_no BETWEEN '$start' and '$end'";
-    $result=mysqli_query($db_var,$query);
-
-
-    /*SELECT order_id,product_name,qty FROM orders
-INTO OUTFILE '/tmp/orders.csv'
-FIELDS TERMINATED B Y ','
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'*/
-
-
 }
 
-
 ?>
-
 <div class="jumbotron">
 <!--    <h1>Welcome-->
 <!--    </h1>-->
@@ -53,7 +44,10 @@ LINES TERMINATED BY '\n'*/
         $query = "select * from report_dtb where sr_no BETWEEN '$start' and '$end'";
         $result = mysqli_query($db_var, $query) or die(mysql_error());
 
-        echo " <table class=\"table table-bordered\">
+        echo " 
+                
+                <a href=\"report.php?start=$start&end=$end\"><button type=\"submit\" class=\"btn btn-large btn-success\">Export this data as Excel</button></a>
+                <table class=\"table table-bordered\">
               <thead>
                 <tr>
                   <th>Sr No.</th>

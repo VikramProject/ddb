@@ -16,7 +16,7 @@ $status=$row["Status"];
 //$exp_dt=date("Y-m-d",$exp_dt);
 if($status == "requested")
 {
-    $_SESSION["msgAwait"]="Your form has still not been reviewed by the personnel. Do come back to check on your status!";
+    $_SESSION["msgAwait"]="Your Form Has Been Submitted. \nThe form has still not been reviewed. Do come back to check on your status";
     header("Location:await_results.php");
 }
 if($status == "locked")
@@ -26,7 +26,7 @@ if($status == "locked")
     $object = $result->fetch_object();
     $date = date("d-m-Y",strtotime($object->Expiry_date));
     //$expDate =
-    $_SESSION["msgAwait"]="The Form has been Approved, You can collect yor form from the office. Now Your Account will be locked until $date ";
+    $_SESSION["msgAwait"]="Your Form has been Approved and can be collected from the office. This Account will be locked until $date ";
     header("Location:await_results.php");
 }
 
@@ -34,9 +34,13 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     $class = $_POST["Class"];
     $per = $_POST["Period"];
+    if($per=="Monthly")
+        $period=1;
+    elseif ($per=="Quarterly")
+        $period=3;
     $issue = $_POST["Issue_date"];
     $exp = strtotime($issue);
-    $exp = strtotime(" +{$per} month",$exp);
+    $exp = strtotime(" +{$period} month",$exp);
     $exp = strtotime("-1 week", $exp);
     $exp = date('Y-m-d',$exp);
     $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
@@ -55,15 +59,15 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
             <div class="form-group">
                 <label class="control-label" ">Class</label>
                 <select class="form-control" name="Class" required="required" placeholder="Class">
-                    <option value="first">First</option>
-                    <option value="sec">Second</option>
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="control-label" ">Period</label>
                 <select class="form-control" name="Period" required="required" placeholder="Period">
-                    <option value="1">Monthly</option>
-                    <option value="3">Quarterly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
                 </select>
             </div>
             <div class="form-group">
