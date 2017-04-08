@@ -52,7 +52,7 @@
                     echo "<li><a href=\"index.php\">Login</a></li>";
 
                 }
-                elseif(strpos($request,"index"))
+                else if(strpos($request,"index"))
                 {
                     echo"<li><a href=\"register.php\">Register</a></li>";
                 }

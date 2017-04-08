@@ -27,6 +27,16 @@ if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPa
 			The entered passwords do not match</span>";
 }
 ?>
+<style>
+    #footer {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+    }
+    #content, #sidebar {
+        margin-bottom: 5em;
+    }
+</style>
 
 
 <div class="jumbotron">
@@ -34,45 +44,85 @@ if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPa
     <form role="form" method="POST" action="set_pass.php">
 
         <?php
-        if(isset($_POST['resetUID']))
-        {
-            $resetUID=$_POST['resetUID'];
-            echo"<div class=\"form-group\">
-                    <label class=\"control-label\" \"></label>
-                    <input type=\"number\" class=\"form-control\" name=\"resetUID\" required=\"required\" value=\"$resetUID\" readonly>
-                 </div>
+        if(isset($_POST['resetUID'])) {
+            $resetUID = $_POST['resetUID'];
+            $query = "select * from student where UID='$resetUID'";
+            $result = mysqli_query($db_var, $query) or die(mysqli_error());
+            $row = mysqli_num_rows($result);
+            if ($row == 0) {
+
+                $message = "There is No such UID present. Please re-enter your valid UID";
+                //header("Location:set_pass.php");
+                echo "<script type='text/javascript'>alert('$message');</script>";
+                echo "<div class=\"col-xs-3\">
+                  <div class=\"form-group\">
+                <label class=\"control-label\" \"></label>
+                <input type=\"number\" class=\"form-control\" id=\"xs2\" name=\"resetUID\" required=\"required\" placeholder=\"UID\">
+             </div>
+             </div>
+             <br><br><br><br>
+             <button type=\"submit\" class=\"btn btn-large btn-success\">Search</button>";
+
+                //echo 'window.location= "set_pass.php"';
+            }
+           /* else{
+                $_SESSION["resetUID"]=$resetUID;
+                header("Location:confpass.php");
+            }*/else {
+                echo "<div class=\"col-xs-3\">
                  <div class=\"form-group\">
-                      <label class=\"control-label\" \">Enter Password</label>
-                      <input type=\"password\" class=\"form-control\" name=\"Password\" required=\"required\" placeholder=\"Password\">
-                 </div>
-                 <div class=\"form-group\">
-                      <label class=\"control-label\" \">Confirm Password</label>
-                      <input type=\"password\" class=\"form-control\" name=\"ConfNewPassword\" required=\"required\" placeholder=\"Confirm Password\">
-                 </div>
-                 <button type=\"submit\" class=\"btn btn-large btn-success\">Submit</button>
-                 
-            
-        ";
+                <label class=\"control-label\" \"></label>
+                <input type=\"number\" class=\"form-control\" id=\"xs2\" name=\"resetUID\" required=\"required\" value=\"$resetUID\" readonly>
+             </div>
+             </div>
+             <br><br><br><br>
+             <div class=\"col-xs-3\">
+             <div class=\"form-group\">
+                  <label class=\"control-label\" \">Enter Password</label>
+                  <input type=\"password\" class=\"form-control\" id=\"xs2\" name=\"Password\" required=\"required\" placeholder=\"Password\">
+             </div>
+             </div>
+             <br><br><br><br>
+             <div class=\"col-xs-3\">
+             <div class=\"form-group\">
+                  <label class=\"control-label\" \">Confirm Password</label>
+                  <input type=\"password\" class=\"form-control\" id=\"xs2\" name=\"ConfNewPassword\" required=\"required\" placeholder=\"Confirm Password\">
+             </div>
+             </div>
+             <br><br><br><br>
+             <button type=\"submit\" class=\"btn btn-large btn-success\">Submit</button>
+             
+        
+    ";
+            }
         }
 
         else
         {
-            echo"<div class=\"form-group\">
-                    <label class=\"control-label\" \"></label>
-                    <input type=\"number\" class=\"form-control\" name=\"resetUID\" required=\"required\" placeholder=\"UID\">
-                 </div>
+            echo "<div class=\"col-xs-3\">
+                 <div class=\"form-group\">
+                <label class=\"control-label\" \"></label>
+                <input type=\"number\" id=\"xs2\" class=\"form-control\" name=\"resetUID\" required=\"required\" placeholder=\"UID\">
+             </div>
+            </div>
+            <br><br><br><br>
+             <button type=\"submit\" class=\"btn btn-large btn-success\">Search</button>";
 
-                 <button type=\"submit\" class=\"btn btn-large btn-success\">Search</button>";
         }
-        ?>
-    </form>
+
+
+    ?>
+</form>
+    <br><br><br><br><br><br><br><br>
+    <footer class="footer">
+        <p>&copy Sardar Patel Institute of Technology</p>
+    </footer>
+
 </div>
-<footer class="footer">
-    <p>&copy Sardar Patel Institute of Technology</p>
-</footer>
-</div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
+
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="assets/js/jquery.min.js"></script>
