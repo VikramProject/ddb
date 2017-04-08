@@ -114,6 +114,10 @@ if ($rollno!=2014130999)
     }
     .info{padding-top: 5px; font-size: 16px;}
     .colhead{font-weight: 900;margin-bottom: 15px;}
+    .error
+    {
+        border:1px solid red;
+    }
 </style>
 
 
@@ -133,32 +137,25 @@ if ($rollno!=2014130999)
                   <th>Station</th>
                   <th>Class</th>
                   <th>Period</th>
-                    <th> Details </th>
+                  <th> Details </th>
                 </tr>
               </thead>
               ";
 
                 while($obj = $result->fetch_object()){
-                    if($obj->Status == "requested")
-                    {
+                    if($obj->Status == "requested") {
                         echo "<tr class=\"danger\" id='$obj->UID'>
                             <td data-id='$obj->UID'>$obj->UID</td>
                             <td>$obj->Name</td>
-                            <td>$obj->Nearest_stn</td>";
-                            if($obj->Class == "first")
-                                echo "<td>First</td>";
-                            else
-                                echo "<td>Second</td>";
-                            if($obj->Period==1)
-                            {
-                                echo"<td>Monthly</td>";
-                            }
-                            else
-                            {
-                                echo "<td>Quarterly</td>";
-                            }
+                            <td>$obj->Nearest_stn</td>
+                            <td>$obj->Class</td>";
+                        if ($obj->Period == 1) {
+                            echo "<td>Monthly</td>";
+                        } else {
+                            echo "<td>Quarterly</td>";
+                        }
                         $birthdate = new DateTime($obj->DOB);
-                        $today   = new DateTime('today');
+                        $today = new DateTime('today');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
 
@@ -168,7 +165,7 @@ if ($rollno!=2014130999)
                              
                               </td>
                             </tr>
-                            <div class=\"modal fade\" id=\"$obj->UID\" role=\"dialog\">
+                            <div class=\"modal fade\" id=\"$obj->UID\" role=\"dialog\" data-keyboard=\"true\" tabindex='-1'>
                        <div class=\"modal-dialog modal-lg\" role=\"document\">
     <div class=\"modal-content\">
       <div class=\"modal-body\"><div class=\"row\">
@@ -186,6 +183,7 @@ if ($rollno!=2014130999)
            <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
         <input type=\"text\" class=\"form-control \" id=\"ser_no\" placeholder=\"Enter Serial Number\">
+        <div id='error_ser'></div>
       </div>
             </div></div>
     </div>
@@ -204,7 +202,7 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">".date("d-m-Y",strtotime($obj->Issue_date))."</span>
+                <span class=\"value-details\">" . date("d-m-Y", strtotime($obj->Issue_date)) . "</span>
             </div>
         </div>
         <!-- address -->
@@ -325,7 +323,7 @@ if ($rollno!=2014130999)
 
 </div>
       <div class=\"modal-footer\">
-      <a type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top:7px;' data-dismiss=\"modal\"\">Approve</a >
+      <a type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top:7px;' data-dismiss=\"modal\">Approve</a >
         <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
       </div>
     </div>
@@ -338,7 +336,7 @@ if ($rollno!=2014130999)
 
                              ";
 
-                   }
+                    }
                 }
             ?>
         </table>
@@ -361,22 +359,28 @@ if ($rollno!=2014130999)
     $(document).ready(function(){
         $(".approve").click(function(){
             var blah1 = $(this).parents('.modal').attr('id');
-            //alert("ID: "+blah);
             var blah = $(this).attr('id');
+//            alert("ID: "+blah);
+
             var ser = $(this).parents('.modal').find('#ser_no').val();
+            var ser1 = $(this).parents('.modal').find('#ser_no');
             //alert("ser_no is "+ser);
             var age =$('#age').text();
-            $.ajax({
+            if(ser.length <= 0){
+                alert("Please fill Serial No");
+                $(ser1).attr("placeholder","****Should not be empty****");
+                $(ser1).addClass('error');
+            }
+            else {$.ajax({
                 type: "GET",
                 url: "update.php",
                 data: {q:blah,c:ser,age:age},
                 cache: false,
                 context: this,
                 success: function(){
-                    alert("serial no is: "+ser);
                     $('[data-id='+blah+']').parents('tr').remove();
                 }
-            });
+            });}
         });
     });
 </script>
