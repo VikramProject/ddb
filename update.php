@@ -6,8 +6,15 @@
  * Time: 15:05
  */
 include("config.php");
+if(!isset($_SESSION["rollno"]))
+    header("location:index.php");
+$rollno=$_SESSION["rollno"];
+if ($rollno!=2014130999)
+    header("Location:student_home.php");
 if(isset($_REQUEST["q"])){
 $record = $_REQUEST["q"];
+$ser = $_REQUEST["c"];
+$age =$_REQUEST["age"];
 $query="update conc_dtb set Status='locked' where UID=$record";
 $result=mysqli_query($db_var,$query) or die(mysql_error());
 
@@ -25,7 +32,7 @@ $result=mysqli_query($db_var,$query) or die(mysql_error());
 
     //$query="insert into report_dtb(UID,Name,Age,Sex,Address,From_stn,Class,Period,Issued_date,DOB) values($row[UID],$row[name],$row[Age],$row[Sex],$row[Address],$row[Nearest_stn],$row[Class],$row[Period],$row[Issue_date],$row[DOB])";
 //$query="insert into report_dtb(UID,Name,Age,Sex,Address,From_stn,Class,Period,Issued_date,DOB) values('$row[UID]','$row[name]','$row[Age]','$row[Sex]','$row[Address]','$row[Nearest_stn]','$row[Class]','$row[Period]','$row[Issue_date]','$row[DOB]') ";
-    $query="insert into report_dtb(UID,Name,Age,Sex,Address,From_stn,Class,Period,Issued_date,DOB) values('$obj->UID','$obj->Name','$obj->Age','$obj->Sex','$obj->Address','$obj->Nearest_stn','$obj->Class','$obj->Period','$obj->Issue_date','$obj->DOB') ";
+    $query="insert into report_dtb(UID,Name,Age,Sex,Address,From_stn,Class,Period,Issued_date,DOB,Sr_no) values('$obj->UID','$obj->Name','$age','$obj->Sex','$obj->Address','$obj->Nearest_stn','$obj->Class','$obj->Period','$obj->Issue_date','$obj->DOB','$ser') ";
     $result=mysqli_query($db_var,$query) or die (mysql_error());
 
 }

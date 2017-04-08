@@ -122,7 +122,7 @@ if ($rollno!=2014130999)
 
         <table class="container">
             <?php
-                $query="select * from conc_dtb inner join clg_dtb on conc_dtb.UID=clg_dtb.UID where status='requested'ORDER BY Issue_date ASC ";
+                $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
 
                 echo " <table class=\"table table-bordered\">
@@ -130,9 +130,9 @@ if ($rollno!=2014130999)
                 <tr>
                   <th>Sr No.</th>
                   <th>Name</th>
-                  <th>Category/Source</th>
-                  <th>Amount</th>
-                  <th>Date</th>
+                  <th>Station</th>
+                  <th>Class</th>
+                  <th>Period</th>
                     <th> Details </th>
                 </tr>
               </thead>
@@ -141,8 +141,8 @@ if ($rollno!=2014130999)
                 while($obj = $result->fetch_object()){
                     if($obj->Status == "requested")
                     {
-                        echo "<tr class=\"danger\">
-                            <td>$obj->UID</td>
+                        echo "<tr class=\"danger\" id='$obj->UID'>
+                            <td data-id='$obj->UID'>$obj->UID</td>
                             <td>$obj->Name</td>
                             <td>$obj->Nearest_stn</td>";
                             if($obj->Class == "first")
@@ -159,15 +159,16 @@ if ($rollno!=2014130999)
                             }
                         $birthdate = new DateTime($obj->DOB);
                         $today   = new DateTime('today');
-                        $age = $birthdate->diff($today)->y;
+                        $ageY = $birthdate->diff($today)->y;
+                        $ageM = $birthdate->diff($today)->m;
 
                         echo "<td>
-                                <button type=\"button\" class=\"btn btn-large btn-success \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->id\" data-backdrop=\"static\" data-keyboard=\"false\" \" > Details</button >
+                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
                                 
                              
                               </td>
                             </tr>
-                            <div class=\"modal fade\" id=\"$obj->id\" role=\"dialog\">
+                            <div class=\"modal fade\" id=\"$obj->UID\" role=\"dialog\">
                        <div class=\"modal-dialog modal-lg\" role=\"document\">
     <div class=\"modal-content\">
       <div class=\"modal-body\"><div class=\"row\">
@@ -182,9 +183,9 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"col-sm-5 amount-div-details\"><div class=\"row\">
           
-           <label class=\"control-label col-sm-4\" for=\"pwd\">SERIAL NO</label>
+           <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter Serial Number\">
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" placeholder=\"Enter Serial Number\">
       </div>
             </div></div>
     </div>
@@ -203,21 +204,20 @@ if ($rollno!=2014130999)
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">$obj->Issue_date</span>
+                <span class=\"value-details\">".date("d-m-Y",strtotime($obj->Issue_date))."</span>
             </div>
         </div>
-        <!-- account -->
+        <!-- address -->
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"label-details\">Address</span>
+                <span class=\"label-details\">Age</span>
             </div>
         </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"value-details\">$obj->Address</span>
+                <span class=\"value-details\" id='age'>Y: $ageY  M: $ageM</span>
             </div>
         </div>
-
         <!-- vat id -->
                 <!-- external reference -->
 
@@ -225,20 +225,8 @@ if ($rollno!=2014130999)
             <div class=\"col-sm-12 horizontal-separator-in\"></div>
         </div>
 
-                <div class=\"row\">
-            <div class=\"col-sm-6\">
-                <!-- tax -->
-                <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"label-details\">Sex</span>
-                    </div>
-                </div>
-                <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"value-details\">Male</span>
-                    </div>
-                </div>
-            </div>
+        <div class=\"row\">
+            
             <div class=\"col-sm-6\">
                 <!-- tax deductable -->
                 <div class=\"row\">
@@ -251,6 +239,19 @@ if ($rollno!=2014130999)
                         <span class=\"value-details\">$obj->Class</span>
                     </div>
                 </div>
+            </div>
+            <div class=\"col-sm-6\">
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"label-details\">Period</span>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"value-details\">$obj->Period</span>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <div class=\"row\">
@@ -286,7 +287,16 @@ if ($rollno!=2014130999)
       
                 <div class=\"row\"></div>
    
-     
+        <div class=\"row\">
+             <div class=\"col-sm-12\">
+                  <span class=\"label-details\">Gender</span>
+             </div>
+        </div>
+        <div class=\"row\">
+            <div class=\"col-sm-12\">
+                  <span class=\"value-details\">$obj->Sex</span>
+            </div>
+       `</div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
                 <span class=\"label-details\">Date of Birth:</span>
@@ -298,18 +308,19 @@ if ($rollno!=2014130999)
             </div>
         </div>
         <!-- account -->
-          
+        <div class=\"row\">
+            <div class=\"col-sm-12\">
+                <span class=\"label-details\">Address</span>
+            </div>
+        </div>
+        <div class=\"row\">
+            <div class=\"col-sm-12\">
+                <span class=\"value-details\">$obj->Address</span>
+            </div>
+        </div>
+  
            
-        <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"label-details\">Age</span>
-            </div>
-        </div>
-        <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"value-details\">$age</span>
-            </div>
-        </div>
+        
 </div>
 
 </div>
@@ -349,16 +360,21 @@ if ($rollno!=2014130999)
 <script type = "text/javascript" language = "javascript">
     $(document).ready(function(){
         $(".approve").click(function(){
+            var blah1 = $(this).parents('.modal').attr('id');
+            //alert("ID: "+blah);
             var blah = $(this).attr('id');
+            var ser = $(this).parents('.modal').find('#ser_no').val();
+            //alert("ser_no is "+ser);
+            var age =$('#age').text();
             $.ajax({
                 type: "GET",
                 url: "update.php",
-                data: {q:blah},
+                data: {q:blah,c:ser,age:age},
                 cache: false,
                 context: this,
                 success: function(){
-                    $(this).parent().parent().remove();
-                    //alert("Record successfully updated");
+                    alert("serial no is: "+ser);
+                    $('[data-id='+blah+']').parents('tr').remove();
                 }
             });
         });
