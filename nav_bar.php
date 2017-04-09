@@ -74,7 +74,7 @@
                         if($rollno==2014130999)
                         {
                             echo "<li class=\"dropdown\">
-                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Welcome $row->name<b class=\"caret\"></b></a>
+                             <a <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" >Welcome $row->name<b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">";
                             if(!strpos($request,"admin_page"))
                                 echo"<li><a href=\"admin_page.php\"><strong>Requests</strong></a></li>";
