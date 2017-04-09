@@ -60,8 +60,9 @@ else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;
 
     </form>
 </div>
-    <footer class="footer">
-        <p>&copy Sardar Patel Institute of Technology</p>
-    </footer>
+<footer class="footer">
+    <p>&copy Sardar Patel Institute of Technology</p>
+</footer>
+
 </body>
 </html>
