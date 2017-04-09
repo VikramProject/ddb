@@ -13,6 +13,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
     $sex = $_POST["gender"];
     $dob = $_POST["dob"];
     $addr = $_POST["addr"];
+    $category=$_POST["caste"];
 //    $query="select * from clg_dtb where UID='$roll'";
 //    $result=mysqli_query($db_var,$query) or die(mysqli_error());
 //    $rows=mysqli_num_rows($result);
@@ -28,7 +29,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
     $rows=mysqli_num_rows($result);
     if($rows==0)
     {
-        $query="insert into student(UID,Password,Name,Email,Sex,DOB,Address) values('$roll','$pass','$name','$email','$sex','$dob','$addr')";
+        $query="insert into student(UID,Password,Name,Email,Sex,DOB,Address,Category) values('$roll','$pass','$name','$email','$sex','$dob','$addr','$category')";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
         $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -105,7 +106,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
             <label class="control-label" for="\Email">Email</label>
             <input type="email" class="form-control" name="email" required="required" placeholder="Email Id">
         </div>
-        <div class="ui-widget form-group">
+        <div class="form-group">
             <label class="control-label" for="\Nearest">Nearest Station</label>
             <input  id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
         </div>

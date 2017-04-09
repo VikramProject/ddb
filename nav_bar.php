@@ -23,7 +23,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="/assets1/css/style.css">
     <![endif]-->
 </head>
 <body>
@@ -71,10 +71,10 @@
                         $res = mysqli_query($db_var, $query);
                         $row = $res->fetch_object();
                         //admin
-                        if($rollno==2014130999)
+                        if($rollno==$admin)
                         {
                             echo "<li class=\"dropdown\">
-                             <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Welcome $row->name<b class=\"caret\"></b></a>
+                             <a <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" >Welcome $row->name<b class=\"caret\"></b></a>
                             <ul class=\"dropdown-menu\">";
                             if(!strpos($request,"admin_page"))
                                 echo"<li><a href=\"admin_page.php\"><strong>Requests</strong></a></li>";
@@ -94,11 +94,11 @@
                         }
                         else
                         {
-                            echo "<li><a href=\"#\">Welcome $row->name</a></li>";
+
                             if(!strpos($request,"changepass"))
                                 echo "<li><a href=\"changepass.php\">Change Password</a></li>";
-                            if(!strpos($request,"student_home"))
-                                echo"<li><a href=\"student_home.php\">Request Page</a></li>";
+                            if(!strpos($request,"student_home")||!strpos($request,"await_results"))
+                                echo"<li><a href=\"student_home.php\">Home Page</a></li>";
 
 
                         }

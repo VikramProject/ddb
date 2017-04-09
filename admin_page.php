@@ -10,8 +10,18 @@ include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
+
+$query="select * from serial_no_storage where id=1";
+$res=mysqli_query($db_var,$query) or die(mysqli_error());
+$serial = $res->fetch_object();
+$last = $serial->last;
+$avail = $serial->available;
+if($last-$avail+1==0)
+{
+    header("Location:request_serial.php");
+}
 ?>
 
 
@@ -124,13 +134,22 @@ if ($rollno!=2014130999)
 <div class="jumbotron">
     <h2 style="margin-top: -20px;">Requests For Passes</h2>
 
-        <table class="container">
+
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
-                $result=mysqli_query($db_var,$query) or die(mysql_error());
+                $result=mysqli_query($db_var,$query) or die(mysqli_error());
+                $query="select * from serial_no_storage where id=1";
+                $res=mysqli_query($db_var,$query) or die(mysqli_error());
+                $serial = $res->fetch_object();
+                $count = $serial->last - $serial->available + 1;
 
-                echo " <table class=\"table table-bordered\">
-              <thead>
+                echo "<span class=\"form-group pull-right \">
+  <label for=\"search\">Search</label>
+  <input  id=\"search\" type=\"text\">
+<br></span> ";
+
+                echo " <table class=\"table table-bordered\" id='table' '>
+              <thead style='background-color: slategrey;color: white'>
                 <tr>
                   <th>Sr No.</th>
                   <th>Name</th>
@@ -148,12 +167,8 @@ if ($rollno!=2014130999)
                             <td data-id='$obj->UID'>$obj->UID</td>
                             <td>$obj->Name</td>
                             <td>$obj->Nearest_stn</td>
-                            <td>$obj->Class</td>";
-                        if ($obj->Period == 1) {
-                            echo "<td>Monthly</td>";
-                        } else {
-                            echo "<td>Quarterly</td>";
-                        }
+                            <td>$obj->Class</td>
+                            <td>$obj->Period</td>";
                         $birthdate = new DateTime($obj->DOB);
                         $today = new DateTime('today');
                         $ageY = $birthdate->diff($today)->y;
@@ -182,9 +197,12 @@ if ($rollno!=2014130999)
           
            <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control \" id=\"ser_no\" placeholder=\"Enter Serial Number\">
-        <div id='error_ser'></div>
-      </div>
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' avail='$serial->available' end='$serial->last'>";
+        if($count == 1)
+        echo "<div id='count' style='margin-top: 10px;text-align: left;color: red;font-style: italic'>$count form left in the book</div>";
+        else 
+        echo "<div id='count' style='margin-top: 10px;text-align: left;color: red'>$count forms left in the book</div>";
+      echo "</div>
             </div></div>
     </div>
        
@@ -279,6 +297,7 @@ if ($rollno!=2014130999)
                     </div>
                 </div>
             </div>
+            
         </div>
             </div>
     <div class=\"col-sm-6 column-details right-column-details\"> <!-- right column -->
@@ -342,10 +361,11 @@ if ($rollno!=2014130999)
         </table>
 
 <br>
+</div>
 <footer class="footer">
     <p>&copy Sardar Patel Institute of Technology</p>
 </footer>
-</div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -364,6 +384,16 @@ if ($rollno!=2014130999)
 
             var ser = $(this).parents('.modal').find('#ser_no').val();
             var ser1 = $(this).parents('.modal').find('#ser_no');
+            var end= ser1.attr('end');
+            var curr = ser1.attr('avail');
+            if(ser > end){
+                alert("The serial number provided is not registered in the current concession book. Please insert the correct serial number");
+                ser1.val(curr);
+                return};
+            if(ser < curr){
+                alert("The serial number provided has already been used. Please provide an appropriate serial number");
+                ser1.val(curr);
+                return;}
             //alert("ser_no is "+ser);
             var age =$('#age').text();
             if(ser.length <= 0){
@@ -377,11 +407,32 @@ if ($rollno!=2014130999)
                 data: {q:blah,c:ser,age:age},
                 cache: false,
                 context: this,
-                success: function(){
+                success: function(data){
+                    var avail = parseInt(data);
                     $('[data-id='+blah+']').parents('tr').remove();
+                    if(avail > end){
+                        window.location.replace("request_serial.php");
+                    }
+                    //alert(end);
+                    $('.modal').find('#ser_no').val(data);
+                    var left = end - avail+1;
+                    if(left == 1)
+                        $('.modal').find('#count').html(left+" form left in the book");
+                    else
+                        $('.modal').find('#count').html(left+" forms left in the book");
                 }
             });}
         });
+    });
+</script>
+<script type="text/javascript">
+    var $rows = $('#table tr').not('thead tr');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
     });
 </script>
 </body>

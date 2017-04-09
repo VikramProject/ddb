@@ -6,7 +6,7 @@ include("nav_bar.php");
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno==2014130999)
+if ($rollno==$admin)
     header("Location:admin_page.php");
 $query="select * from conc_dtb where UID=$rollno";
 $result=mysqli_query($db_var,$query) or die(mysql_error());

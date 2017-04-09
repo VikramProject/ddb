@@ -1,9 +1,9 @@
 <?php
+
 include('config.php');
 include('nav_bar.php');
-
 $rollno=$_SESSION["rollno"];
-echo"<div class=\"jumbotron\">";
+echo "<div class=\"jumbotron\">";
 if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST["ConfNewPassword"])) {
     $currpassword = $_POST["CurrentPassword"];
     $newpassword = $_POST["NewPassword"];
@@ -37,16 +37,8 @@ if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST[
 else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
 			Please fill in all the fields</span>";
 
-
 ?>
 
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Change Password</title>-->
-<!--</head>-->
-<!--<body>-->
 
 
     <h2>Enter the following details:</h2>
@@ -66,10 +58,13 @@ else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
     </form>
-    <footer class="footer">
-        <p>&copy Sardar Patel Institute of Technology</p>
-    </footer>
-</div>
 
-</body>
-</html>
+<footer class="footer">
+    <p>&copy Sardar Patel Institute of Technology</p>
+</footer>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
