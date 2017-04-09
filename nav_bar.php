@@ -93,7 +93,7 @@
                         }
                         else
                         {
-                            echo "<li><a href=\"#\">Welcome $row->name</a></li>";
+                            //echo "<li><a href=\"#\">Welcome $row->name</a></li>";
                             if(!strpos($request,"changepass"))
                                 echo "<li><a href=\"changepass.php\">Change Password</a></li>";
                             if(!strpos($request,"student_home"))
