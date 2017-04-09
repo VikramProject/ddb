@@ -124,7 +124,7 @@ if ($rollno!=2014130999)
 <div class="jumbotron">
     <h2 style="margin-top: -20px;">Requests For Passes</h2>
 
-        <table class="container">
+
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -133,12 +133,12 @@ if ($rollno!=2014130999)
                 $serial = $res->fetch_object();
                 $count = $serial->last - $serial->available + 1;
 
-                echo "<div class=\"col-xs-3\">
-  <label for=\"ex2\">col-xs-3</label>
-  <input class=\"form-control\" id=\"ex2\" type=\"text\">
-</div>";
+                echo "<span class=\"form-group pull-right \">
+  <label for=\"search\">Search</label>
+  <input  id=\"search\" type=\"text\">
+<br></span> ";
 
-                echo " <table class=\"table table-bordered\">
+                echo " <table class=\"table table-bordered\" id='table' '>
               <thead>
                 <tr>
                   <th>Sr No.</th>
@@ -416,6 +416,16 @@ if ($rollno!=2014130999)
                 }
             });}
         });
+    });
+</script>
+<script type="text/javascript">
+    var $rows = $('#table tr').not('thead tr');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
     });
 </script>
 </body>
