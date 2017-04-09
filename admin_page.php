@@ -323,7 +323,7 @@ include('nav_bar.php');
             <div class=\"col-sm-12\">
                   <span class=\"value-details\">$obj->Sex</span>
             </div>
-       `</div>
+       </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
                 <span class=\"label-details\">Date of Birth:</span>
@@ -352,8 +352,9 @@ include('nav_bar.php');
 
 </div>
       <div class=\"modal-footer\">
-      <a type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top:7px;' data-dismiss=\"modal\">Approve</a >
-        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
+       <a type=\"submit\" class=\"btn btn-default btn-success approve\"  id=\"$obj->UID\"  data-dismiss=\"modal\">Approve</a >
+       <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
+       
       </div>
     </div>
   </div>
