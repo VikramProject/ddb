@@ -185,7 +185,7 @@ if ($rollno!=2014130999)
           
            <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' end='$serial->last'>
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' avail='$serial->available' end='$serial->last'>
         <div id='error_ser'></div>
       </div>
             </div></div>
@@ -367,6 +367,16 @@ if ($rollno!=2014130999)
 
             var ser = $(this).parents('.modal').find('#ser_no').val();
             var ser1 = $(this).parents('.modal').find('#ser_no');
+            var end= ser1.attr('end');
+            var curr = ser1.attr('avail');
+            if(ser > end){
+                alert("The serial number provided is not registered in the current concession book. Please insert the correct serial number");
+                ser1.val(curr);
+                return};
+            if(ser < curr){
+                alert("The serial number provided has already been used. Please provide an appropriate serial number");
+                ser1.val(curr);
+                return;}
             //alert("ser_no is "+ser);
             var age =$('#age').text();
             if(ser.length <= 0){
@@ -381,7 +391,13 @@ if ($rollno!=2014130999)
                 cache: false,
                 context: this,
                 success: function(data){
+                    var avail = parseInt(data);
                     $('[data-id='+blah+']').parents('tr').remove();
+                    if(avail > end){
+                        window.location.replace("request_serial.php");
+                    }
+                    //alert(end);
+                    $('.modal').find('#ser_no').val(data);
                 }
             });}
         });
