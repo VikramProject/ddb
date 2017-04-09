@@ -6,6 +6,17 @@
  * Time: 11:16 PM
  */
 include("config.php");
+if(!isset($_SESSION["rollno"]))
+{
+    header("location:index.php");
+    exit();
+}
+$rollno=$_SESSION["rollno"];
+if ($rollno!=$admin)
+{
+    header("Location:student_home.php");
+    exit();
+}
 
 $searchTerm = $_GET['term'];
 

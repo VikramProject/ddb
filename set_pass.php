@@ -6,7 +6,19 @@
  * Time: 6:11 PM
  */
 include ("config.php");
-include ("nav_bar.php");
+if(!isset($_SESSION["rollno"]))
+{
+    header("location:index.php");
+    exit();
+}
+
+$rollno=$_SESSION["rollno"];
+if ($rollno!=$admin)
+{
+
+    header("Location:student_home.php");
+    exit();
+}
 if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPassword"]))
 {
 
@@ -22,9 +34,14 @@ if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPa
         mysqli_query($db_var, $sql);
 //        session_destroy();
         header("Location:index.php");
+        exit();
     } else
+    {
         echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
 			The entered passwords do not match</span>";
+        include ("nav_bar.php");
+    }
+
 }
 ?>
 

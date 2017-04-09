@@ -1,11 +1,18 @@
 <?php
 include('config.php');
-include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
+{
     header("location:index.php");
+    exit();
+}
+
 $rollno=$_SESSION["rollno"];
 if ($rollno!=$admin)
+{
     header("Location:student_home.php");
+    exit();
+}
+
 
 $flg=0;
 if(isset($_POST["rollno"]))
@@ -26,6 +33,7 @@ if(isset($_POST["rollno"]))
         $_SESSION["msgF"] = "Student has not been registered. Recheck credentials :)";
         //echo "<script type='text/javascript'>alert('$message');</script>";
         header("Location:change_info.php");
+        exit();
     }
 }
 
@@ -42,6 +50,7 @@ if(isset($_POST["rollno"]))
     $rows = mysqli_num_rows($result);
 }*/
 
+include('nav_bar.php');
 
 ?>
 <script>
