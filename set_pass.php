@@ -6,6 +6,19 @@
  * Time: 6:11 PM
  */
 include ("config.php");
+if(!isset($_SESSION["rollno"]))
+{
+    header("location:index.php");
+    exit();
+}
+
+$rollno=$_SESSION["rollno"];
+if ($rollno!=$admin)
+{
+
+    header("Location:student_home.php");
+    exit();
+}
 if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPassword"]))
 {
 
