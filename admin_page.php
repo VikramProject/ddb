@@ -128,6 +128,10 @@ if ($rollno!=2014130999)
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
+                $query="select * from serial_no_storage where id=1";
+                $res=mysqli_query($db_var,$query) or die(mysql_error());
+                $serial = $res->fetch_object();
+                $count = $serial->last - $serial->available + 1;
 
                 echo "<div class=\"col-xs-3\">
   <label for=\"ex2\">col-xs-3</label>
@@ -187,9 +191,12 @@ if ($rollno!=2014130999)
           
            <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control \" id=\"ser_no\" placeholder=\"Enter Serial Number\">
-        <div id='error_ser'></div>
-      </div>
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' avail='$serial->available' end='$serial->last'>";
+        if($count == 1)
+        echo "<div id='count' style='margin-top: 10px;text-align: left;color: red;font-style: italic'>$count form left in the book</div>";
+        else 
+        echo "<div id='count' style='margin-top: 10px;text-align: left;color: red'>$count forms left in the book</div>";
+      echo "</div>
             </div></div>
     </div>
        
@@ -347,10 +354,11 @@ if ($rollno!=2014130999)
         </table>
 
 <br>
+</div>
 <footer class="footer">
     <p>&copy Sardar Patel Institute of Technology</p>
 </footer>
-</div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -369,6 +377,16 @@ if ($rollno!=2014130999)
 
             var ser = $(this).parents('.modal').find('#ser_no').val();
             var ser1 = $(this).parents('.modal').find('#ser_no');
+            var end= ser1.attr('end');
+            var curr = ser1.attr('avail');
+            if(ser > end){
+                alert("The serial number provided is not registered in the current concession book. Please insert the correct serial number");
+                ser1.val(curr);
+                return};
+            if(ser < curr){
+                alert("The serial number provided has already been used. Please provide an appropriate serial number");
+                ser1.val(curr);
+                return;}
             //alert("ser_no is "+ser);
             var age =$('#age').text();
             if(ser.length <= 0){
@@ -382,8 +400,19 @@ if ($rollno!=2014130999)
                 data: {q:blah,c:ser,age:age},
                 cache: false,
                 context: this,
-                success: function(){
+                success: function(data){
+                    var avail = parseInt(data);
                     $('[data-id='+blah+']').parents('tr').remove();
+                    if(avail > end){
+                        window.location.replace("request_serial.php");
+                    }
+                    //alert(end);
+                    $('.modal').find('#ser_no').val(data);
+                    var left = end - avail+1;
+                    if(left == 1)
+                        $('.modal').find('#count').html(left+" form left in the book");
+                    else
+                        $('.modal').find('#count').html(left+" forms left in the book");
                 }
             });}
         });
