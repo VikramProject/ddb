@@ -36,7 +36,7 @@ if(isset($_POST["start"]) && isset($_POST["end"]))
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <div class="std_uid" style=" margin-top:100px;margin-bottom: 40px">
-    <div style="margin-left:20%;margin-right:20%;font-size:large;margin-bottom:20px;font-weight: bolder">All the serial numbers have been exhausted. Please enter the start and end serial numbers of the new concession entry book</div>
+    <div style="margin-left:20%;margin-right:20%;font-size:large;margin-bottom:20px;font-weight: bolder">All the serial numbers have been exhausted. Please enter the start and end serial numbers of the new concession-entry book</div>
     <form role="form" method="POST" action="request_serial.php" style="margin-left:40%">
         <div class="form-group" >
             <input type="text"  class="form-control" name="start" required="required" placeholder="Enter Start Serial No." style="width: 200px">

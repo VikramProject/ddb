@@ -131,6 +131,7 @@ if ($rollno!=2014130999)
                 $query="select * from serial_no_storage where id=1";
                 $res=mysqli_query($db_var,$query) or die(mysql_error());
                 $serial = $res->fetch_object();
+                $count = $serial->last - $serial->available + 1;
 
                 echo " <table class=\"table table-bordered\">
               <thead>
@@ -185,9 +186,12 @@ if ($rollno!=2014130999)
           
            <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' avail='$serial->available' end='$serial->last'>
-        <div id='error_ser'></div>
-      </div>
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' avail='$serial->available' end='$serial->last'>";
+        if($count == 1)
+        echo "<div id='count' style='margin-top: 10px;text-align: left;color: red;font-style: italic'>$count form left in the book</div>";
+        else 
+        echo "<div id='count' style='margin-top: 10px;text-align: left;color: red'>$count forms left in the book</div>";
+      echo "</div>
             </div></div>
     </div>
        
@@ -345,10 +349,11 @@ if ($rollno!=2014130999)
         </table>
 
 <br>
+</div>
 <footer class="footer">
     <p>&copy Sardar Patel Institute of Technology</p>
 </footer>
-</div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -398,6 +403,11 @@ if ($rollno!=2014130999)
                     }
                     //alert(end);
                     $('.modal').find('#ser_no').val(data);
+                    var left = end - avail+1;
+                    if(left == 1)
+                        $('.modal').find('#count').html(left+" form left in the book");
+                    else
+                        $('.modal').find('#count').html(left+" forms left in the book");
                 }
             });}
         });
