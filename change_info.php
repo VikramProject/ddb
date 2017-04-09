@@ -21,6 +21,7 @@ if ($rollno!=$admin)
 
 
 ?>
+<div class="jumbotron">
 <style>
     .form-control{font-size: 16px;}
     }
