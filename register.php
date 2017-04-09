@@ -55,18 +55,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 
 }
 ?>
-<script>
-    function phoneno(){
-        $('#phone').keypress(function(e) {
-            var a = [];
-            var k = e.which;
-            for (i = 48; i < 58; i++)
-                a.push(i);
-            if (!(a.indexOf(k)>=0))
-                e.preventDefault();
-        });
-    }
-</script>
+
 <head>
     <style type="text/css">
         #station {
@@ -122,30 +111,13 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
     </form>
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 </div>
 <footer class="footer">
     <p>&copy Sardar Patel Institute of Technology</p>
 </footer>
 </div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -158,9 +130,22 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
+
     $(function() {
         $( "#station" ).autocomplete({
             source: 'search.php'
         });
     });
+</script>
+<script>
+    function phoneno(){
+        $('#phone').keypress(function(e) {
+            var a = [];
+            var k = e.which;
+            for (i = 48; i < 58; i++)
+                a.push(i);
+            if (!(a.indexOf(k)>=0))
+                e.preventDefault();
+        });
+    }
 </script>
