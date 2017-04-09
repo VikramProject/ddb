@@ -185,7 +185,7 @@ include('nav_bar.php');
                         $ageM = $birthdate->diff($today)->m;
 
                         echo "<td>
-                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
+                                <button type=\"button\" class=\"btn btn-large btn-primary \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
                                 
                              
                               </td>
