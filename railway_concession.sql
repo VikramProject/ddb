@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2017 at 09:48 AM
+-- Generation Time: Apr 09, 2017 at 03:17 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -42,13 +42,13 @@ CREATE TABLE `conc_dtb` (
 --
 
 INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Expiry_date`, `Status`) VALUES
-(1, 2014130047, 'Virar ', 'First', 'Monthly', '2017-04-06', '2017-04-29', 'locked'),
-(2, 2014130048, 'Mira Rd ', 'First', 'Monthly', '2017-04-05', '2017-04-28', 'locked'),
-(3, 2014130049, 'Goregaon ', 'Second', 'Quarterly', '2017-04-05', '2017-06-28', 'locked'),
-(4, 2014130050, 'Kandivali ', 'Second', 'Quarterly', '2017-04-05', '2017-06-28', 'locked'),
+(1, 2014130047, 'Palasdari ', 'First', 'Monthly', '2017-04-06', '2017-04-29', 'requested'),
+(2, 2014130048, 'Mira Rd ', 'First', 'Monthly', '1996-04-09', '2017-04-28', 'requested'),
+(3, 2014130049, 'Goregaon ', 'Second', 'Quarterly', '2017-04-05', '2017-06-28', 'requested'),
+(4, 2014130050, 'Kandivali ', 'Second', 'Quarterly', '2017-04-05', '2017-06-28', 'requested'),
 (5, 2014130051, 'Borivali ', NULL, NULL, NULL, '0000-00-00', 'unlocked'),
 (6, 2014130052, 'Vile Parle ', NULL, NULL, NULL, '0000-00-00', 'unlocked'),
-(7, 2014130046, 'Kandivali ', 'Second', 'Monthly', '2017-04-05', '2017-04-28', 'locked');
+(7, 2014130046, 'Kandivali ', 'Second', 'Monthly', '2017-04-05', '2017-04-28', 'requested');
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,40 @@ INSERT INTO `report_dtb` (`Id`, `UID`, `Sr_no`, `Name`, `Age`, `Sex`, `Address`,
 (6, 2014130049, 789456, 'Harsh Vora', 'Y: 20  M: 3', 'M', 'A-12, Goregaon', '', 'Quarterly', 'Goregaon ', 'Andheri', 'Secon', '2017-04-05', '1996-03-16'),
 (7, 2014130050, 79852, 'Rohan Sheth', 'Y: 20  M: 3', 'M', 'D-908, Kandivali', '', 'Quarterly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-09-15'),
 (8, 2014130046, 582147, 'Rohan Sheth', 'Y: 20  M: 3', 'M', 'D201, Kandivali(w)', '', 'Monthly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-04-15'),
-(9, 2014130047, 963258, 'Siddhey Sankhe', 'Y: 20  M: 3', 'M', 'B-201, Virar(W)', '', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27');
+(9, 2014130047, 963258, 'Siddhey Sankhe', 'Y: 20  M: 3', 'M', 'B-201, Virar(W)', '', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27'),
+(10, 2014130048, 83, 'Zain Ahmed Sayed', 'Y: 20  M: 3', 'M', 'A-603, Beverly Park, Mira rd', '', 'Monthly', 'Mira Rd ', 'Andheri', 'First', '2017-04-05', '1996-12-12'),
+(11, 2014130047, 84, 'Siddhey Sankhe', 'Y: 20  M: 3', 'M', 'B-201, Virar(W)', '', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27'),
+(12, 2014130048, 85, 'Zain Ahmed Sayed', 'Y: 20  M: 3', 'M', 'A-603, Beverly Park, Mira rd', '', 'Monthly', 'Mira Rd ', 'Andheri', 'First', '2017-04-05', '1996-12-12'),
+(13, 2014130049, 86, 'Harsh Vora', 'Y: 20  M: 3', 'M', 'A-12, Goregaon', '', 'Quarterly', 'Goregaon ', 'Andheri', 'Secon', '2017-04-05', '1996-03-16'),
+(14, 2014130050, 87, 'Rohan Sheth', 'Y: 20  M: 3', 'M', 'D-908, Kandivali', '', 'Quarterly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-09-15'),
+(15, 2014130046, 88, 'Rohan Sheth', 'Y: 20  M: 3', 'M', 'D201, Kandivali(w)', '', 'Monthly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-04-15'),
+(16, 2014130047, 89, 'Siddhey Sankhe', 'Y: 20  M: 3', 'M', 'B-201, Virar(W)', '', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27'),
+(17, 2014130047, 123478, 'Siddhey Sankhe', 'Y: 20  M: 6', 'M', 'B-201, Virar(W)', 'Open', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27'),
+(18, 2014130047, 123479, 'Siddhey Sankhe', 'Y: 20  M: 3', 'M', 'B-201, Virar(W)', 'Open', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27'),
+(19, 2014130048, 123480, 'Zain Ahmed Sayed', 'Y: 20  M: 3', 'M', 'A-603, Beverly Park, Mira rd', 'Open', 'Monthly', 'Mira Rd ', 'Andheri', 'First', '2017-04-05', '1996-12-12'),
+(20, 2014130050, 123499, 'Rohan Sheth', 'Y: 20  M: 6', 'M', 'D-908, Kandivali', '', 'Quarterly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-09-15'),
+(21, 2014130048, 1234500, 'Zain Ahmed Sayed', 'Y: 20  M: 3', 'M', 'A-603, Beverly Park, Mira rd', 'Open', 'Monthly', 'Mira Rd ', 'Andheri', 'First', '2017-04-05', '1996-12-12'),
+(22, 2014130049, 1237500, 'Harsh Vora', 'Y: 21  M: 0', 'M', 'A-12, Goregaon', 'SC/ST', 'Quarterly', 'Goregaon ', 'Andheri', 'Secon', '2017-04-05', '1996-03-16'),
+(23, 2014130047, 1239500, 'Siddhey Sankhe', 'Y: 20  M: 7', 'M', 'B-201, Virar(W)', 'Open', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `serial_no_storage`
+--
+
+CREATE TABLE `serial_no_storage` (
+  `id` int(1) NOT NULL DEFAULT '1',
+  `available` int(20) DEFAULT NULL,
+  `last` int(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `serial_no_storage`
+--
+
+INSERT INTO `serial_no_storage` (`id`, `available`, `last`) VALUES
+(1, 123741, 123750);
 
 -- --------------------------------------------------------
 
@@ -254,9 +287,9 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`, `Sex`, `Address`, `DOB`, `Category`) VALUES
 (1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com', NULL, NULL, '0000-00-00', ''),
-(16, 2014130047, '$2y$12$O81HztJbN7iGE1/1qXeZ4eYDC2IOV/kXduN8tOvjdTEljDznUowWy', 'Siddhey Sankhe', 'siddhey@gmail.com', 'M', 'B-201, Virar(W)', '1996-08-27', ''),
-(17, 2014130048, '$2y$12$fdrNW6E3XwbBSA.zHOUTsu7WvHz3N3KW8YccD/IY4KqFxat4tQ4AO', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', 'M', 'A-603, Beverly Park, Mira rd', '1996-12-12', ''),
-(18, 2014130049, '$2y$12$rJswhbOffPrvlgpHOM8cOe9disLFZY83M5i3h7jFsWSRT32zhmjP.', 'Harsh Vora', 'harsh@gmail.com', 'M', 'A-12, Goregaon', '1996-03-16', ''),
+(16, 2014130047, '$2y$12$O81HztJbN7iGE1/1qXeZ4eYDC2IOV/kXduN8tOvjdTEljDznUowWy', 'Siddhey Sankhe', 'siddhey@gmail.com', 'M', 'B-201, Virar(W)', '1996-08-27', 'Open'),
+(17, 2014130048, '$2y$12$VERIYtTnNjwP9eS.5ISYquEg0sy/o4Myw.Sr.MKekvquT12oAPHDK', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', 'M', 'A-603, Beverly Park, Mira rd', '1996-12-12', 'Open'),
+(18, 2014130049, '$2y$12$rJswhbOffPrvlgpHOM8cOe9disLFZY83M5i3h7jFsWSRT32zhmjP.', 'Harsh Vora', 'harsh@gmail.com', 'M', 'A-12, Goregaon', '1996-03-16', 'SC/ST'),
 (19, 2014130050, '$2y$12$III0FGnEv4Ecn4A4D4zx2.rjv3wPfH0ey5gwGnBC56SMs7YTP/Bq.', 'Rohan Sheth', 'rohansheth@gmail.com', 'M', 'D-908, Kandivali', '1996-09-15', ''),
 (20, 2014130051, '$2y$12$dwkydjrFqHqh/6fPt213Le.pcVRfZfYs1TytAABSD66L5hmXTk88e', 'Nishanth Uchil', 'uchil@gmail.com', 'M', 'D-908, Kandivali', '1996-08-05', ''),
 (21, 2014130052, '$2y$12$s.oiUMr5B.rKRwNIwAKZwO9UtPDOwVD5lOxOCkEkp1U9FIFQIpO0W', 'Darshan Shah', 'dvr@gmail.com', 'M', 'A-13, Vile Parle', '1996-09-05', ''),
@@ -306,7 +339,7 @@ ALTER TABLE `conc_dtb`
 -- AUTO_INCREMENT for table `report_dtb`
 --
 ALTER TABLE `report_dtb`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `station`
 --
