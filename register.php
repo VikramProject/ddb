@@ -37,6 +37,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
         //echo "<script type='text/javascript'>alert('$message');</script>";
         //header("Location:index.php");
         header("Location: index.php?Message=" . urlencode($message));
+        exit();
     }
     else if($rows==1)
     {

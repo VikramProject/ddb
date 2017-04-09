@@ -7,10 +7,16 @@
  */
 include ("config.php");
 if(!isset($_SESSION["rollno"]))
+{
     header("location:index.php");
+    exit();
+}
 $rollno=$_SESSION["rollno"];
 if ($rollno!=$admin)
+{
     header("Location:student_home.php");
+    exit();
+}
 $start=$_GET["start"];
 $end=$_GET["end"];
 $setSql = "SELECT Sr_no,UID,Name,Age,Sex,Address,Category,Period,From_stn,To_stn,Class,Issued_date,DOB FROM report_dtb where sr_no BETWEEN '$start' and '$end'";
@@ -32,7 +38,7 @@ while ($rec = mysqli_fetch_row($setRec)) {
 
 
 header("Content-type: application/octet-stream");
-header("Content-Disposition: attachment; filename=User_Detail_Reoprt.xls");
+header("Content-Disposition: attachment; filename=RailwayPassReport.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 
