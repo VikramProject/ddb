@@ -12,3 +12,16 @@ if ($db_var->connect_error) {
     die('Error : ('. $db_var->connect_errno .') '. $db_var->connect_error);
 }
 ?>
+<head>
+    <style>
+        body {
+            background: url("images/local.jpg") no-repeat;
+            background-color: #cccccc;
+            background-size: cover;
+        }
+        .jumbotron {
+
+            background-size: cover;
+            opacity: 0.9;
+    </style>
+</head>

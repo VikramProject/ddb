@@ -80,18 +80,27 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
 <div class="jumbotron">
     <h2>Register</h2>
     <form role="form" method="POST" action="register.php">
+        <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" for="UID">Roll No.(UID)</label>
-            <input type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID">
+            <input type="text" class="form-control" id="xs2" name="rollno" required="required" placeholder="Enter UID">
         </div>
+        </div>
+        <br><br><br><br>
+        <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" for="\Password">Password</label>
-            <input type="password" class="form-control" name="Password" required="required" placeholder="Password">
+            <input type="password" class="form-control" id="xs2" name="Password" required="required" placeholder="Password">
         </div>
+        </div>
+        <br><br><br><br>
+        <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" for="\Name">Name</label>
-            <input type="text" class="form-control" name="name" required="required" placeholder="Name">
+            <input type="text" class="form-control" id="xs2" name="name" required="required" placeholder="Name">
         </div>
+        </div>
+        <br><br><br><br>
         <div class="form-group">
             <label class="control-label " for="\Gender">Gender:  </label>
             <input type="radio" name="gender" value="Male" style="margin-left: 10px;"> Male
@@ -102,30 +111,42 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
             <input type="radio" name="caste" value="SC/ST" style="margin-left: 23px;"> SC/ST
             <input type="radio" name="caste" value="Open" checked style="margin-left: 10px;"> Open<br>
         </div>
+        <div class="col-xs-5">
         <div class="form-group">
             <label class="control-label" for="\Email">Email</label>
-            <input type="email" class="form-control" name="email" required="required" placeholder="Email Id">
+            <input type="email" class="form-control" id="xs4" name="email" required="required" placeholder="Email Id">
         </div>
-        <div class="form-group">
+        </div>
+        <br><br><br><br>
+        <div class="col-xs-3">
+        <div class="ui-widget form-group">
             <label class="control-label" for="\Nearest">Nearest Station</label>
             <input  id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
         </div>
+        </div>
+        <br><br><br><br>
+        <div class="col-xs-7">
         <div class="form-group">
             <label class="control-label" for="\Address">Address</label>
-            <input type="text" class="form-control" name="addr" required="required" placeholder="Address">
+            <input type="text" class="form-control" id="xs6" name="addr" required="required" placeholder="Address">
         </div>
+        </div>
+        <br><br><br><br>
+        <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" ">Date Of Birth </label>
-            <input type="date" class="form-control" name="dob" required="required" placeholder="Date Of Birth">
+            <input type="date" class="form-control" id="xs2" name="dob" required="required" placeholder="Date Of Birth">
         </div>
+        </div>
+        <br><br><br><br>
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
     </form>
-    <div class="modal fade" id="myModal" role="dialog">
+  <!--  <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            <div class="modal-content">
+        <!--    <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
@@ -139,12 +160,14 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
             </div>
 
         </div>
-    </div>
+    </div>-->
+    <br><br><br><br><br><br><br><br>
+    <footer class="footer">
+        <p>&copy Sardar Patel Institute of Technology</p>
+    </footer>
 </div>
-<footer class="footer">
-    <p>&copy Sardar Patel Institute of Technology</p>
-</footer>
-</div>
+
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->

@@ -16,11 +16,11 @@ if(isset($_POST["rollno"]))
     $result=mysqli_query($db_var,$query) or die(mysql_error());
     $rows=mysqli_num_rows($result);
     $obj = $result->fetch_object();
-    /*if($rows == 1)
+    if($rows == 1)
     {
         $message = "Success";
         echo "<script type='text/javascript'>alert('$message');</script>";
-    }*/
+    }
     if($rows == 0)
     {
         $_SESSION["msgF"] = "Student has not been registered. Recheck credentials :)";
@@ -29,7 +29,7 @@ if(isset($_POST["rollno"]))
     }
 }
 
-/*if(isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]) && isset($_POST["addr"]) &&isset($_POST["dob"])) {
+if(isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]) && isset($_POST["addr"]) &&isset($_POST["dob"])) {
 
     $name = $_POST["name"];
     $email = $_POST["email"];
@@ -40,7 +40,7 @@ if(isset($_POST["rollno"]))
     $query = "update student set Name='$name', Email='$email', Address='$addr', DOB='$dob' where UID=$roll";
     $result = mysqli_query($db_var, $query) or die(mysql_error());
     $rows = mysqli_num_rows($result);
-}*/
+}
 
 
 ?>
@@ -72,26 +72,41 @@ if(isset($_POST["rollno"]))
 <div class="jumbotron" id="<?php echo $obj->UID; ?>">
     <h2 style="margin-top: -17px"><?php echo "UID : $obj->UID"?></h2>
     <h2 style="margin-top: 20px;">Student Info</h2>
+    <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" for="\Name">Name</label>
             <input type="text" class="form-control" id="name" required="required" value="<?php echo $obj->Name; ?>">
         </div>
+    </div>
+    <br><br><br><br>
+    <div class="col-xs-4">
         <div class="form-group">
             <label class="control-label" for="\Email">Email</label>
             <input type="email" class="form-control" id="email" required="required" value="<?php echo $obj->Email; ?>">
         </div>
+    </div>
+    <br><br><br><br>
+    <div class="col-xs-3">
         <div class="ui-widget form-group">
             <label class="control-label" for="\Nearest" style="font-weight:lighter">Nearest Station</label>
             <input  id="station" type="text" class="form-control" required="required" value="<?php echo $obj->Nearest_stn; ?>">
         </div>
+    </div>
+    <br><br><br><br>
+    <div class="col-xs-7">
         <div class="form-group">
             <label class="control-label" for="\Address">Address</label>
             <input type="text" class="form-control" id="addr" required="required" value="<?php echo $obj->Address; ?>">
         </div>
+    </div>
+    <br><br><br><br>
+    <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" ">Date Of Birth </label>
             <input type="date" class="form-control" id="dob" required="required" value="<?php echo date("Y-m-d",strtotime($obj->DOB)); ?>">
         </div>
+    </div>
+    <br><br><br><br>
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
     <div class="modal fade" id="myModal" role="dialog">
@@ -113,11 +128,11 @@ if(isset($_POST["rollno"]))
 
         </div>
     </div>
+    <footer class="footer">
+        <p>&copy Sardar Patel Institute of Technology</p>
+    </footer>
 </div>
-<footer class="footer">
-    <p>&copy Sardar Patel Institute of Technology</p>
-</footer>
-</div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
