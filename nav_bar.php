@@ -86,7 +86,9 @@
                                 echo"<li><a href=\"changepass.php\"><strong>Change Your Password</strong></a></li>";
                             if(!strpos($request,"set_pass"))
                                 echo"<li><a href=\"set_pass.php\"><strong>Set Student Password</strong></a></li>";
-                            if(!strpos($request,"issue new sr no"))
+                            if(!strpos($request,"late"))
+                                echo"<li><a href=\"late.php\"><strong>Change Issue Date</strong></a></li>";
+                            if(!strpos($request,"spoiled"))
                                 echo"<li><a href=\"spoiled.php\"><strong>Issue new SR No</strong></a></li>";
                             echo"</ul>
                         </li>";
