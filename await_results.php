@@ -22,4 +22,8 @@ include("nav_bar.php");
 
         ?></p>
 </body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 </html>
