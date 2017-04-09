@@ -28,22 +28,28 @@ if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPa
     $confnewpassword = $_POST["ConfNewPassword"];
 
 
-    if ($Password == $confnewpassword) {
-        $confnewpassword = password_hash($confnewpassword, PASSWORD_BCRYPT, ['cost' => 12]);
 
-        $sql = "UPDATE student SET Password = '$confnewpassword' WHERE UID='$resetUID'";
-        mysqli_query($db_var, $sql);
+
+        if ($Password == $confnewpassword) {
+            $confnewpassword = password_hash($confnewpassword, PASSWORD_BCRYPT, ['cost' => 12]);
+
+            $sql = "UPDATE student SET Password = '$confnewpassword' WHERE UID='$resetUID'";
+            mysqli_query($db_var, $sql);
 //        session_destroy();
-        header("Location:index.php");
-        exit();
-    } else
-    {
-        echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
+            header("Location:index.php");
+            exit();
+        } else {
+            include("nav_bar.php");
+            echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
 			The entered passwords do not match</span>";
-        include ("nav_bar.php");
-    }
+        }
+
 
 }
+else{
+    include ("nav_bar.php");
+}
+
 ?>
 
 
@@ -54,8 +60,13 @@ if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPa
         <?php
         if(isset($_POST['resetUID']))
         {
-            $resetUID=$_POST['resetUID'];
-            echo"<div class=\"form-group\">
+            $resetUID=$_POST["resetUID"];
+        $query="Select *from student where UID='$resetUID'";
+        $result=mysqli_query($db_var,$query) or die(mysqli_error());
+        $no_rows=mysqli_num_rows($result);
+        if($no_rows==1) {
+            $resetUID = $_POST['resetUID'];
+            echo "<div class=\"form-group\">
                     <label class=\"control-label\" \"></label>
                     <input type=\"number\" class=\"form-control\" name=\"resetUID\" required=\"required\" value=\"$resetUID\" readonly>
                  </div>
@@ -72,6 +83,19 @@ if(isset($_POST["resetUID"])&&isset($_POST["Password"])&&isset($_POST["ConfNewPa
             
         ";
         }
+        else
+        {
+            $message = "UID Does Not Exist";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            echo"<div class=\"form-group\">
+                    <label class=\"control-label\" \"></label>
+                    <input type=\"number\" class=\"form-control\" name=\"resetUID\" required=\"required\" placeholder=\"UID\">
+                 </div>
+
+                 <button type=\"submit\" class=\"btn btn-large btn-success\">Search</button>";
+        }
+        }
+
 
         else
         {
