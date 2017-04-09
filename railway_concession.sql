@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2017 at 12:58 PM
+-- Generation Time: Apr 09, 2017 at 09:48 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,37 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `railway concession`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clg_dtb`
---
-
-CREATE TABLE `clg_dtb` (
-  `id` int(11) NOT NULL,
-  `UID` int(10) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `DOB` date NOT NULL,
-  `Address` varchar(50) NOT NULL,
-  `Phone` bigint(10) NOT NULL,
-  `Class` varchar(10) NOT NULL,
-  `Age` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `clg_dtb`
---
-
-INSERT INTO `clg_dtb` (`id`, `UID`, `Name`, `DOB`, `Address`, `Phone`, `Class`, `Age`) VALUES
-(1, 2014130047, 'Siddhey Sankhe', '1996-08-27', 'C/101,Yashwant Kasturi Virar(W)', 814928350, 'Computer', 20),
-(2, 2014130048, 'Zain Ahmed Sayed', '1996-12-12', 'A-142, Mira Road', 9876543210, 'Computer', 21),
-(3, 2014130049, 'Darshan Shah', '1996-05-06', 'B/12, Vile Parle', 8794569312, 'Computer', 21),
-(4, 2014130050, 'Niyam Shah', '1996-08-12', 'A-903, Sion', 7845123690, 'Computer', 21),
-(5, 2014130051, 'Yash Shah', '1996-02-16', 'D-212, Kandivali', 9856321470, 'Computer', 21),
-(6, 2014130052, 'Rohan  Sheth', '1996-11-02', 'F-123, Kandivali', 5847691230, 'Computer', 21),
-(7, 2014130053, 'Nishanth Uchil', '1996-08-07', 'A-304, Borivali', 7485961230, 'Computer', 21),
-(8, 2014130054, 'Harsh Vora', '1996-12-24', '12, Goregaon', 8529637410, 'Computer', 21);
 
 -- --------------------------------------------------------
 
@@ -73,12 +42,13 @@ CREATE TABLE `conc_dtb` (
 --
 
 INSERT INTO `conc_dtb` (`id`, `UID`, `Nearest_stn`, `Class`, `Period`, `Issue_date`, `Expiry_date`, `Status`) VALUES
-(8, 2014130048, 'Mira Road', 'Second', 'Quarterly', '2017-04-07', '1969-12-25', 'locked'),
-(9, 2014130047, 'Virar', 'first', '1', '2017-03-28', '2017-04-21', 'locked'),
-(10, 2014130049, 'Virar', 'First', 'Monthly', '2017-04-05', '1969-12-25', 'locked'),
-(11, 2147483647, 'Borivali ', NULL, NULL, NULL, '0000-00-00', 'unlocked'),
-(12, 2014130053, 'Borivali ', 'first', '1', '2017-04-05', '2017-04-28', 'locked'),
-(13, 2014130054, 'Kandivali ', 'Second', 'Quarterly', '2017-04-04', '1969-12-25', 'locked');
+(1, 2014130047, 'Virar ', 'First', 'Monthly', '2017-04-06', '2017-04-29', 'locked'),
+(2, 2014130048, 'Mira Rd ', 'First', 'Monthly', '2017-04-05', '2017-04-28', 'locked'),
+(3, 2014130049, 'Goregaon ', 'Second', 'Quarterly', '2017-04-05', '2017-06-28', 'locked'),
+(4, 2014130050, 'Kandivali ', 'Second', 'Quarterly', '2017-04-05', '2017-06-28', 'locked'),
+(5, 2014130051, 'Borivali ', NULL, NULL, NULL, '0000-00-00', 'unlocked'),
+(6, 2014130052, 'Vile Parle ', NULL, NULL, NULL, '0000-00-00', 'unlocked'),
+(7, 2014130046, 'Kandivali ', 'Second', 'Monthly', '2017-04-05', '2017-04-28', 'locked');
 
 -- --------------------------------------------------------
 
@@ -94,7 +64,8 @@ CREATE TABLE `report_dtb` (
   `Age` varchar(20) NOT NULL,
   `Sex` varchar(1) NOT NULL,
   `Address` varchar(100) NOT NULL,
-  `Period` int(10) NOT NULL,
+  `Category` varchar(8) NOT NULL,
+  `Period` varchar(15) NOT NULL,
   `From_stn` varchar(30) NOT NULL,
   `To_stn` varchar(30) NOT NULL DEFAULT 'Andheri',
   `Class` varchar(5) NOT NULL,
@@ -106,11 +77,16 @@ CREATE TABLE `report_dtb` (
 -- Dumping data for table `report_dtb`
 --
 
-INSERT INTO `report_dtb` (`Id`, `UID`, `Sr_no`, `Name`, `Age`, `Sex`, `Address`, `Period`, `From_stn`, `To_stn`, `Class`, `Issued_date`, `DOB`) VALUES
-(8, 2014130048, 0, 'Zain Ahmed Sayed', '0Y_0M', '', '', 1, 'Mira Road', 'Andheri', 'first', '2017-03-28', '0000-00-00'),
-(11, 2014130048, 123344, 'Zain Ahmed Sayed', 'Years: 201', '', '', 1, 'Mira Road', 'Andheri', 'first', '2017-03-28', '0000-00-00'),
-(15, 2014130048, 123, 'Zain Ahmed Sayed', 'Y: 2017  M', '', '', 0, 'Mira Road', 'Andheri', 'Secon', '2017-04-07', '0000-00-00'),
-(16, 2014130054, 124, 'Divita Vora', 'Y: 2017  M', 'F', 'A-12, Borivali(E)', 0, 'Kandivali ', 'Andheri', 'Secon', '2017-04-04', '1996-09-17');
+INSERT INTO `report_dtb` (`Id`, `UID`, `Sr_no`, `Name`, `Age`, `Sex`, `Address`, `Category`, `Period`, `From_stn`, `To_stn`, `Class`, `Issued_date`, `DOB`) VALUES
+(1, 2014130047, 1234566, 'Siddhey Sankhe', 'Y: 20  M: 7', 'M', 'B-201, Virar(W)', '', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27'),
+(2, 2014130048, 12345, 'Zain Ahmed Sayed', 'Y: 20  M: 3', 'M', 'A-603, Beverly Park, Mira rd', '', 'Monthly', 'Mira Rd ', 'Andheri', 'First', '2017-04-05', '1996-12-12'),
+(3, 2014130049, 12349, 'Harsh Vora', 'Y: 20  M: 3', 'M', 'A-12, Goregaon', '', 'Quarterly', 'Goregaon ', 'Andheri', 'Secon', '2017-04-05', '1996-03-16'),
+(4, 2014130050, 123456, 'Rohan Sheth', 'Y: 20  M: 6', 'M', 'D-908, Kandivali', '', 'Quarterly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-09-15'),
+(5, 2014130048, 12346, 'Zain Ahmed Sayed', 'Y: 20  M: 3', 'M', 'A-603, Beverly Park, Mira rd', '', 'Monthly', 'Mira Rd ', 'Andheri', 'First', '2017-04-05', '1996-12-12'),
+(6, 2014130049, 789456, 'Harsh Vora', 'Y: 20  M: 3', 'M', 'A-12, Goregaon', '', 'Quarterly', 'Goregaon ', 'Andheri', 'Secon', '2017-04-05', '1996-03-16'),
+(7, 2014130050, 79852, 'Rohan Sheth', 'Y: 20  M: 3', 'M', 'D-908, Kandivali', '', 'Quarterly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-09-15'),
+(8, 2014130046, 582147, 'Rohan Sheth', 'Y: 20  M: 3', 'M', 'D201, Kandivali(w)', '', 'Monthly', 'Kandivali ', 'Andheri', 'Secon', '2017-04-05', '1996-04-15'),
+(9, 2014130047, 963258, 'Siddhey Sankhe', 'Y: 20  M: 3', 'M', 'B-201, Virar(W)', '', 'Monthly', 'Virar ', 'Andheri', 'First', '2017-04-06', '1996-08-27');
 
 -- --------------------------------------------------------
 
@@ -268,34 +244,27 @@ CREATE TABLE `student` (
   `Email` varchar(50) NOT NULL,
   `Sex` varchar(1) DEFAULT NULL,
   `Address` varchar(100) DEFAULT NULL,
-  `DOB` date NOT NULL
+  `DOB` date NOT NULL,
+  `Category` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`, `Sex`, `Address`, `DOB`) VALUES
-(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com', NULL, NULL, '0000-00-00'),
-(9, 2014130048, '$2y$12$LqTqM/MBTBApYxp5pigHA.2mCSZ65uTFHQDTAf3Jd4jNVEniDiBSy', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', NULL, NULL, '0000-00-00'),
-(10, 2014130047, '$2y$12$mSqAYOkekLzPwWncmE6I3.36I.mXdlAH51dyD4ggfv0CZTNy/VntS', 'Siddhey Sankhe', 'siddhey@gmail.com', NULL, NULL, '0000-00-00'),
-(11, 2014130049, '$2y$12$4y4GVIw1212X5Rm19gGn6eZkUn5JPTqg4/82cgbIDEf5KG4n2at7m', 'Darshan Shah', 'blah@blah.com', 'M', 'blah, blah(w)', '1997-01-01'),
-(12, 2147483647, '$2y$12$Y5NAEA6Ritypzn/4WtT9QuOTW7avumAUtjSF8o2yIMuPeLekca6lq', 'Aashvi Vora', 'aashvi@gmail.com', 'f', 'A-12, Borivali(E)', '1996-03-15'),
-(13, 2014130053, '$2y$12$U5SH0bliTrutLt4T2fOz1On8Qmw0c/WmkAF5DHqsUWAxc340IRFa6', 'Aashvi Vora', 'aashvi@gmail.com', 'f', 'A-12, Borivali(E)', '1996-12-15'),
-(14, 2014130054, '$2y$12$riJyGoWZN5m6Z1aQlCIrwucJq2OXJ9SfmbhKxBYTFBjKxiJK2bdga', 'Divita Vora', 'divita@gmail.com', 'F', 'A-12, Borivali(E)', '1996-09-17');
+INSERT INTO `student` (`id`, `UID`, `Password`, `Name`, `Email`, `Sex`, `Address`, `DOB`, `Category`) VALUES
+(1, 2014130999, '$2y$12$hRUw56yGClBiePQy5D9lz.5rycKXrrDP7f7JlzUcjFVdJ6sRrw...', 'Admin', 'admin@gmail.com', NULL, NULL, '0000-00-00', ''),
+(16, 2014130047, '$2y$12$O81HztJbN7iGE1/1qXeZ4eYDC2IOV/kXduN8tOvjdTEljDznUowWy', 'Siddhey Sankhe', 'siddhey@gmail.com', 'M', 'B-201, Virar(W)', '1996-08-27', ''),
+(17, 2014130048, '$2y$12$fdrNW6E3XwbBSA.zHOUTsu7WvHz3N3KW8YccD/IY4KqFxat4tQ4AO', 'Zain Ahmed Sayed', 'zainahmeds123@gmail.com', 'M', 'A-603, Beverly Park, Mira rd', '1996-12-12', ''),
+(18, 2014130049, '$2y$12$rJswhbOffPrvlgpHOM8cOe9disLFZY83M5i3h7jFsWSRT32zhmjP.', 'Harsh Vora', 'harsh@gmail.com', 'M', 'A-12, Goregaon', '1996-03-16', ''),
+(19, 2014130050, '$2y$12$III0FGnEv4Ecn4A4D4zx2.rjv3wPfH0ey5gwGnBC56SMs7YTP/Bq.', 'Rohan Sheth', 'rohansheth@gmail.com', 'M', 'D-908, Kandivali', '1996-09-15', ''),
+(20, 2014130051, '$2y$12$dwkydjrFqHqh/6fPt213Le.pcVRfZfYs1TytAABSD66L5hmXTk88e', 'Nishanth Uchil', 'uchil@gmail.com', 'M', 'D-908, Kandivali', '1996-08-05', ''),
+(21, 2014130052, '$2y$12$s.oiUMr5B.rKRwNIwAKZwO9UtPDOwVD5lOxOCkEkp1U9FIFQIpO0W', 'Darshan Shah', 'dvr@gmail.com', 'M', 'A-13, Vile Parle', '1996-09-05', ''),
+(22, 2014130046, '$2y$12$DM1gljylctEiu49xz4pj.uv2g3yD3PiVH1/rTehxwZ1wBWW94YsJq', 'Rohan Sheth', 'rohansheth@gmail.com', 'M', 'D201, Kandivali(w)', '1996-04-15', '');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `clg_dtb`
---
-ALTER TABLE `clg_dtb`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UID` (`UID`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
 
 --
 -- Indexes for table `conc_dtb`
@@ -329,20 +298,15 @@ ALTER TABLE `student`
 --
 
 --
--- AUTO_INCREMENT for table `clg_dtb`
---
-ALTER TABLE `clg_dtb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
 -- AUTO_INCREMENT for table `conc_dtb`
 --
 ALTER TABLE `conc_dtb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `report_dtb`
 --
 ALTER TABLE `report_dtb`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `station`
 --
@@ -352,7 +316,7 @@ ALTER TABLE `station`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Constraints for dumped tables
 --
