@@ -78,7 +78,7 @@ if(isset($_POST["rollno"]))
         </div>
         <div class="form-group">
             <label class="control-label" for="\Email">Email</label>
-            <input type="email" class="form-control" id="email" required="required" value="<?php echo $obj->Email; ?>">
+            <input type="email" class="form-control" id="email" required="required" value="<?php echo $obj->Email; ?> ">
         </div>
         <div class="ui-widget form-group">
             <label class="control-label" for="\Nearest" style="font-weight:lighter">Nearest Station</label>
