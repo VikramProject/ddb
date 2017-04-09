@@ -23,7 +23,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="/assets1/css/style.css">
     <![endif]-->
 </head>
 <body>
@@ -94,7 +94,7 @@
                         }
                         else
                         {
-                            //echo "<li><a href=\"#\">Welcome $row->name</a></li>";
+
                             if(!strpos($request,"changepass"))
                                 echo "<li><a href=\"changepass.php\">Change Password</a></li>";
                             if(!strpos($request,"student_home")||!strpos($request,"await_results"))
