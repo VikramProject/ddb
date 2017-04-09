@@ -16,7 +16,7 @@ if(isset($_SESSION["msgF"]))
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
 
 

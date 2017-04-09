@@ -71,7 +71,7 @@
                         $res = mysqli_query($db_var, $query);
                         $row = $res->fetch_object();
                         //admin
-                        if($rollno==2014130999)
+                        if($rollno==$admin)
                         {
                             echo "<li class=\"dropdown\">
                              <a href=\"\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Welcome $row->name<b class=\"caret\"></b></a>
@@ -96,8 +96,8 @@
                             echo "<li><a href=\"#\">Welcome $row->name</a></li>";
                             if(!strpos($request,"changepass"))
                                 echo "<li><a href=\"changepass.php\">Change Password</a></li>";
-                            if(!strpos($request,"student_home"))
-                                echo"<li><a href=\"student_home.php\">Request Page</a></li>";
+                            if(!strpos($request,"student_home")||!strpos($request,"await_results"))
+                                echo"<li><a href=\"student_home.php\">Home Page</a></li>";
 
 
                         }

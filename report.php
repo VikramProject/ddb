@@ -9,15 +9,15 @@ include ("config.php");
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
 $start=$_GET["start"];
 $end=$_GET["end"];
-$setSql = "SELECT Sr_no,UID,Name,Age,Sex,Address,Period,From_stn,To_stn,Class,Issued_date,DOB FROM report_dtb where sr_no BETWEEN '$start' and '$end'";
+$setSql = "SELECT Sr_no,UID,Name,Age,Sex,Address,Category,Period,From_stn,To_stn,Class,Issued_date,DOB FROM report_dtb where sr_no BETWEEN '$start' and '$end'";
 $setRec = mysqli_query($db_var, $setSql);
 
 $columnHeader = '';
-$columnHeader = "Sr NO" . "\t" . "UID" . "\t" . "Name" . "\t" . "Age" . "\t" . "Gender" . "\t" . "Address" . "\t" . "Period" . "\t" . "From" . "\t" . "To" . "\t" . "Class" . "\t" . "Issued" . "\t" . "Date 0f Birth" . "\t\n";
+$columnHeader = "Sr NO" . "\t" . "UID" . "\t" . "Name" . "\t" . "Age" . "\t" . "Gender" . "\t" . "Address" . "\t" . "Category" . "\t" . "Period" . "\t" . "From" . "\t" . "To" . "\t" . "Class" . "\t" . "Issued" . "\t" . "Date 0f Birth" . "\t\n";
 
 $setData = '';
 

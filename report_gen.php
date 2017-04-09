@@ -10,7 +10,7 @@ include("nav_bar.php");
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
 if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
 {
@@ -56,6 +56,7 @@ if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
                   <th>Age</th>
                   <th>Gender</th>
                   <th>Address</th>
+                  <th>Category</th>
                   <th> Period</th>
                   <th>From</th>
                   <th>To</th>
@@ -74,6 +75,7 @@ if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
                             <td>$obj->Age</td>
                             <td>$obj->Sex</td>
                             <td>$obj->Address</td>
+                            <td>$obj->Category</td>
                             <td>$obj->Period</td>
                             <td>$obj->From_stn</td>
                             <td>$obj->To_stn</td>

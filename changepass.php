@@ -66,10 +66,9 @@ else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
     </form>
+</div>
     <footer class="footer">
         <p>&copy Sardar Patel Institute of Technology</p>
     </footer>
-</div>
-
 </body>
 </html>

@@ -9,7 +9,7 @@ include("config.php");
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
 if(isset($_REQUEST["q"])){
 $record = $_REQUEST["q"];

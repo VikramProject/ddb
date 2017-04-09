@@ -21,7 +21,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 		{
 			$_SESSION["rollno"]=$row["UID"];
 
-			if ($row['UID']==2014130999)
+			if ($row['UID']==$admin)
                 header("Location:admin_page.php");
 			else
 			{

@@ -10,7 +10,7 @@ include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
 ?>
 
@@ -276,6 +276,19 @@ if ($rollno!=2014130999)
                 <div class=\"row\">
                     <div class=\"col-sm-12\">
                         <span class=\"value-details\">Andheri</span>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-sm-6\">
+                <!-- value tax -->
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"label-details\">Category</span>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"value-details\">$obj->Category</span>
                     </div>
                 </div>
             </div>
