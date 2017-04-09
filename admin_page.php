@@ -10,8 +10,18 @@ include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
     header("location:index.php");
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
     header("Location:student_home.php");
+
+$query="select * from serial_no_storage where id=1";
+$res=mysqli_query($db_var,$query) or die(mysqli_error());
+$serial = $res->fetch_object();
+$last = $serial->last;
+$avail = $serial->available;
+if($last-$avail+1==0)
+{
+    header("Location:request_serial.php");
+}
 ?>
 
 
@@ -127,9 +137,9 @@ if ($rollno!=2014130999)
 
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
-                $result=mysqli_query($db_var,$query) or die(mysql_error());
+                $result=mysqli_query($db_var,$query) or die(mysqli_error());
                 $query="select * from serial_no_storage where id=1";
-                $res=mysqli_query($db_var,$query) or die(mysql_error());
+                $res=mysqli_query($db_var,$query) or die(mysqli_error());
                 $serial = $res->fetch_object();
                 $count = $serial->last - $serial->available + 1;
 
@@ -157,12 +167,8 @@ if ($rollno!=2014130999)
                             <td data-id='$obj->UID'>$obj->UID</td>
                             <td>$obj->Name</td>
                             <td>$obj->Nearest_stn</td>
-                            <td>$obj->Class</td>";
-                        if ($obj->Period == 1) {
-                            echo "<td>Monthly</td>";
-                        } else {
-                            echo "<td>Quarterly</td>";
-                        }
+                            <td>$obj->Class</td>
+                            <td>$obj->Period</td>";
                         $birthdate = new DateTime($obj->DOB);
                         $today = new DateTime('today');
                         $ageY = $birthdate->diff($today)->y;
@@ -288,6 +294,19 @@ if ($rollno!=2014130999)
                 <div class=\"row\">
                     <div class=\"col-sm-12\">
                         <span class=\"value-details\">Andheri</span>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-sm-6\">
+                <!-- value tax -->
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"label-details\">Category</span>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"value-details\">$obj->Category</span>
                     </div>
                 </div>
             </div>

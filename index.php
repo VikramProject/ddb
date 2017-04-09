@@ -7,7 +7,7 @@ if (isset($_GET['Message'])) {
 if(isset($_SESSION["rollno"]))
 {
     $rollno=$_SESSION["rollno"];
-    if ($rollno==2014130999)
+    if ($rollno==$admin)
         header("Location:admin_page.php");
     else
         header("location:student_home.php");
