@@ -8,12 +8,6 @@ if(!isset($_SESSION["rollno"]))
 }
 
 $rollno=$_SESSION["rollno"];
-if ($rollno!=$admin)
-{
-
-    header("Location:student_home.php");
-    exit();
-}
 include('nav_bar.php');
 $rollno=$_SESSION["rollno"];
 echo "<div class=\"jumbotron\">";
@@ -32,13 +26,14 @@ if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST[
             echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
 			Please enter the correct password</span>";
         }
-        else if($newpassword==$confnewpassword){
+        else if($newpassword==$confnewpassword&&password_verify($currpassword,$row["Password"])){
             $confnewpassword=password_hash($confnewpassword,PASSWORD_BCRYPT,['cost' => 12]);
 
             $sql="UPDATE student SET Password = '$confnewpassword' WHERE UID='$rollno'";
             mysqli_query($db_var, $sql);
             session_destroy();
-            header("Location:index.php");
+            $message = "Sucessfully Changed Password now Login with new password";
+            header("Location: index.php?Message=" . urlencode($message));
             exit();
         }
         else

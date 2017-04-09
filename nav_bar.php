@@ -99,7 +99,7 @@
 
                             if(!strpos($request,"changepass"))
                                 echo "<li><a href=\"changepass.php\">Change Password</a></li>";
-                            if(!strpos($request,"student_home")||!strpos($request,"await_results"))
+                            if(!strpos($request,"student_home")&&!strpos($request,"await_results"))
                                 echo"<li><a href=\"student_home.php\">Home Page</a></li>";
 
 
