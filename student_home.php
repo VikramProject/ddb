@@ -1,13 +1,20 @@
 <?php
 include("config.php");
 $msg=$_SESSION["rollno"];
-include("nav_bar.php");
 
 if(!isset($_SESSION["rollno"]))
+{
     header("location:index.php");
+    exit();
+}
+
 $rollno=$_SESSION["rollno"];
 if ($rollno==$admin)
+{
     header("Location:admin_page.php");
+    exit();
+}
+
 $query="select * from conc_dtb where UID=$rollno";
 $result=mysqli_query($db_var,$query) or die(mysql_error());
 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -18,6 +25,7 @@ if($status == "requested")
 {
     $_SESSION["msgAwait"]="Your Form Has Been Submitted. \nThe form has still not been reviewed. Do come back to check on your status";
     header("Location:await_results.php");
+    exit();
 }
 if($status == "locked")
 {
@@ -28,6 +36,7 @@ if($status == "locked")
     //$expDate =
     $_SESSION["msgAwait"]="Your Form has been Approved and can be collected from the office. This Account will be locked until $date ";
     header("Location:await_results.php");
+    exit();
 }
 
 if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
@@ -47,7 +56,10 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
     $result=mysqli_query($db_var,$query) or die(mysql_error());
 
     header("Location:student_home.php");
+    exit();
 }
+
+include("nav_bar.php");
 ?>
 
 

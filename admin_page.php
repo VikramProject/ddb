@@ -6,12 +6,19 @@
  * Time: 22:52
  */
 include('config.php');
-include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
+{
     header("location:index.php");
+    exit();
+}
+
 $rollno=$_SESSION["rollno"];
 if ($rollno!=$admin)
+{
+
     header("Location:student_home.php");
+    exit();
+}
 
 $query="select * from serial_no_storage where id=1";
 $res=mysqli_query($db_var,$query) or die(mysqli_error());
@@ -21,7 +28,10 @@ $avail = $serial->available;
 if($last-$avail+1==0)
 {
     header("Location:request_serial.php");
+    exit();
 }
+
+include('nav_bar.php');
 ?>
 
 
@@ -297,8 +307,21 @@ if($last-$avail+1==0)
                     </div>
                 </div>
             </div>
-            
+            <div class=\"col-sm-6\">
+                <!-- value tax -->
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"label-details\">Category</span>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"value-details\">$obj->Category</span>
+                    </div>
+                </div>
+            </div>
         </div>
+        
             </div>
     <div class=\"col-sm-6 column-details right-column-details\"> <!-- right column -->
       

@@ -6,7 +6,6 @@
  * Time: 22:52
  */
 include('config.php');
-include('nav_bar.php');
 if(isset($_SESSION["msgF"]))
 {
     $message=$_SESSION["msgF"];
@@ -14,10 +13,20 @@ if(isset($_SESSION["msgF"]))
     $_SESSION["msgF"]=null;
 }
 if(!isset($_SESSION["rollno"]))
+{
     header("location:index.php");
+    exit();
+
+}
+
 $rollno=$_SESSION["rollno"];
 if ($rollno!=$admin)
+{
     header("Location:student_home.php");
+    exit();
+}
+
+include('nav_bar.php');
 
 
 ?>
