@@ -8,9 +8,17 @@ if(isset($_SESSION["rollno"]))
 {
     $rollno=$_SESSION["rollno"];
     if ($rollno==$admin)
+    {
         header("Location:admin_page.php");
+        exit();
+    }
+
     else
+    {
         header("location:student_home.php");
+        exit();
+    }
+
 }
 
 include("nav_bar.php");

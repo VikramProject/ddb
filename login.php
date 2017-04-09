@@ -22,7 +22,11 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 			$_SESSION["rollno"]=$row["UID"];
 
 			if ($row['UID']==$admin)
+			{
                 header("Location:admin_page.php");
+                exit();
+			}
+
 			else
 			{
                 $query="select * from conc_dtb where UID=$rollno";
@@ -40,6 +44,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 					}
                 }
 				header("Location:student_home.php");
+                exit();
 			}
 
 		}
@@ -48,13 +53,15 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"]))
 			$_SESSION["Error"]="Incorrect Details";
 			$_SESSION["Revert"]="index.php";
 			header("Location:UnSuccessful.php");
+			exit();
 		}
 	}
 	else
 	{
 		$_SESSION["Error"]="Incorrect Details Or Not Registered";
           	$_SESSION["Revert"]="index.php";
-		header("Location:UnSuccessful.php");		
+		header("Location:UnSuccessful.php");
+		exit();
 	}
 }
 

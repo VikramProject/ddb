@@ -26,6 +26,7 @@ if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST[
             mysqli_query($db_var, $sql);
             session_destroy();
             header("Location:index.php");
+            exit();
         }
         else
             echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>

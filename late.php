@@ -7,6 +7,22 @@
  */
 
 include ("config.php");
+
+if(!isset($_SESSION["rollno"]))
+{
+    header("location:index.php");
+    exit();
+}
+
+$rollno=$_SESSION["rollno"];
+if ($rollno!=$admin)
+{
+
+    header("Location:student_home.php");
+    exit();
+}
+
+
 include ("nav_bar.php");
 if(isset($_POST["resetUID"])&&isset($_POST["new_date"])) {
 

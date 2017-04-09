@@ -6,12 +6,17 @@
  * Time: 22:52
  */
 include('config.php');
-include('nav_bar.php');
 if(!isset($_SESSION["rollno"]))
+{
     header("location:index.php");
+    exit();
+}
 $rollno=$_SESSION["rollno"];
-if ($rollno!=2014130999)
+if ($rollno!=$admin)
+{
     header("Location:student_home.php");
+    exit();
+}
 
 if(isset($_POST["start"]) && isset($_POST["end"]))
 {
@@ -23,10 +28,12 @@ if(isset($_POST["start"]) && isset($_POST["end"]))
         $query = "update serial_no_storage set available='$start',last=$end where id=1";
         $result = mysqli_query($db_var,$query) or die(mysql_error());
         header("location:admin_page.php");
+        exit();
     }
 }
 
 
+include('nav_bar.php');
 ?>
 <style>
     .form-control{font-size: 16px;}
