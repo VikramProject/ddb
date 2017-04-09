@@ -307,8 +307,21 @@ include('nav_bar.php');
                     </div>
                 </div>
             </div>
-            
+            <div class=\"col-sm-6\">
+                <!-- value tax -->
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"label-details\">Category</span>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"col-sm-12\">
+                        <span class=\"value-details\">$obj->Category</span>
+                    </div>
+                </div>
+            </div>
         </div>
+        
             </div>
     <div class=\"col-sm-6 column-details right-column-details\"> <!-- right column -->
       
