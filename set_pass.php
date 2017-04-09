@@ -6,6 +6,7 @@
  * Time: 6:11 PM
  */
 include ("config.php");
+include("nav_bar.php");
 if(!isset($_SESSION["rollno"]))
 {
     header("location:index.php");
