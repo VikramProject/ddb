@@ -129,6 +129,11 @@ if ($rollno!=2014130999)
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
 
+                echo "<div class=\"col-xs-3\">
+  <label for=\"ex2\">col-xs-3</label>
+  <input class=\"form-control\" id=\"ex2\" type=\"text\">
+</div>";
+
                 echo " <table class=\"table table-bordered\">
               <thead>
                 <tr>
