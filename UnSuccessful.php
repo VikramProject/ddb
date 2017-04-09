@@ -28,8 +28,8 @@ include('nav_bar.php');
                         echo "Unsuccessful.php";
                     }
                     ?>
-                "><button type="Button" class="btn btn-large btn-success">Go Back</button></a>
-<br><br><br><br><br><br><br><br>
+                "><button type="Button" class="btn btn-large btn-success">Go Back</button></a>                     
+            </div>
             <footer class="footer">
                 <p>	&copy Sardar Patel Institute of Technology</p>
             </footer>

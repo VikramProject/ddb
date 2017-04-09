@@ -24,20 +24,16 @@ if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
 <!--    </h1>-->
     <h4> Enter details for Report Generations</h4>
     <form role="form" method="POST" action="report_gen.php">
-        <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" ">Start SR Number</label>
-            <input class="form-control" id="xs2" name="start_sr" required="required" placeholder="Enter Start SR Number">
+            <input class="form-control" name="start_sr" required="required" placeholder="Enter Start SR Number">
         </div>
-        </div>
-        <br><br><br><br>
-        <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" ">End SR Number</label>
-            <input class="form-control" id="xs2" name="end_sr" required="required" placeholder="Enter End SR Number">
+            <input class="form-control" name="end_sr" required="required" placeholder="Enter End SR Number">
+
         </div>
-        </div>
-        <br><br><br><br>
+
         <button type="submit" class="btn btn-large btn-success">Generate Report</button>
     </form>
 </div>
@@ -93,11 +89,11 @@ if(isset($_POST['start_sr']) && isset($_POST['end_sr']))
     ?>
 </table>
 
-<br><br><br><br><br><br><br><br><br><br>
-<footer class="footer">
-    <h4>&copy Sardar Patel Institute of Technology</h4>
-</footer>
 
+<footer class="footer">
+    <p>&copy Sardar Patel Institute of Technology</p>
+</footer>
+</div>
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->

@@ -1,9 +1,6 @@
 <?php
 include('config.php');
-include("nav_bar.php");
-
-if(!isset($_SESSION["rollno"]))
-    header("location:index.php");
+include('nav_bar.php');
 
 $rollno=$_SESSION["rollno"];
 echo"<div class=\"jumbotron\">";
@@ -52,36 +49,26 @@ else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;
 <!--<body>-->
 
 
-<h2>Enter the following details:</h2>
-<form role="form" method="POST" action="changepass.php">
-    <div class="col-xs-3">
+    <h2>Enter the following details:</h2>
+    <form role="form" method="POST" action="changepass.php">
         <div class="form-group">
             <label class="control-label" for="\Password">Current Password</label>
             <input type="password" class="form-control" name="CurrentPassword" required="required" placeholder="Current Password">
         </div>
-    </div>
-    <br><br><br><br>
-    <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" for="\Password">New Password</label>
             <input type="password" class="form-control" name="NewPassword" required="required" placeholder="New Password">
         </div>
-    </div>
-    <br><br><br><br>
-    <div class="col-xs-3">
         <div class="form-group">
             <label class="control-label" for="\Password">Confirm New Password</label>
             <input type="password" class="form-control" name="ConfNewPassword" required="required" placeholder="New Password">
         </div>
-    </div>
-    <br><br><br><br><br><br><br><br>
-    <button type="submit" class="btn btn-large btn-success">Submit</button>
-    <br><br><br><br> <br><br><br><br>
-</form>
-<footer class="footer">
-    <p>&copy Sardar Patel Institute of Technology</p>
-</footer>
+        <button type="submit" class="btn btn-large btn-success">Submit</button>
 
-
+    </form>
+</div>
+    <footer class="footer">
+        <p>&copy Sardar Patel Institute of Technology</p>
+    </footer>
 </body>
 </html>
