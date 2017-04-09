@@ -128,6 +128,9 @@ if ($rollno!=2014130999)
             <?php
                 $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
                 $result=mysqli_query($db_var,$query) or die(mysql_error());
+                $query="select * from serial_no_storage where id=1";
+                $res=mysqli_query($db_var,$query) or die(mysql_error());
+                $serial = $res->fetch_object();
 
                 echo " <table class=\"table table-bordered\">
               <thead>
@@ -182,7 +185,7 @@ if ($rollno!=2014130999)
           
            <label class=\"control-label col-sm-4\" for=\"ser_no\">SERIAL NO</label>
       <div class=\"col-sm-10\">          
-        <input type=\"text\" class=\"form-control \" id=\"ser_no\" placeholder=\"Enter Serial Number\">
+        <input type=\"text\" class=\"form-control \" id=\"ser_no\" value='$serial->available' end='$serial->last'>
         <div id='error_ser'></div>
       </div>
             </div></div>
@@ -377,7 +380,7 @@ if ($rollno!=2014130999)
                 data: {q:blah,c:ser,age:age},
                 cache: false,
                 context: this,
-                success: function(){
+                success: function(data){
                     $('[data-id='+blah+']').parents('tr').remove();
                 }
             });}
