@@ -161,12 +161,12 @@ include('nav_bar.php');
                 echo " <table class=\"table table-bordered\" id='table' '>
               <thead style='background-color: slategrey;color: white'>
                 <tr>
-                  <th>Sr No.</th>
-                  <th>Name</th>
-                  <th>Station</th>
-                  <th>Class</th>
-                  <th>Period</th>
-                  <th> Details </th>
+                  <th class='col-sm-1'>Sr No.</th>
+                  <th class='col-sm-2'>Name</th>
+                  <th class='col-sm-1'>Station</th>
+                  <th class='col-sm-1'>Class</th>
+                  <th class='col-sm-1'>Period</th>
+                  <th class='col-sm-1'> Details </th>
                 </tr>
               </thead>
               ";
@@ -184,7 +184,7 @@ include('nav_bar.php');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
 
-                        echo "<td>
+                        echo "<td style='text-align: center'>
                                 <button type=\"button\" class=\"btn btn-large btn-primary \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
                                 
                              
@@ -365,9 +365,10 @@ include('nav_bar.php');
 
 </div>
       <div class=\"modal-footer\">
-       <a type=\"submit\" class=\"btn btn-default btn-success approve\"  id=\"$obj->UID\"  data-dismiss=\"modal\">Approve</a >
-       <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
-       
+      <div style='float:right' class='col-sm-4'>
+       <a type=\"submit\"  style='margin: 0' class=\"btn btn-default btn-success approve\"  id=\"$obj->UID\"  data-dismiss=\"modal\">Approve</a >
+       <button type=\"button\" class=\"btn btn-default btn-danger\" data-dismiss=\"modal\">Close</button>
+       </div>
       </div>
     </div>
   </div>
