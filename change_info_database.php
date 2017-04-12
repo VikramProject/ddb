@@ -9,6 +9,7 @@ include("config.php");
     $name = $_REQUEST["name"];
     $email = $_REQUEST["email"];
     $nearest = $_REQUEST["nearest"];
+    $nearest=trim($nearest);
     $dob = $_REQUEST["dob"];
     $addr = $_REQUEST["addr"];
     $roll = $_REQUEST["roll"];

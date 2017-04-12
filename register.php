@@ -10,6 +10,7 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
     $pass=password_hash($pass,PASSWORD_BCRYPT,['cost' => 12]);
     $email=$_POST["email"];
     $nearest=$_POST["nearest"];
+    $nearest=trim($nearest);
     $sex = $_POST["gender"];
     $dob = $_POST["dob"];
     $addr = $_POST["addr"];
