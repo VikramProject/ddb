@@ -183,6 +183,11 @@ include('nav_bar.php');
                         $today = new DateTime('today');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
+                        $color="#18b424";
+                        if(!strpos("$obj->Address","$obj->Nearest_stn"))
+                        {
+                            $color="red";
+                        }
 
                         echo "<td style='text-align: center'>
                                 <button type=\"button\" class=\"btn btn-large btn-primary \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
@@ -220,10 +225,10 @@ include('nav_bar.php');
 <div class=\"row\">
     <div class=\"col-sm-12 category-color-bar\" style=\"background-color: #FFFFFF;\"></div>
 </div>
-<div class=\"row\">
+<div class=\"row\" >
     <div class=\"col-sm-6 column-details left-column-details\"> <!-- left column -->
         <!-- category -->
-        <div class=\"row\">
+        <div class=\"row\"  >
             <div class=\"col-sm-12\">
                 <span class=\"label-details\">Date of Issue:</span>
             </div>
@@ -283,14 +288,14 @@ include('nav_bar.php');
         <div class=\"row\">
             <div class=\"col-sm-6\">
                 <!-- base -->
-                <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"label-details\">From</span>
+                <div class=\"row\" >
+                    <div class=\"col-sm-12\"style='background-color: $color'>
+                        <span class=\"label-details\" style='color:black'>From</span>
                     </div>
                 </div>
                 <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"value-details\">$obj->Nearest_stn</span>
+                    <div class=\"col-sm-12\" style='background-color: $color'>
+                        <span class=\"value-details\" style='color:black'>$obj->Nearest_stn</span>
                     </div>
                 </div>
             </div>
@@ -348,14 +353,14 @@ include('nav_bar.php');
             </div>
         </div>
         <!-- account -->
-        <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"label-details\">Address</span>
+        <div class=\"row\" >
+            <div class=\"col-sm-6\" style='background-color: $color'>
+                <span class=\"label-details\" style='color: black' >Address</span>
             </div>
         </div>
         <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"value-details\">$obj->Address</span>
+            <div class=\"col-sm-6\" style='background-color: $color'>
+                <span class=\"value-details\" style='color:black'>$obj->Address</span>
             </div>
         </div>
   

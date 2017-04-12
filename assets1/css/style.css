@@ -83,7 +83,10 @@ color: #000;
   BOOTSTRAP ADJUSTMENTS
 ==================================================*/
 .row {
-    margin-bottom:10px;
+    bottom:0px;
+}
+.row-modal {
+    margin-bottom:0px;
 }
 .btn {
     margin-bottom:5px;
