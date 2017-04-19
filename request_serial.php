@@ -35,6 +35,8 @@ if(isset($_POST["start"]) && isset($_POST["end"]))
 
 include('nav_bar.php');
 ?>
+<div class="jumbotron">
+    <h2 style="margin-top: -20px;">Enter New Book</h2>
 <style>
     .form-control{font-size: 16px;}
     }
@@ -43,12 +45,15 @@ include('nav_bar.php');
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <div class="std_uid" style=" margin-top:100px;margin-bottom: 40px">
+
     <div style="margin-left:20%;margin-right:20%;font-size:large;margin-bottom:20px;font-weight: bolder">All the serial numbers have been exhausted. Please enter the start and end serial numbers of the new concession-entry book</div>
     <form role="form" method="POST" action="request_serial.php" style="margin-left:40%">
         <div class="form-group" >
+            <label class="control-label" for="start srno">Enter Start Serial No:</label>
             <input type="text"  class="form-control" name="start" required="required" placeholder="Enter Start Serial No." style="width: 200px">
         </div>
         <div class="form-group" >
+            <label class="control-label" for="end srno">Enter End Serial No:</label>
             <input type="text" class="form-control"  name="end" required="required" placeholder="Enter End Serial No." style="width: 200px">
         </div>
 
@@ -57,11 +62,12 @@ include('nav_bar.php');
     </form>
 
 </div>
+</div>
 <br>
 <footer class="footer">
     <p style="font-size: 16px">&copy Sardar Patel Institute of Technology</p>
 </footer>
-</div>
+
 <!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->

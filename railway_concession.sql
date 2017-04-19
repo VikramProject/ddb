@@ -261,7 +261,8 @@ INSERT INTO `station` (`id`, `station`) VALUES
 (122, 'Seawood Darave '),
 (123, 'Thane '),
 (124, 'Turbhe '),
-(125, 'Vashi ');
+(125, 'Vashi '),
+(126,'Ram MANDIR');
 
 -- --------------------------------------------------------
 
