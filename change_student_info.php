@@ -168,7 +168,8 @@ include('nav_bar.php');
                 context: this,
                 success: function(data){
                     alert(data);
-                    window.location.replace("change_info.php");
+                    //location.reload();
+                    window.location.replace("admin_page.php");
                 }
             });
         });
