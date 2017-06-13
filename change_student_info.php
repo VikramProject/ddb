@@ -167,8 +167,8 @@ include('nav_bar.php');
                 cache: false,
                 context: this,
                 success: function(data){
-                    //alert(data);
-                    location.reload();
+                    alert(data);
+                    window.location.replace("change_info.php");
                 }
             });
         });
