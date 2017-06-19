@@ -1,6 +1,9 @@
 <?php
 include("config.php");
 $flg=0;
+if(!$_SESSION['rollno']){
+    header('location:index.php');
+}
 if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
 {
     $roll=$_POST["rollno"];
@@ -105,7 +108,16 @@ include("nav_bar.php");
         </div>
         <div class="form-group">
             <label class="control-label" for="\Nearest">Nearest Station</label>
-            <input   id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station" value="<?php $val=(isset($objectConc_dtb->Nearest_stn))?$objectConc_dtb->Nearest_stn:""; echo $val?>">
+<!--            <input   id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station" value="--><?php //$val=(isset($objectConc_dtb->Nearest_stn))?$objectConc_dtb->Nearest_stn:""; echo $val?><!--">-->
+
+            <select name="nearest" id="\Nearest" class="form-control">
+                <?php
+                $sql = mysqli_query($db_var, "SELECT station FROM station");
+                while ($row = $sql->fetch_assoc()){
+                    echo "<option value=".$row['station'].">" . $row['station'] . "</option>";
+                }
+                ?>
+            </select>
         </div>
         <div class="form-group">
             <label class="control-label" for="\Address">Address</label>
@@ -136,14 +148,14 @@ include("nav_bar.php");
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-
-    $(function() {
-        $( "#station" ).autocomplete({
-            source: 'search.php'
-        });
-    });
-</script>
+<!--<script>-->
+<!---->
+<!--    $(function() {-->
+<!--        $( "#station" ).autocomplete({-->
+<!--            source: 'search.php'-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 <script>
     function phoneno(){
         $('#phone').keypress(function(e) {

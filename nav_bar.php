@@ -47,18 +47,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
                 $request="$_SERVER[REQUEST_URI]";
-                if(strpos($request,'register'))
-                {
-                    echo "<li><a href=\"index.php\">Login</a></li>";
 
-                }
-                elseif(strpos($request,"index"))
+
+                if(strpos($request,"UnSuccessful"))
                 {
-                    echo"<li><a href=\"register.php\">Register</a></li>";
-                }
-                else if(strpos($request,"UnSuccessful"))
-                {
-                    echo"<li><a href=\"register.php\">Register</a></li>";
                     echo "<li><a href=\"index.php\">Login</a></li>";
                 }
                 //student
