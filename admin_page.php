@@ -161,12 +161,12 @@ include('nav_bar.php');
                 echo " <table class=\"table table-bordered\" id='table' '>
               <thead style='background-color: slategrey;color: white'>
                 <tr>
-                  <th>Sr No.</th>
-                  <th>Name</th>
-                  <th>Station</th>
-                  <th>Class</th>
-                  <th>Period</th>
-                  <th> Details </th>
+                  <th class='col-sm-1'>Sr No.</th>
+                  <th class='col-sm-2'>Name</th>
+                  <th class='col-sm-1'>Station</th>
+                  <th class='col-sm-1'>Class</th>
+                  <th class='col-sm-1'>Period</th>
+                  <th class='col-sm-1'> Details </th>
                 </tr>
               </thead>
               ";
@@ -183,9 +183,14 @@ include('nav_bar.php');
                         $today = new DateTime('today');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
+                        $color="#18b424";
+                        if(!strpos("$obj->Address","$obj->Nearest_stn"))
+                        {
+                            $color="red";
+                        }
 
-                        echo "<td>
-                                <button type=\"button\" class=\"btn btn-large btn-danger \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
+                        echo "<td style='text-align: center'>
+                                <button type=\"button\" class=\"btn btn-large btn-primary \"  id=\"bt1\" data-toggle=\"modal\"  data-target=\"#$obj->UID\" data-backdrop=\"static\" data-keyboard=\"false\" \" >Details</button >
                                 
                              
                               </td>
@@ -220,10 +225,10 @@ include('nav_bar.php');
 <div class=\"row\">
     <div class=\"col-sm-12 category-color-bar\" style=\"background-color: #FFFFFF;\"></div>
 </div>
-<div class=\"row\">
+<div class=\"row\" >
     <div class=\"col-sm-6 column-details left-column-details\"> <!-- left column -->
         <!-- category -->
-        <div class=\"row\">
+        <div class=\"row\"  >
             <div class=\"col-sm-12\">
                 <span class=\"label-details\">Date of Issue:</span>
             </div>
@@ -283,14 +288,14 @@ include('nav_bar.php');
         <div class=\"row\">
             <div class=\"col-sm-6\">
                 <!-- base -->
-                <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"label-details\">From</span>
+                <div class=\"row\" >
+                    <div class=\"col-sm-12\"style='background-color: $color'>
+                        <span class=\"label-details\" style='color:black'>From</span>
                     </div>
                 </div>
                 <div class=\"row\">
-                    <div class=\"col-sm-12\">
-                        <span class=\"value-details\">$obj->Nearest_stn</span>
+                    <div class=\"col-sm-12\" style='background-color: $color'>
+                        <span class=\"value-details\" style='color:black'>$obj->Nearest_stn</span>
                     </div>
                 </div>
             </div>
@@ -336,7 +341,7 @@ include('nav_bar.php');
             <div class=\"col-sm-12\">
                   <span class=\"value-details\">$obj->Sex</span>
             </div>
-       `</div>
+       </div>
         <div class=\"row\">
             <div class=\"col-sm-12\">
                 <span class=\"label-details\">Date of Birth:</span>
@@ -348,14 +353,14 @@ include('nav_bar.php');
             </div>
         </div>
         <!-- account -->
-        <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"label-details\">Address</span>
+        <div class=\"row\" >
+            <div class=\"col-sm-6\" style='background-color: $color'>
+                <span class=\"label-details\" style='color: black' >Address</span>
             </div>
         </div>
         <div class=\"row\">
-            <div class=\"col-sm-12\">
-                <span class=\"value-details\">$obj->Address</span>
+            <div class=\"col-sm-6\" style='background-color: $color'>
+                <span class=\"value-details\" style='color:black'>$obj->Address</span>
             </div>
         </div>
   
@@ -365,8 +370,10 @@ include('nav_bar.php');
 
 </div>
       <div class=\"modal-footer\">
-      <a type=\"submit\" class=\"btn btn-large btn-success approve\"  id=\"$obj->UID\" style='padding-top:7px;' data-dismiss=\"modal\">Approve</a >
-        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>
+      <div style='float:right' class='col-sm-4'>
+       <a type=\"submit\"  style='margin: 0' class=\"btn btn-default btn-success approve\"  id=\"$obj->UID\"  data-dismiss=\"modal\">Approve</a >
+       <button type=\"button\" class=\"btn btn-default btn-danger\" data-dismiss=\"modal\">Close</button>
+       </div>
       </div>
     </div>
   </div>

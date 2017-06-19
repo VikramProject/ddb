@@ -44,13 +44,14 @@ if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST[
 
 }
 else echo "<span style='font: bold 24px Verdana, Geneva, sans-serif;color:black;'>
-			Please fill in all the fields</span>";
+			Change Password:<br>Please fill in all the fields</span>";
 
 ?>
 
 
 
     <h2>Enter the following details:</h2>
+    Enter a new Password different from your OLD Password
     <form role="form" method="POST" action="changepass.php">
         <div class="form-group">
             <label class="control-label" for="\Password">Current Password</label>

@@ -38,7 +38,21 @@ if($status == "locked")
     header("Location:await_results.php");
     exit();
 }
-
+$query="select Password from student where UID=$rollno";
+$result=mysqli_query($db_var,$query) or die(mysqli_error());
+$object = $result->fetch_object();
+if(password_verify("spit123",$object->Password))
+{
+    header("Location:changepass.php");
+    exit();
+}
+$query="select Nearest_stn from conc_dtb where UID=$rollno";
+$result=mysqli_query($db_var,$query) or die(mysqli_error());
+$object = $result->fetch_object();
+if($object->Nearest_stn==NULL)
+{
+    header("Location:register.php");
+}
 if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {
     $class = $_POST["Class"];

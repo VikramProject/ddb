@@ -37,12 +37,14 @@ include('nav_bar.php');
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<div class="jumbotron">
+    <h4>Enter the UID to change Student Info</h4>
 
-<div class="std_uid" style=" margin-top:5px;margin-left:40%">
+
     <form role="form" method="POST" action="change_student_info.php">
-        <div class="form-group" style="display: inline-block">
-            <label class="control-label" for="UID">Roll No.(UID)</label>
-            <input type="text" class="form-control"  name="rollno" required="required" placeholder="Enter UID">
+        <div class="form-group">
+            <label class="control-label" for="UID"></label>
+            <input type="number" class="form-control"  name="rollno" required="required" placeholder="Enter UID">
         </div>
 
         <button type="submit" class="btn btn-large btn-success">Submit</button>
