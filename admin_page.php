@@ -146,7 +146,7 @@ include('nav_bar.php');
 
 
             <?php
-                $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
+                $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date DESC ";
                 $result=mysqli_query($db_var,$query) or die(mysqli_error());
                 $query="select * from serial_no_storage where id=1";
                 $res=mysqli_query($db_var,$query) or die(mysqli_error());
@@ -184,7 +184,7 @@ include('nav_bar.php');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
                         $color="#18b424";
-                        if(!strpos("$obj->Address","$obj->Nearest_stn"))
+                        if(!stripos("$obj->Address","$obj->Nearest_stn"))
                         {
                             $color="red";
                         }

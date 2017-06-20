@@ -32,7 +32,7 @@ if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset
     $rows=mysqli_num_rows($result);
     if($rows==0)
     {
-        $query="insert into student(UID,Password,Name,Email,Sex,DOB,Address,Category) values('$roll','$pass','$name','$email','$sex','$dob','$addr','$category')";
+        $query="update student set DOB='$dob' where UID='$roll'";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
         $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -125,7 +125,7 @@ include("nav_bar.php");
         </div>
         <div class="form-group">
             <label class="control-label" ">Date Of Birth </label>
-            <input readonly type="date" class="form-control" name="dob" required="required" placeholder="Date Of Birth" value="<?php echo $objectStudent->DOB?>">
+            <input type="date" class="form-control" name="dob" required="required" placeholder="Date Of Birth" value="<?php echo $objectStudent->DOB?>">
         </div>
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
