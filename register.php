@@ -1,8 +1,7 @@
 <?php
 include("config.php");
-include("nav_bar.php");
 $flg=0;
-if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
+if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
 {
     $roll=$_POST["rollno"];
     $name=$_POST["name"];
@@ -52,9 +51,18 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
     //  }
 
 
-
-
 }
+$rollno=$_SESSION["rollno"];
+$query="select * from student where UID=$rollno";
+$result=mysqli_query($db_var,$query) or die(mysqli_error());
+$objectStudent = $result->fetch_object();
+$query="select * from conc_dtb where UID=$rollno";
+$result=mysqli_query($db_var,$query) or die(mysqli_error());
+$objectConc_dtb = $result->fetch_object();
+
+
+
+include("nav_bar.php");
 ?>
 
 <head>
@@ -73,41 +81,39 @@ if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&is
     <form role="form" method="POST" action="register.php">
         <div class="form-group">
             <label class="control-label" for="UID">Roll No.(UID)</label>
-            <input type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID">
+            <input readonly type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID" value="<?php echo $objectStudent->UID?>">
         </div>
-        <div class="form-group">
-            <label class="control-label" for="\Password">Password</label>
-            <input type="password" class="form-control" name="Password" required="required" placeholder="Password">
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label class="control-label" for="\Password">Password</label>-->
+<!--            <input type="password" class="form-control" name="Password" required="required" placeholder="Password">-->
+<!--        </div>-->
         <div class="form-group">
             <label class="control-label" for="\Name">Name</label>
-            <input type="text" class="form-control" name="name" required="required" placeholder="Name">
+            <input readonly type="text" class="form-control" name="name" required="required" placeholder="Name" value="<?php echo $objectStudent->Name?>">
         </div>
         <div class="form-group">
             <label class="control-label " for="\Gender">Gender:  </label>
-            <input type="radio" name="gender" value="Male" style="margin-left: 10px;"> Male
-            <input type="radio" name="gender" value="Female" style="margin-left: 10px;"> Female
+            <label class="control-label " for="\Gender"><?php echo $objectStudent->Sex?> </label>
         </div>
         <div class="form-group">
-            <label class="control-label" ">Caste:  </label>
-            <input type="radio" name="caste" value="SC/ST" style="margin-left: 23px;"> SC/ST
-            <input type="radio" name="caste" value="Open" checked style="margin-left: 10px;"> Open<br>
+            <label class="control-label" >Category:  </label>
+            <label class="control-label" ><?php echo $objectStudent->Category?></label>
         </div>
         <div class="form-group">
             <label class="control-label" for="\Email">Email</label>
-            <input type="email" class="form-control" name="email" required="required" placeholder="Email Id">
+            <input readonly type="email" class="form-control" name="email" required="required" placeholder="Email Id" value="<?php echo $objectStudent->Email?>">
         </div>
         <div class="form-group">
             <label class="control-label" for="\Nearest">Nearest Station</label>
-            <input  id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station">
+            <input   id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station" value="<?php $val=(isset($objectConc_dtb->Nearest_stn))?$objectConc_dtb->Nearest_stn:""; echo $val?>">
         </div>
         <div class="form-group">
             <label class="control-label" for="\Address">Address</label>
-            <input type="text" class="form-control" name="addr" required="required" placeholder="Address">
+            <input readonly type="text" class="form-control" name="addr" required="required" placeholder="Address" value="<?php echo $objectStudent->Address?>">
         </div>
         <div class="form-group">
             <label class="control-label" ">Date Of Birth </label>
-            <input type="date" class="form-control" name="dob" required="required" placeholder="Date Of Birth">
+            <input readonly type="date" class="form-control" name="dob" required="required" placeholder="Date Of Birth" value="<?php echo $objectStudent->DOB?>">
         </div>
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 

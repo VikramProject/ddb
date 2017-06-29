@@ -90,7 +90,9 @@
                                 echo"<li><a href=\"late.php\"><strong>Change Issue Date</strong></a></li>";
                             if(!strpos($request,"spoiled"))
                                 echo"<li><a href=\"spoiled.php\"><strong>Reissue Spoiled Form</strong></a></li>";
-                            if(!strpos($request,"spoiled"))
+                            if(!strpos($request,"import_db"))
+                                echo"<li><a href=\"import_db.php\"><strong>Import Database</strong></a></li>";
+                            if(!strpos($request,"request_serial"))
                                 echo"<li><a href=\"request_serial.php\"><strong>Add a New Book</strong></a></li>";
                             echo"</ul>
                         </li>";

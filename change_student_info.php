@@ -167,8 +167,9 @@ include('nav_bar.php');
                 cache: false,
                 context: this,
                 success: function(data){
-                    //alert(data);
-                    location.reload();
+                    alert(data);
+                    //location.reload();
+                    window.location.replace("admin_page.php");
                 }
             });
         });
