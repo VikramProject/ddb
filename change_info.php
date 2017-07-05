@@ -30,6 +30,7 @@ include('nav_bar.php');
 
 
 ?>
+<div class="jumbotron">
 <style>
     .form-control{font-size: 16px;}
     }

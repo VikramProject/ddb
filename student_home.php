@@ -32,7 +32,7 @@ if($status == "locked")
     $query = "select Expiry_date from conc_dtb where UID='$rollno'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
     $object = $result->fetch_object();
-    $date = date("d-m-Y",strtotime($object->Expiry_date));
+    $date = date("d-m-y",strtotime($object->Expiry_date));
     //$expDate =
     $_SESSION["msgAwait"]="Your Form has been Approved and can be collected from the office. This Account will be locked until $date ";
     header("Location:await_results.php");
@@ -66,6 +66,7 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
     $exp = strtotime(" +{$period} month",$exp);
     $exp = strtotime("-1 week", $exp);
     $exp = date('Y-m-d',$exp);
+    $issue=date('Y-m-d',strtotime($issue));
     $query = "UPDATE conc_dtb SET Class='$class',Period='$per', Issue_date='$issue',Expiry_date='$exp', Status='requested' WHERE UID='$rollno'";
     $result=mysqli_query($db_var,$query) or die(mysql_error());
 
@@ -84,26 +85,50 @@ include("nav_bar.php");
         <form role="form" method="POST" action="student_home.php">
             <div class="form-group">
                 <label class="control-label" ">Class</label>
-                <select class="form-control" name="Class" required="required" placeholder="Class">
+              <!--  <select class="form-control" name="Class" required="required" placeholder="Class">
                     <option value="First">First</option>
                     <option value="Second">Second</option>
-                </select>
+                </select> -->
+                <div data-toggle="buttons">
+                    <div class="btn-group">
+
+                        <label class="btn btn-primary">
+                            <input type="radio" name="class" id="class" class="sr-only" required>First
+                        </label>
+                        <br>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="class" id="class" class="sr-only" required>Second
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label class="control-label" ">Period</label>
-                <select class="form-control" name="Period" required="required" placeholder="Period">
+               <!-- <select class="form-control" name="Period" required="required" placeholder="Period">
                     <option value="Monthly">Monthly</option>
                     <option value="Quarterly">Quarterly</option>
-                </select>
+                </select>-->
+                <div data-toggle="buttons">
+                    <div class="btn-group">
+
+                        <label class="btn btn-primary">
+                            <input type="radio" name="period" id="period" class="sr-only" required>Monthly
+                        </label>
+                        <br>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="period" id="period" class="sr-only" required>Quarterly
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label class="control-label" ">Date</label>
-                <?php $curr = date("Y-m-d");
+                <?php $curr = date("d-m-y");
                 $curr = strtotime($curr);
                 $curr = strtotime(" +3 day",$curr);
-                $curr = date('Y-m-d',$curr);
+                $curr = date('d-m-y',$curr);
                 ?>
-                <input type="date" class="form-control" min="<?php echo date("Y-m-d"); ?>"max="<?php echo $curr; ?>" name="Issue_date" required="required" placeholder="Date You want Issue">
+                <input type="text" id="idTourDateDetails" class="form-control" name="Issue_date" required="required" placeholder="Date You want Issue">
             </div>
             <button type="submit" class="btn btn-large btn-success">Submit</button>
         </form>
@@ -116,6 +141,22 @@ include("nav_bar.php");
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script>
+   
+    $('#idTourDateDetails').datepicker({
+    minDate: -0, maxDate: "+3D",
+    dateFormat: 'dd-mm-yy',
+    changeMonth: true,
+    changeYear: true,
+    altField: "#idTourDateDetailsHidden",
+    altFormat: "yy-mm-dd"
+ });
+  </script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets1/css/style.css">
     <![endif]-->
+    
+
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -47,18 +49,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
                 $request="$_SERVER[REQUEST_URI]";
-                if(strpos($request,'register'))
-                {
-                    echo "<li><a href=\"index.php\">Login</a></li>";
 
-                }
-                elseif(strpos($request,"index"))
+
+                if(strpos($request,"UnSuccessful"))
                 {
-                    echo"<li><a href=\"register.php\">Register</a></li>";
-                }
-                else if(strpos($request,"UnSuccessful"))
-                {
-                    echo"<li><a href=\"register.php\">Register</a></li>";
                     echo "<li><a href=\"index.php\">Login</a></li>";
                 }
                 //student
@@ -94,6 +88,8 @@
                                 echo"<li><a href=\"import_db.php\"><strong>Import Database</strong></a></li>";
                             if(!strpos($request,"request_serial"))
                                 echo"<li><a href=\"request_serial.php\"><strong>Add a New Book</strong></a></li>";
+                            if(!strpos($request,"registerNew"))
+                                echo"<li><a href=\"registerNew.php\"><strong>Register A New Student</strong></a></li>";
                             echo"</ul>
                         </li>";
 

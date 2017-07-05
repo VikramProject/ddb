@@ -146,7 +146,7 @@ include('nav_bar.php');
 
 
             <?php
-                $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date ASC ";
+                $query="select * from conc_dtb inner join student on conc_dtb.UID=student.UID where status='requested'ORDER BY Issue_date DESC ";
                 $result=mysqli_query($db_var,$query) or die(mysqli_error());
                 $query="select * from serial_no_storage where id=1";
                 $res=mysqli_query($db_var,$query) or die(mysqli_error());
@@ -184,7 +184,7 @@ include('nav_bar.php');
                         $ageY = $birthdate->diff($today)->y;
                         $ageM = $birthdate->diff($today)->m;
                         $color="#18b424";
-                        if(!strpos("$obj->Address","$obj->Nearest_stn"))
+                        if(!stripos("$obj->Address","$obj->Nearest_stn"))
                         {
                             $color="red";
                         }
@@ -228,9 +228,9 @@ include('nav_bar.php');
 <div class=\"row\" >
     <div class=\"col-sm-6 column-details left-column-details\"> <!-- left column -->
         <!-- category -->
-        <div class=\"row\"  >
+        <div class=\"row\">
             <div class=\"col-sm-12\">
-                <span class=\"label-details\">Date of Issue:</span>
+                <span class=\"label-details\">Date of Birth:</span>
             </div>
         </div>
         <div class=\"row\">
@@ -342,9 +342,9 @@ include('nav_bar.php');
                   <span class=\"value-details\">$obj->Sex</span>
             </div>
        </div>
-        <div class=\"row\">
+        <div class=\"row\"  >
             <div class=\"col-sm-12\">
-                <span class=\"label-details\">Date of Birth:</span>
+                <span class=\"label-details\">Date of Issue:</span>
             </div>
         </div>
         <div class=\"row\">
