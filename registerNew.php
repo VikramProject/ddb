@@ -1,10 +1,11 @@
 <?php
 include("config.php");
+
 $flg=0;
 if(!$_SESSION['rollno']){
     header('location:index.php');
 }
-if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
+if(isset($_POST["rollno"])&&isset($_POST["Password"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset($_POST["nearest"]))
 {
     $roll=$_POST["rollno"];
     $name=$_POST["name"];
@@ -12,10 +13,10 @@ if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset
     $pass=password_hash($pass,PASSWORD_BCRYPT,['cost' => 12]);
     $email=$_POST["email"];
     $nearest=$_POST["nearest"];
-    $nearest=$nearest;
+    $nearest=trim($nearest);
     $sex = $_POST["gender"];
     $dob = $_POST["dob"];
-    $dob = date('Y-m-d',strtotime($dob));
+	 $dob = date('Y-m-d',strtotime($dob));
     $addr = $_POST["addr"];
     $category=$_POST["caste"];
 //    $query="select * from clg_dtb where UID='$roll'";
@@ -33,7 +34,7 @@ if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset
     $rows=mysqli_num_rows($result);
     if($rows==0)
     {
-        $query="update student set DOB='$dob' where UID='$roll'";
+        $query="insert into student(UID,Password,Name,Email,Sex,DOB,Address,Category) values('$roll','$pass','$name','$email','$sex','$dob','$addr','$category')";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
         $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
         $result=mysqli_query($db_var,$query) or die(mysql_error());
@@ -53,55 +54,54 @@ if(isset($_POST["rollno"])&&isset($_POST["name"])&&isset($_POST["email"])&&isset
         echo"Something went wrong";
     }
     //  }
-
-
 }
-$rollno=$_SESSION["rollno"];
-$query="select * from student where UID=$rollno";
-$result=mysqli_query($db_var,$query) or die(mysqli_error());
-$objectStudent = $result->fetch_object();
-$query="select * from conc_dtb where UID=$rollno";
-$result=mysqli_query($db_var,$query) or die(mysqli_error());
-$objectConc_dtb = $result->fetch_object();
-
-
 
 include("nav_bar.php");
 ?>
 
-
+<head>
+    <style type="text/css">
+        #station {
+            position: relative;
+            z-index: 10000;
+        }
+        .autocomplete {
+            z-index: 9999 !important;
+        }
+    </style>
+</head>
 <div class="jumbotron">
     <h2>Register</h2>
-    <form role="form" method="POST" action="register.php">
+    <form role="form" method="POST" action="registerNew.php">
         <div class="form-group">
             <label class="control-label" for="UID">Roll No.(UID)</label>
-            <input readonly type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID" value="<?php echo $objectStudent->UID?>">
+            <input type="text" class="form-control" name="rollno" required="required" placeholder="Enter UID">
         </div>
-<!--        <div class="form-group">-->
-<!--            <label class="control-label" for="\Password">Password</label>-->
-<!--            <input type="password" class="form-control" name="Password" required="required" placeholder="Password">-->
-<!--        </div>-->
+        <div class="form-group">
+            <label class="control-label" for="\Password">Password</label>
+            <input type="password" class="form-control" name="Password" required="required" placeholder="Password">
+        </div>
         <div class="form-group">
             <label class="control-label" for="\Name">Name</label>
-            <input readonly type="text" class="form-control" name="name" required="required" placeholder="Name" value="<?php echo $objectStudent->Name?>">
+            <input type="text" class="form-control" name="name" required="required" placeholder="Name">
         </div>
         <div class="form-group">
             <label class="control-label " for="\Gender">Gender:  </label>
-            <label class="control-label " for="\Gender"><?php echo $objectStudent->Sex?> </label>
+            <input type="radio" name="gender" value="Male" style="margin-left: 10px;"> Male
+            <input type="radio" name="gender" value="Female" style="margin-left: 10px;"> Female
         </div>
         <div class="form-group">
-            <label class="control-label" >Category:  </label>
-            <label class="control-label" ><?php echo $objectStudent->Category?></label>
+            <label class="control-label" ">Caste:  </label>
+            <input type="radio" name="caste" value="SC/ST" style="margin-left: 23px;"> SC/ST
+            <input type="radio" name="caste" value="Open" checked style="margin-left: 10px;"> Open<br>
         </div>
         <div class="form-group">
             <label class="control-label" for="\Email">Email</label>
-            <input readonly type="email" class="form-control" name="email" required="required" placeholder="Email Id" value="<?php echo $objectStudent->Email?>">
+            <input type="email" class="form-control" name="email" required="required" placeholder="Email Id">
         </div>
         <div class="form-group">
             <label class="control-label" for="\Nearest">Nearest Station</label>
-<!--            <input   id="station" type="text" class="form-control" name="nearest" required="required" placeholder="Nearest Station" value="--><?php //$val=(isset($objectConc_dtb->Nearest_stn))?$objectConc_dtb->Nearest_stn:""; echo $val?><!--">-->
-
-            <select name="nearest" id="\Nearest" class="form-control" required>
+           <select name="nearest" id="\Nearest" class="form-control" required>
                 <?php
                 $sql = mysqli_query($db_var, "SELECT station FROM station");
                 while ($row = $sql->fetch_assoc()){
@@ -109,14 +109,15 @@ include("nav_bar.php");
                 }
                 ?>
             </select>
+
         </div>
         <div class="form-group">
             <label class="control-label" for="\Address">Address</label>
-            <input readonly type="text" class="form-control" name="addr" required="required" placeholder="Address" value="<?php echo $objectStudent->Address?>">
+            <input type="text" class="form-control" name="addr" required="required" placeholder="Address">
         </div>
         <div class="form-group">
             <label class="control-label" ">Date Of Birth </label>
-            <input type="text" class="form-control" id="idTourDateDetails" name="dob" required="required" placeholder="DD-MM-YYYY" value="<?php $d=($objectStudent->DOB!=date('Y-m-d',strtotime("0000-00-00")))?"":$objectStudent->DOB;echo $d;?>">
+            <input type="text" class="form-control" name="dob" required="required" id="idTourDateDetails" placeholder="DD-MM-YYYY">
         </div>
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
@@ -138,23 +139,16 @@ include("nav_bar.php");
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
-<!--<script>-->
-<!---->
-<!--    $(function() {-->
-<!--        $( "#station" ).autocomplete({-->
-<!--            source: 'search.php'-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+//<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- <script>
-   $('#idTourDateDetails').datepicker({
-     
+<script>
+   
+       $('#idTourDateDetails').datepicker({
+      //minDate: -0, maxDate: "+3D",
      dateFormat: 'dd-mm-yy',
      changeMonth: true,
      changeYear: true,
@@ -162,7 +156,8 @@ include("nav_bar.php");
      altField: "#idTourDateDetailsHidden",
      altFormat: "yy-mm-dd"
  });
- </script>
+  </script>
+
 <script>
     function phoneno(){
         $('#phone').keypress(function(e) {
@@ -175,3 +170,4 @@ include("nav_bar.php");
         });
     }
 </script>
+

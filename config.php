@@ -3,7 +3,7 @@
 session_start();
 $db_username = 'root';
 $db_password = '';
-$db_name = 'railway concession';
+$db_name = 'railway_concession';
 $db_host = 'localhost';
 $admin=2014130999;
 //connect to MySql						

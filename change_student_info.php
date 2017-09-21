@@ -99,7 +99,7 @@ include('nav_bar.php');
         </div>
         <div class="form-group">
             <label class="control-label" ">Date Of Birth </label>
-            <input type="date" class="form-control" id="dob" required="required" value="<?php echo date("Y-m-d",strtotime($obj->DOB)); ?>">
+            <input type="date" id="idTourDateDetails" class="form-control" required="required" value="<?php echo date("Y-m-d",strtotime($obj->DOB)); ?>">
         </div>
         <button type="submit" class="btn btn-large btn-success">Submit</button>
 
@@ -156,7 +156,7 @@ include('nav_bar.php');
             //alert("name: "+name);
             var email = $('#email').val();
             var nearest = $('#station').val();
-            var dob = $('#dob').val();
+            var dob = $('#idTourDateDetails').val();
             var addr = $('#addr').val();
             var roll = $('.jumbotron').attr('id');
             //alert("name: "+nearest);
@@ -175,6 +175,20 @@ include('nav_bar.php');
         });
     });
 </script>
+<script src="/bootstrap/js/jquery-1.12.4.js"></script>
+<script src="/bootstrap/js/jquery-ui.js"></script>
+     <script>
+   
+    $('#idTourDateDetails').datepicker({
+
+    dateFormat: 'yy-mm-dd',
+    changeMonth: true,
+    changeYear: true,
+    altField: "#idTourDateDetailsHidden",
+    altFormat: "yy-mm-dd",
+    yearRange: "-100:+0"
+ });
+  </script>
 
 
 
