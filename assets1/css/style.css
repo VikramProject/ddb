@@ -1,210 +1,515 @@
-﻿
-/*=============================================================
-    Authour URI: www.binarytheme.com
-    License: Commons Attribution 3.0
+/**************************GLOBAL CSS**************************/
 
-    http://creativecommons.org/licenses/by/3.0/
+.change-password,
+.pass-details,
+.register-form,
+.await-results {
+    max-width: 580px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
 
-    100% To use For Personal And Commercial Use.
-    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
-   
-    ========================================================  */
+h2 {
+    font-weight: bold;
+    color: #777;
+}
 
+.copyright {
+    margin-top: 2px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
 
+.wrongPasswordModal {
+    margin-top: 20vh!important;
+    width: 40vw!important;
+}
 
+.label {
+    color: #777!important;
+}
 
+a {
+    cursor: pointer;
+}
 
-/*=======================================
-    GENERAL STYLES
-==================================================*/
 body {
-          font-family:'Open Sans', sans-serif;
-    font-size:14px;
+    background: url("../img/bgdesktop1.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body:after {
+    content: "";
+    position: fixed;
+    /* stretch a fixed position to the whole screen */
+    top: 0;
+    height: 100vh;
+    /* fix for mobile browser address bar appearing disappearing */
+    left: 0;
+    right: 0;
+    z-index: -1;
+    /* needed to keep in the background */
+    background: url("../img/bgdesktop1.jpg") center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
-.text-center {
-    text-align:center;
-}
+/****************************Navbar*****************************/
 
-
-h1, h2, h3, h4, h5, h6 {
-    font-family:'Open Sans', sans-serif;
-}
-.alg-right-pad {
-    float:right;
-    padding-right:20px;
-}
-a:hover {
-    text-decoration:none;
-}
-
-/*=======================================
-  NAVBAR ADJUSTMENTS
-==================================================*/
-.navbar-brand {
-font-size: 25px;
-padding: 15px 80px 15px 60px;
-}
-.navbar-default .navbar-brand {
-color: #000000;
-}
-.navbar-default {
-background-color: #000000;
-border-color: #000000;
-}
 .navbar {
- border-radius: 0px; 
-}
-.navbar-default .navbar-nav > li > a {
-color: #FFF;
-}
-.navbar-default .navbar-nav > li > a:hover {
-color: #FFF;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0;
 }
 
-.navbar-default .navbar-brand {
-color: #FFFFFF;
+.navbar-logo {
+    display: inline-block;
+    height: 60px;
+    margin-top: -12px;
 }
-.navbar-default .navbar-brand:hover {
-color: #FFFFFF;
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
 }
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-color: #050505;
-background-color: #FFFFFF;
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    font-size: 10vh;
+    font-weight: bold;
+    color: #246dff;
+    text-transform: uppercase;
 }
-.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-color: #000;
+
+
+/*.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand.active {
+
+}*/
+
+.navbar-custom .navbar-collapse {
+    border-color: rgba(255, 255, 255, 0.02);
 }
-.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
-color: #000;
+
+.navbar-custom .navbar-toggle {
+    background-color: #246dff;
+    border-color: #246dff;
+    text-transform: uppercase;
+    color: white;
 }
-/*=======================================
-  BOOTSTRAP ADJUSTMENTS
-==================================================*/
-.row {
-    bottom:0px;
+
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+    background-color: #246dff;
 }
-.row-modal {
-    margin-bottom:0px;
+
+.navbar-custom .nav li a {
+    cursor: pointer;
+    text-transform: uppercase;
 }
+
+.navbar-custom .nav li a:hover {
+    color: #246dff;
+    transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+}
+
+
+/**************************Navbar ENDS**************************/
+
+
+/**************************Login Form Starts**************************/
+
+
+/*circle mumbai logo starts*/
+
+.logo {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    top: -50px;
+    height: 100px;
+    width: 100px;
+    background: url('../img/mumbaistation.png') center center no-repeat, transparent;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 50%;
+    /*box-shadow: 1px 1px 2px rgba(0, 0, 0, .3);*/
+}
+
+
+/*circle logo ends*/
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+.login {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+    -webkit-animation: fadein 1s;
+    animation: fadein 1s;
+}
+
+.login-screen {
+    /*background-color: #f0f0f0;*/
+    background: url("../img/jumbotronbg.jpg") no-repeat center;
+    background-size: cover;
+    /*background: rgba(255, 255, 255, 0.8);*/
+    box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.2);
+    /*background-color: transparent;*/
+    padding: 0px 20px 20px 20px;
+    border-radius: 5px;
+    /*box-shadow: 5px 5px 2px #888888;*/
+}
+
+.app-title,
+h1 {
+    text-align: center;
+    color: #777;
+    margin: 0px 0px 10px 0px;
+    padding: 0;
+    line-height: auto;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+.input-group-addon {
+    background: white;
+}
+
+input {
+    background-color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    padding-left: 3px;
+    width: 250px;
+    transition: border .5s;
+}
+
 .btn {
-    margin-bottom:5px;
+    border: 2px solid transparent;
+    background: #246dff;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 6px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 50%;
+    margin: 0 auto;
 }
-/*=======================================
-  INDEX PAGE
-==================================================*/
 
-.box-border {
-    border:1px solid #e1e1e1;
+.btn:hover {
+    background-color: #246dff;
 }
 
-.product-box h3>a,.product-box h3>a:hover,.product-box h3>a:focus {
-    color:#000;
-    text-decoration:none;
+.login-link {
+    display: block;
+    margin-top: 12px;
 }
 
-.offer-box {
-background-color: #6A75F0;
-border: 1px solid #096FC0;
-color: #fff;
-font-weight: 900;
-font-size:16px;
+
+/**************************Forgot password modal **************************/
+
+.modal.modal-wide .modal-dialog {
+    width: 50%;
 }
-    .offer-box a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: normal;
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+#forgotPassword:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.jumbotron {
+    background: url("../img/jumbotronbg.jpg") no-repeat center;
+    background-size: cover;
+    /*filter: alpha(opacity=30);*/
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    -webkit-animation: fadein 1s;
+    animation: fadein 1s;
+    /*background: rgba(255, 255, 255, 0.8);*/
+    z-index: 999;
+}
+
+
+/**************************Animation Keyframes**************************/
+
+
+/*Fade in for form and jumbotron*/
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0
     }
-    .offer-box a:hover {
-        color:#000;
+    to {
+        opacity: 1
     }
-.list-group a {
-   
-    font-size:14px;
-    font-weight:900;
-    color:#808080;
-}
-.list-group a:hover {
-     color:#000;
-    text-decoration:none;
-}
-.offer-colors {
-   background-color: #B05FDD;
-border: 1px solid #A228F3;
 }
 
-.download-app-box {
-    background-color: #069E98;
-border: 1px solid #0FAA8B;
-padding:30px;
-line-height:40px;
-font-size:25px;
-font-weight:900;
-color:#fff;
-}
-/*=======================================
-  SLIDER main-style.css Changes
-==================================================*/
-.mi-slider {
-margin-top: 0px;
+@keyframes fadein {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
 
-.offer-text
-{
-position: absolute;
-color: #FFF;
-padding: 14px 16px 12px 16px;
-margin-top: 10px;
-background-color:#18b424;
-
-}
-.offer-text2
-{
-position: absolute;
-color: #FFF;
-padding: 14px 16px 12px 16px;
-margin-top: 10px;
-background-color:#EB0429;
-
-}
-/*=======================================
-  FOOTER SECTION
-==================================================*/
-.footer-box {
-    background-color:#F5F5F5;
-    padding:20px 50px 20px 50px;
-    
-    
-}
-.small-box {
-    font-size:10px;
+@-moz-keyframes fadein {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
 
-.footer-box a {
-    color:#808080;
-    text-decoration:none;
-}
-.footer-box a:hover {
-    color:#000;
-}
-.pad-botom {
-    padding-bottom:30px;
-}
-.footer-box p {
-    padding-top:15px;
-    padding-bottom:15px;
-    line-height:25px;
-}
-.social-box a{
-     color:#333436;
-    text-decoration:none;
+
+/*Wave for student pass radio buttons*/
+
+@-webkit-keyframes click-wave {
+    0% {
+        height: 20px;
+        width: 20px;
+        opacity: 0.35;
+        position: relative;
+    }
+    100% {
+        height: 100px;
+        width: 100px;
+        margin-left: -35px;
+        margin-top: -35px;
+        opacity: 0;
+    }
 }
 
-.end-box {
-    padding:20px;
-     color:#fff;
-     background-color:#000;
-     font-size:14px;
+@-moz-keyframes click-wave {
+    0% {
+        height: 20px;
+        width: 20px;
+        opacity: 0.35;
+        position: relative;
+    }
+    100% {
+        height: 100px;
+        width: 100px;
+        margin-left: -35px;
+        margin-top: -35px;
+        opacity: 0;
+    }
+}
+
+@keyframes click-wave {
+    0% {
+        height: 20px;
+        width: 20px;
+        opacity: 0.35;
+        position: relative;
+    }
+    100% {
+        height: 100px;
+        width: 100px;
+        margin-left: -35px;
+        margin-top: -35px;
+        opacity: 0;
+    }
+}
+
+
+/************************Unsuccessful login*************************/
+
+.unsucessful a {
+    text-decoration: none;
+}
+
+.unsucessful {
+    max-width: 500px;
+    margin: auto;
+}
+
+
+/************************student home*************************/
+
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    -webkit-transition: all 0.15s ease-out 0s;
+    -moz-transition: all 0.15s ease-out 0s;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+}
+
+.option-input:hover {
+    background: #9faab7;
+}
+
+.option-input:checked {
+    background: #246dff;
+}
+
+.option-input:checked::before {
+    height: 23px;
+    width: 23px;
+    position: absolute;
+    content: '\2713';
+    display: inline-block;
+    font-size: 15px;
+    text-align: center;
+    line-height: 25px;
+    outline: none;
+}
+
+.option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #246dff;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+    outline: none;
+}
+
+.option-input.radio {
+    border-radius: 50%;
+    outline: none !important;
+}
+
+.option-input.radio::after {
+    border-radius: 50%;
+}
+
+.cont {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    box-align: stretch;
+    -ms-flex-align: stretch;
+    /*background: #f5f5f5;*/
+    background: rgba(255, 255, 255, 0.5);
+    /*color: #9faab7;*/
+    border-style: dotted;
+    border-color: #dbdcdd;
+    /*font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;*/
+    text-align: center;
+}
+
+.cont label {
+    display: block;
+    line-height: 20px;
+    padding-right: 15px;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.notice {
+    color: red;
+    font-size: 1em !important;
+}
+
+
+/**************************Media Queries**************************/
+
+@media (min-width: 270px) and (max-width: 400px) {
+    .login {
+        width: 90% !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+    .modal.modal-wide .modal-dialog {
+        width: 90% !important;
+    }
+    .navbar-logo {
+        height: 45px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 550px) {
+    .login {
+        padding: 12% 0 0 !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .jumbotron {
+        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
+        /*opacity: 0.5;
+    filter: alpha(opacity=50);*/
+    }
+    /*.unsucessful{
+    margin-bottom: 50vh;
+
+}*/
 }

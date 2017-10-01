@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +13,29 @@
     <link href="jumbotron-narrow.css" rel="stylesheet">
     <!-- Fontawesome core CSS -->
     <link href="assets1/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets1/css/font-awesome.css" rel="stylesheet" />
     <!--GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!--Slide Show Css -->
     <link href="assets1/ItemSlider/css/main-style.css" rel="stylesheet" />
     <!-- custom CSS here -->
     <link href="assets1/css/style.css" rel="stylesheet" />
+    <!-- W3.css library -->
+    <link href="assets1/css/w3.css" rel="stylesheet" />
+    <!-- AngularJS link minified library-->
+    <script src="assets1/angularjs/angular.min.js"></script>
+    <!-- AngularJS Controller-->
+    <script src="assets1/angularjs/controller.js"></script>
+    <script type="text/javascript">
+        angular.module('Compulse.controllers', []);
+        angular.module('Compulse.services', []);
+        angular.module("Compulse.directives", [])
+    </script>
+
+
+
+
+    <!--index css-->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -25,29 +43,33 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets1/css/style.css">
     <![endif]-->
-    
+
+
 
 </head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+<body ng-app="Compulse" ng-controller="MainController">
+    <nav class="navbar navbar-default navbar-custom" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header text-center">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">SPIT Railway Concession Form System</a>
-        </div>
+                <a class="navbar-brand" href="index.php">
+   <img class="img-responsive navbar-logo" src="assets1/img/RailwayConcession.png" alt="logo" />
+</a><a class="navbar-brand" href="index.php"></a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
-            <ul class="nav navbar-nav navbar-right">
-                <?php
+                <ul class="nav navbar-nav navbar-right">
+                    <?php
                 $request="$_SERVER[REQUEST_URI]";
 
 
@@ -108,30 +130,30 @@
                     }
                 }
                 ?>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
-                        <li><a href="#"><strong>Mail: </strong>www.spit.ac.in</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><strong>Address: </strong>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">24x7 Support<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><strong>Call: </strong>+09-456-567-890</a></li>
+                                <li><a href="#"><strong>Mail: </strong>www.spit.ac.in</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><strong>Address: </strong>
                                 <div>
                                     Main Office,<br />
                                     Sardar Patel Institute of Technology,Andheri
                                 </div>
                             </a></li>
-                    </ul>
-                </li>
+                            </ul>
+                        </li>
 
-            </ul>
+                </ul>
 
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-<div class="container">
-<!--    <div class="header clearfix">
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+        <!--    <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
             </ul>

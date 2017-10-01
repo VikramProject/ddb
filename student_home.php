@@ -33,7 +33,6 @@ if($status == "locked")
     $result=mysqli_query($db_var,$query) or die(mysql_error());
     $object = $result->fetch_object();
     $date = date("Y-m-d",strtotime($object->Expiry_date));
-    //$expDate =
     $_SESSION["msgAwait"]="Your Form has been Approved and can be collected from the office. This Account will be locked until $date ";
     header("Location:await_results.php");
     exit();
@@ -77,92 +76,81 @@ if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 include("nav_bar.php");
 ?>
 
-
-    <div class="jumbotron">
-        <h1>Welcome
-        </h1>
-        <h4>Enter details for Railway Pass</h4>
+    <!--Pass Details Form-->
+    <div class="jumbotron pass-details">
+        <h2 class="text-center">PASS DETAILS</h2>
         <form role="form" method="POST" action="student_home.php">
-            
-                <label class="control-label" ">Class</label>
-              <!--  <select class="form-control" name="Class" required="required" placeholder="Class">
-                    <option value="First">First</option>
-                    <option value="Second">Second</option>
-                </select> -->
-                <div data-toggle="buttons">
-                    <div class="btn-group">
+            <h4>CLASS</h4>
+            <div class="cont">
+                <label>
+            &nbsp;<input type="radio" class="option-input radio w3-radio" name="Class" value="First" id="class" required />
+            FIRST &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+            </label>
+                <label>
+            &nbsp;<input type="radio" class="option-input radio w3-radio" name="Class" value="Second" id="class" required />
+            SECOND
+            </label>
+            </div><br>
 
-                        
-                            <input type="radio" name="Class" value="First" id="class"  required>First
-                        
-                        
-                        
-                            <input type="radio" name="Class" value="Second" id="class" required>Second
-                        
-                    </div>
-                </div>
-            
+            <h4>PERIOD</h4>
+            <div class="cont">
+                <label>
+            &nbsp;<input type="radio" class="option-input radio w3-radio" name="Period" id="Period" value="Monthly" required />
+            MONTHLY
+            </label>
+                <label>
+            &nbsp;<input type="radio" class="option-input radio w3-radio" name="Period" required />
+            QUARTERLY
+            </label>
+            </div><br>
+            <h4>DATE OF ISSUE</h4>
             <div class="form-group">
-                <label class="control-label" ">Period</label>
-               <!-- <select class="form-control" name="Period" required="required" placeholder="Period">
-                    <option value="Monthly">Monthly</option>
-                    <option value="Quarterly">Quarterly</option>
-                </select>-->
-                <div data-toggle="buttons">
-                    <div class="btn-group">
-
-                        
-                            <input type="radio" name="Period" id="Period" value="Monthly" required>Monthly
-                        
-                        
-                        
-                            <input type="radio" name="Period" id="Period" value="Quarterly" required>Quarterly
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label" ">Date you want to issue (dd-mm-yyyy)</label>
                 <?php $curr = date("d-m-y");
-                $curr = strtotime($curr);
-                $curr = strtotime(" +3 day",$curr);
-                $curr = date('d-m-y',$curr);
-                ?>
-                <input type="text" id="idTourDateDetails" class="form-control" name="Issue_date" required="required" placeholder="Date(dd-mm-yyyy)">
+            $curr = strtotime($curr);
+            $curr = strtotime(" +3 day",$curr);
+            $curr = date('d-m-y',$curr);
+            ?>
+                <input type="text" id="idTourDateDetails" class="form-control" name="Issue_date" required="required" placeholder="DD-MM-YYYY">
             </div>
-            <button type="submit" class="btn btn-large btn-success">Submit</button>
+            <button type="submit" class="btn btn-primary btn-large btn-block">SUBMIT</button>
         </form>
-        <br><br>
-        <p style="color:red">Once form issued, in case where the issued form is lost no new concession will be given. All charges will be incurred by the students then!<p>
+        <br>
+        <p class="notice">Once form issued, in case where the issued form is lost no new concession will be given. All charges will be incurred
+            by the students then!
+        </p>
     </div>
+
+    <!--Footer-->
     <footer class="footer">
-        <p>&copy Sardar Patel Institute of Technology</p>
+        <p class="copyright">&copy Sardar Patel Institute of Technology,Andheri</p>
     </footer>
-</div>
-<!-- /container -->
-<!-- Bootstrap core JavaScript
+
+    </div>
+    <!-- container ends -->
+
+    <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so the pages load faster -->
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="/bootstrap/js/jquery-1.12.4.js"></script>
-<script src="/bootstrap/js/jquery-ui.js"></script>
-     <script>
-   
-    $('#idTourDateDetails').datepicker({
-    minDate: -0, maxDate: "+3D",
-    dateFormat: 'dd-mm-yy',
-    changeMonth: true,
-    changeYear: true,
-    altField: "#idTourDateDetailsHidden",
-    altFormat: "yy-mm-dd"
- });
-  </script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-</body>
-</html>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="/bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="/bootstrap/js/jquery-ui.js"></script>
+    <script>
+        $('#idTourDateDetails').datepicker({
+            minDate: -0,
+            maxDate: "+3D",
+            dateFormat: 'dd-mm-yy',
+            changeMonth: true,
+            changeYear: true,
+            altField: "#idTourDateDetailsHidden",
+            altFormat: "yy-mm-dd"
+        });
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    </body>
 
+    </html>

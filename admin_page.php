@@ -127,11 +127,11 @@ include('nav_bar.php');
         height: 1px !important;
         min-height: 1px !important;
     }
-    .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    /*.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
         display: block;
         max-width: 100px;
         height: 100px;
-    }
+    }*/
     .info{padding-top: 5px; font-size: 16px;}
     .colhead{font-weight: 900;margin-bottom: 15px;}
     .error
