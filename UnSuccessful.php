@@ -2,10 +2,9 @@
 include('config.php');
 include('nav_bar.php');
 ?>
-<!--unsuccessful message-->
-<div class="jumbotron unsucessful">
-    <h2 class="text-center">
-        <?php 
+
+            <div class="jumbotron unsucessful">
+                <h2 class="text-center"><?php 
                 if(isset($_SESSION["Error"]))
                 {
                     $message=$_SESSION["Error"];
@@ -17,21 +16,20 @@ include('nav_bar.php');
                 }
                 
                 ?>
-    </h2>
-    <a href="<?php 
-                    if(isset($_SESSION[" Revert "]))
+                </h2>                    
+                <a href="<?php 
+                    if(isset($_SESSION["Revert"]))
                     {
-                        $message=$_SESSION["Revert "];
-                        echo "$message ";
+                        $message=$_SESSION["Revert"];
+                        echo "$message";
                     }
                     else
                     {
-                        echo "Unsuccessful.php ";
+                        echo "Unsuccessful.php";
                     }
                     ?>
-                "><button type="button" class="btn btn-primary btn-large btn-block">Go Back</button>
-                </a>
-</div>
+                "><button type="button" class="btn btn-primary btn-large btn-block">Go Back</button></a>                     
+            </div>
 </div>
 <!-- container ends -->
 

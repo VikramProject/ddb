@@ -7,11 +7,10 @@
  */
 
 include("config.php");
-include("nav_bar.php");
+include("admin_dashboard.php");
 ?>
+    <div class="container-fluid content-container">
 
-<div id="wrap">
-    <div class="container">
         <div class="row">
             <div class="span3 hidden-phone"></div>
             <div class="span6" id="form-login">
@@ -38,4 +37,13 @@ include("nav_bar.php");
             <div class="span3 hidden-phone"></div>
         </div>
     </div>
-</div>
+    </section>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets1/js/admin-dashboard.js"></script>
+
+    </body>
+
+    </html>

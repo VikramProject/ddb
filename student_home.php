@@ -79,7 +79,7 @@ include("nav_bar.php");
     <!--Pass Details Form-->
     <div class="jumbotron pass-details">
         <h2 class="text-center">PASS DETAILS</h2>
-        <form role="form" method="POST" action="student_home.php">
+        <form role="form" method="POST" action="student_home.php" name="passDetails">
             <h4>CLASS</h4>
             <div class="cont">
                 <label>
@@ -99,20 +99,36 @@ include("nav_bar.php");
             MONTHLY
             </label>
                 <label>
-            &nbsp;<input type="radio" class="option-input radio w3-radio" name="Period" required />
+            &nbsp;<input type="radio" class="option-input radio w3-radio" name="Period" value="QUARTERLY" required />
             QUARTERLY
             </label>
             </div><br>
-            <h4>DATE OF ISSUE</h4>
-            <div class="form-group">
-                <?php $curr = date("d-m-y");
-            $curr = strtotime($curr);
-            $curr = strtotime(" +3 day",$curr);
-            $curr = date('d-m-y',$curr);
-            ?>
-                <input type="text" id="idTourDateDetails" class="form-control" name="Issue_date" required="required" placeholder="DD-MM-YYYY">
+
+
+
+
+            <h4>DATE OF ISSUE </h4>
+
+            <div class="row">
+                <div class="col-md-9 col-xs-8">
+                    <div class="form-group" ng-class="{ 'has-error' : passDetails.Issue_date.$dirty && passDetails.Issue_date.$invalid }">
+
+                        <input type="date" class="form-control" ng-model="issueDate" name="Issue_date" min="{{minDate}}" max="{{maxDate}}" required
+                            placeholder="DD-MM-YYYY" />
+                        <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.required">Confirm Password is required.</span>
+                        <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.date">Invalid Date</span>
+                        <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.max">Date Exceeds Maximum Date( {{maxDate | date}} )</span>
+                        <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.min">You Have Entered Past Date</span>
+                    </div>
+
+                </div>
+                <div class="col-md-3 col-xs-4">
+                    <button type="button" ng-click="setTodayDate()" class="w3-display-topleft set-today-date btn btn-primary btn-large btn-block">Today</button>
+                </div>
+
             </div>
-            <button type="submit" class="btn btn-primary btn-large btn-block">SUBMIT</button>
+
+            <button type="submit" ng-disabled="passDetails.$invalid" class="btn btn-primary btn-large btn-block">SUBMIT</button>
         </form>
         <br>
         <p class="notice">Once form issued, in case where the issued form is lost no new concession will be given. All charges will be incurred
@@ -134,9 +150,9 @@ include("nav_bar.php");
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="/bootstrap/js/jquery-1.12.4.js"></script>
-    <script src="/bootstrap/js/jquery-ui.js"></script>
-    <script>
+    <script src="bootstrap/js/jquery-1.12.4.js"></script>
+    <script src="bootstrap/js/jquery-ui.js"></script>
+    <!--<script>
         $('#idTourDateDetails').datepicker({
             minDate: -0,
             maxDate: "+3D",
@@ -146,7 +162,7 @@ include("nav_bar.php");
             altField: "#idTourDateDetailsHidden",
             altFormat: "yy-mm-dd"
         });
-    </script>
+    </script>-->
     <script src="assets/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

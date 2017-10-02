@@ -1,12 +1,29 @@
-
-
 // var Compulse = angular.module("Compulse",[])
 // Compulse.controller("MainController",function($scope){
 
 // });
 
 var Compulse = angular.module('Compulse', ['Compulse.controllers', 'Compulse.services'])
-Compulse.controller('MainController', function($scope,$q) {
+Compulse.controller('MainController', function ($scope, $q) {
+
+    // date validation in studenthome.php
+    $scope.today = new Date(); // today!
+    var setMinDate = new Date(); // today!
+    var setMaxDate = new Date(); // today!
+    var x = 1; // go back 1 days!
+    var y = 3; // go ahead 3 days!
+    setMinDate.setDate(setMinDate.getDate() - x);
+    setMaxDate.setDate(setMaxDate.getDate() + y);
+    $scope.minDate = setMinDate;
+    $scope.maxDate = setMaxDate;
+
+    // set today date in studenthome.php
+    $scope.setTodayDate = function () {
+        $scope.issueDate = new Date(new Date().toISOString().split("T")[0])
+
+    }
+
+
 
     // $scope.passwordPattern = /(?=^.{5,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
@@ -20,53 +37,53 @@ Compulse.controller('MainController', function($scope,$q) {
     // };
 
 });
+// Compulse.controller("MainController",function($scope){
 
-    Compulse.directive("ngEquals", function() {
-        var directive = { };
+//  });
 
-        directive.restrict = 'A';
-        directive.require = 'ngModel';
-        directive.scope = {
-            original: '=ngEquals'
-        };
+Compulse.directive("ngEquals", function () {
+    var directive = {};
 
-        directive.link = function(scope, elm, attrs, ngModel) {
-            ngModel.$parsers.unshift(function(value) {
-                ngModel.$setValidity('equals', scope.original === value);
-                return value;
-            });
-        };
+    directive.restrict = 'A';
+    directive.require = 'ngModel';
+    directive.scope = {
+        original: '=ngEquals'
+    };
 
-        return directive;
-    });
+    directive.link = function (scope, elm, attrs, ngModel) {
+        ngModel.$parsers.unshift(function (value) {
+            ngModel.$setValidity('equals', scope.original === value);
+            return value;
+        });
+    };
 
-    // .directive("ngFiltered", function() {
-    //         var directive = { };
+    return directive;
+});
 
-    //         directive.restrict = 'A';
-    //         directive.require = 'ngModel';
-    //         directive.scope = {
-    //             filter: '&ngFiltered'
-    //         };
+// .directive("ngFiltered", function() {
+//         var directive = { };
 
-    //         directive.link = function(scope, elm, attrs, ngModel) {
-    //             ngModel.$parsers.unshift(function(value) {
-    //                 var result = scope.filter({
-    //                     $value: value
-    //                 });
-    //                 if (typeof result.then === "function") {
-    //                     result.then(function(result) {
-    //                         ngModel.$setValidity('filtered', result);
-    //                     });
-    //                 } else {
-    //                     ngModel.$setValidity('filtered', result);
-    //                 }
-    //                 return value;
-    //             });
-    //         };
+//         directive.restrict = 'A';
+//         directive.require = 'ngModel';
+//         directive.scope = {
+//             filter: '&ngFiltered'
+//         };
 
-    //         return directive;
-    //     });
+//         directive.link = function(scope, elm, attrs, ngModel) {
+//             ngModel.$parsers.unshift(function(value) {
+//                 var result = scope.filter({
+//                     $value: value
+//                 });
+//                 if (typeof result.then === "function") {
+//                     result.then(function(result) {
+//                         ngModel.$setValidity('filtered', result);
+//                     });
+//                 } else {
+//                     ngModel.$setValidity('filtered', result);
+//                 }
+//                 return value;
+//             });
+//         };
 
-
-
+//         return directive;
+//     });

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nishanthuchil
- * Date: 04/04/17
- * Time: 4:41 PM
- */
 include("config.php");
     $name = $_REQUEST["name"];
     $email = $_REQUEST["email"];
