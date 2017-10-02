@@ -115,7 +115,7 @@ include("nav_bar.php");
 
                         <input type="date" class="form-control" ng-model="issueDate" name="Issue_date" min="{{minDate}}" max="{{maxDate}}" required
                             placeholder="DD-MM-YYYY" />
-                        <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.required">Confirm Password is required.</span>
+                        <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.required">Date of Issue is required.</span>
                         <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.date">Invalid Date</span>
                         <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.max">Date Exceeds Maximum Date( {{maxDate | date}} )</span>
                         <span class="help-block" ng-show="passDetails.Issue_date.$dirty && passDetails.Issue_date.$error.min">You Have Entered Past Date</span>
