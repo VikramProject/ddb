@@ -8,8 +8,6 @@
    }
    
    $rollno=$_SESSION["rollno"];
-   include('nav_bar.php');
-   $rollno=$_SESSION["rollno"];
    if(isset($_POST["CurrentPassword"])&&isset($_POST["NewPassword"])&&isset($_POST["ConfNewPassword"])) {
        $currpassword = $_POST["CurrentPassword"];
        $newpassword = $_POST["NewPassword"];
@@ -35,8 +33,9 @@
    
        }
    
-   }   
-   ?>
+   }
+include('nav_bar.php');
+?>
     <!--jumbortrom-->
     <div class="jumbotron change-password">
         <h2 class="text-center">CHANGE PASSWORD</h2>
