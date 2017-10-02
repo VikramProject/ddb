@@ -1,50 +1,80 @@
-
 <?php
-include ('config.php');
-if(isset($_POST["Import"])){
+include('config.php');
+if (isset($_POST["Import"])) {
+    require 'Classes/PHPExcel/IOFactory.php';
 
+    $password = password_hash("spit123", PASSWORD_BCRYPT, ['cost' => 12]);
+    $inputfilename = $_FILES["file"]["tmp_name"];
+    $exceldata = array();
+    $errorexceldata = array();
+    $inputFile = $_FILES["file"]["name"];
 
-    echo $filename=$_FILES["file"]["tmp_name"];
+//  Read your Excel workbook
+    $extension = strtoupper(pathinfo($inputFile, PATHINFO_EXTENSION));
+    if ($extension == 'XLSX' || $extension == 'ODS' || $extension == 'XLS') {
 
-    $password=password_hash("spit123",PASSWORD_BCRYPT,['cost' => 12]);
-    if($_FILES["file"]["size"] > 0) {
-
-        $file = fopen($filename, "r");
-        $emapData = fgetcsv($file, 10000, ",");
-        $emapData = fgetcsv($file, 10000, ",");
-        $emapData = fgetcsv($file, 10000, ",");
-        $emapData = fgetcsv($file, 10000, ",");
-        $emapData = fgetcsv($file, 10000, ",");
-        while (($emapData = fgetcsv($file, 10000, ",")) !== FALSE) {
-
-            //It will insert a row to our subject table from our csv file`
-            if ($emapData[2] != null) {
-                $name = $emapData[5] . " " . $emapData[4];
-                $sql = "insert into student(UID,Password,Name,Email,Sex,DOB,Address,Category) 
-	            	values('$emapData[2]','$password','$name','$emapData[16]','$emapData[9]','$emapData[10]','$emapData[12]','$emapData[11]')";
-                //we are using mysql_query function. it returns a resource on true else False on error
-                $result = mysqli_query($db_var, $sql);
-                if (!$result) {
-                    echo "<script type=\"text/javascript\">
-							alert(\"Invalid File:Please Upload CSV File.\");
-							window.location = \"index.php\"
-						</script>";
-
-                }
-            } else {
-                break;
-            }
-
-
+        try {
+            $inputfiletype = PHPExcel_IOFactory::identify($inputfilename);
+            $objReader = PHPExcel_IOFactory::createReader($inputfiletype);
+            $objPHPExcel = $objReader->load($inputfilename);
+        } catch (Exception $e) {
+            die('Error loading file "' . pathinfo($inputfilename, PATHINFO_BASENAME) . '": ' . $e->getMessage());
         }
-        fclose($file);
-        //throws a message if data successfully imported to mysql database from excel file
-        echo "<script type=\"text/javascript\">
-						window.location = \"index.php\"
-						alert(\"CSV File has been successfully Imported.\");
-					</script>";
 
+//  Get worksheet dimensions
+        try {
+            $sheet = $objPHPExcel->getSheet(8);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+        } catch (Exception $e) {
+            die('Error loading file "' . pathinfo($inputfilename, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+        }
+//  Loop through each row of the worksheet in turn
+        $remove[] = "'";
+        $remove[] = '"';
+        for ($row = 1; $row <= $highestRow; $row++) {
+            //  Read a row of data into an array
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
 
+            //  Insert row data array into your database of choice here
+            $sql = "INSERT INTO student (UID,Password,Name,Email,Sex,DOB,Address,Category)
+			VALUES ('" . $rowData[0][2] . "', '" . $password . "', '" . str_replace($remove, "", $rowData[0][5] . " " . $rowData[0][4]) . "', '" . $rowData[0][16] . "', '" . $rowData[0][9] . "', '" . $rowData[0][10] . "', '" . str_replace($remove, "", $rowData[0][12]) . "', '" . $rowData[0][11] . "')";
+
+            if (mysqli_query($db_var, $sql)) {
+                $exceldata[] = $rowData[0];
+            } else {
+                $errorexceldata[] = $rowData[0];
+                $whatError[] = substr(mysqli_error($db_var), 0, 9);
+            }
+        }
+//Cleanup
+        $sql = "DELETE FROM student WHERE UID = 0";
+        mysqli_query($db_var, $sql);
+// Print excel data
+        echo "Successful Data Entry:- \n<table>";
+        foreach ($exceldata as $index => $excelraw) {
+            echo "<tr>";
+            echo "<td>" . $excelraw[1] . "</td>";
+            echo "<td>" . $excelraw[2] . "</td>";
+            echo "<td>" . $excelraw[5] . $excelraw[4] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        $i = 0;
+        echo "ERRORS in Data Entry:- \n<table>";
+        foreach ($errorexceldata as $index => $excelraw) {
+            echo "<tr>";
+            echo "<td>" . $excelraw[1] . "</td>";
+            echo "<td>" . $excelraw[2] . "</td>";
+            echo "<td>" . $whatError[$i++] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+
+        mysqli_close($db_var);
+    }
+    else
+    {
+        echo "Please upload an XLSX or ODS file";
     }
 }
-?>
