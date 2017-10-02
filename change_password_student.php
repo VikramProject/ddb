@@ -42,7 +42,7 @@
         <h2 class="text-center">CHANGE PASSWORD</h2>
 
         <!--change password form-->
-        <form name="changePasswordForm" method="POST" action="changepass.php">
+        <form name="changePasswordForm" method="POST" action="change_password_student.php">
 
             <!--current password-->
             <div class="form-group" ng-class="{'has-error': changePasswordForm.CurrentPassword.$dirty && changePasswordForm.CurrentPassword.$invalid}">

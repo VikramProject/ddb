@@ -42,7 +42,7 @@ $result=mysqli_query($db_var,$query) or die(mysqli_error());
 $object = $result->fetch_object();
 if(password_verify("spit123",$object->Password))
 {
-    header("Location:changepass.php");
+    header("Location:change_password_student.php");
     exit();
 }
 $query="select Nearest_stn from conc_dtb where UID=$rollno";
