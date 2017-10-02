@@ -95,8 +95,6 @@
             </footer>
         </div>
     </div>
-
-
     <!--footer-->
     <footer class="footer">
         <p class="copyright">&copy Sardar Patel Institute of Technology,Andheri</p>
