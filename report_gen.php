@@ -1,6 +1,5 @@
 <?php
    include("config.php");
-   include("admin_dashboard.php");
    if(!isset($_SESSION["rollno"]))
    {
        header("location:index.php");
@@ -17,8 +16,8 @@
        $start=$_POST['start_sr'];
        $end=$_POST['end_sr'];
    }
-   
-   ?>
+include("admin_dashboard.php");
+?>
 <!--<div class="welcome">
    <div class="container-fluid">
      <div class="row">
@@ -37,7 +36,7 @@
       <form role="form" method="POST" action="report_gen.php">
          <div class="form-group">
             <label class="control-label" ">Start SR Number</label>
-            <input class="form-control " name="start_sr " required="required " placeholder="Enter Start SR Number ">
+            <input class="form-control " name="start_sr" required="required " placeholder="Enter Start SR Number ">
          </div>
          <div class="form-group ">
             <label class="control-label " ">End SR Number</label>
@@ -46,11 +45,12 @@
          <button type="submit" class="btn btn-large btn-success">Generate Report</button>
       </form>
    </div>
-   <table class="container">
+<!--   <table class="container">-->
       <?php
-         if(isset($_POST['start_sr']) && isset($_POST['end_sr'])) {
-             $query = "select * from report_dtb where sr_no BETWEEN '$start' and '$end'";
-             $result = mysqli_query($db_var, $query) or die(mysql_error());
+
+      if(isset($_POST['start_sr']) && isset($_POST['end_sr'])) {
+          $query = "select * from report_dtb where sr_no BETWEEN '$start' and '$end'";
+             $result = mysqli_query($db_var, $query) or die(mysqli_error());
          
              echo " 
                      
