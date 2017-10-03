@@ -1,5 +1,5 @@
 <?php
- $show_modal = false; // modal display varible
+ $show_modal = false; // modal display boolean varible
    include('config.php');
    if(!isset($_SESSION["rollno"]))
    {
@@ -94,8 +94,6 @@ include('nav_bar.php');
             </footer>
         </div>
     </div>
-
-
     <!--footer-->
     <footer class="footer">
         <p class="copyright">&copy Sardar Patel Institute of Technology,Andheri</p>
