@@ -51,6 +51,7 @@ $object = $result->fetch_object();
 if($object->Nearest_stn==NULL)
 {
     header("Location:register.php");
+    exit();
 }
 if(isset($_POST["Class"])&&isset($_POST["Period"])&&isset($_POST["Issue_date"]))
 {

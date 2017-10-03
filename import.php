@@ -35,7 +35,7 @@ if (isset($_POST["Import"])) {
         for ($row = 1; $row <= $highestRow; $row++) {
             //  Read a row of data into an array
             $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
-            echo date("Y-m-d",strtotime(str_replace("/","-",$rowData[0][10])))."\n";
+            //echo date("Y-m-d",strtotime(str_replace("/","-",$rowData[0][10])))."\n";
             //  Insert row data array into your database of choice here
             $sql = "INSERT INTO student (UID,Password,Name,Email,Sex,DOB,Address,Category)
 			VALUES ('" . $rowData[0][2] . "', '" . $password . "', '" . str_replace($remove, "", $rowData[0][5] . " " . $rowData[0][4]) . "', '" . $rowData[0][16] . "', '" . $rowData[0][9] . "', '" . date("Y-m-d",strtotime(str_replace("/","-",$rowData[0][10]))) . "', '" . str_replace($remove, "", $rowData[0][12]) . "', '" . $rowData[0][11] . "')";
@@ -51,6 +51,7 @@ if (isset($_POST["Import"])) {
         $sql = "DELETE FROM student WHERE UID = 0";
         mysqli_query($db_var, $sql);
 // Print excel data
+        include ("admin_dashboard.php");
         echo "Successful Data Entry:- \n<table>";
         foreach ($exceldata as $index => $excelraw) {
             echo "<tr>";
