@@ -19,14 +19,14 @@
        $addr = $_POST["addr"];
        $category=$_POST["caste"];
        $query="select * from conc_dtb where UID='$roll'";
-       $result=mysqli_query($db_var,$query) or die(mysql_error());
+       $result=mysqli_query($db_var,$query) or die(mysqli_error());
        $rows=mysqli_num_rows($result);
        if($rows==0)
        {
            $query="update student set DOB='$dob' where UID='$roll'";
-           $result=mysqli_query($db_var,$query) or die(mysql_error());
+           $result=mysqli_query($db_var,$query) or die(mysqli_error());
            $query="insert into conc_dtb(UID,Nearest_stn) values('$roll','$nearest')";
-           $result=mysqli_query($db_var,$query) or die(mysql_error());
+           $result=mysqli_query($db_var,$query) or die(mysqli_error());
            $message = "Sucessfully Registered";
            //echo "<script type='text/javascript'>alert('$message');</script>";
            //header("Location:index.php");
@@ -100,8 +100,8 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input readonly type="email" style="z-index:1" class="form-control" name="email" required="required" placeholder="Email Id"
-                        value="<?php echo $objectStudent->Email?>">
+                    <input type="email" style="z-index:1" class="form-control" name="email" required="required" placeholder="Email Id"
+                        value="<?php $email=$objectStudent->Email?$objectStudent->Email:"";echo $email?>">
                 </div>
             </div>
             <div class="row">

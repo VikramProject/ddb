@@ -1,5 +1,11 @@
 <?php
    include ("config.php");
+    if(!isset($_SESSION["rollno"]))
+    {
+        header("location:index.php");
+        exit();
+    }
+
    include("nav_bar.php");
    ?>
     <!DOCTYPE html>
@@ -18,6 +24,10 @@
                {
                    $message=$_SESSION["msgAwait"];
                    echo "<div style='margin-top: 20px; font-size: 20px'>$message</div>";
+                   if(!strcmp($message,"Your Form Has Been Submitted. \nThe form has still not been reviewed. Do come back to check on your status")) {
+                       echo "<br><a style=\"text-decoration:none\" href=\"rerequest.php\"><button type=\"button\" class=\"btn btn-primary btn-large btn-block\">Edit Requested Pass</button></a>
+                        <br>";
+                   }
                }
                else
                {
@@ -26,6 +36,8 @@
                
                ?>
             </p>
+
+
             <a style="text-decoration:none" href="logout.php"><button type="button" class="btn btn-primary btn-large btn-block">LOGOUT</button></a>
             <!--<li><a href="logout.php">Logout</a></li>-->
         </div>
