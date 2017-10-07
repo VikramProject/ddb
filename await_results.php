@@ -5,7 +5,7 @@
         header("location:index.php");
         exit();
     }
-
+    $rollno=$_SESSION["rollno"];
    include("nav_bar.php");
    ?>
     <!DOCTYPE html>
@@ -24,6 +24,16 @@
                {
                    $message=$_SESSION["msgAwait"];
                    echo "<div style='margin-top: 20px; font-size: 20px'>$message</div>";
+                   $query="SELECT * FROM conc_dtb WHERE UID=$rollno";
+                   $result=mysqli_query($db_var,$query) or die(mysqli_error());
+                   $formObj=$result->fetch_object();
+                   echo "<br>You Have Requested for:-<br> ";
+                   echo "Class:- ".$formObj->Class;
+                   echo "\tPeriod:- ".$formObj->Period;
+                   echo "\nFrom:- ".$formObj->Nearest_stn;
+                   echo "\tTo:- Andheri";
+                   echo "\nDate:- ".$formObj->Issue_date;
+
                    if(!strcmp($message,"Your Form Has Been Submitted. \nThe form has still not been reviewed. Do come back to check on your status")) {
                        echo "<br><a style=\"text-decoration:none\" href=\"rerequest.php\"><button type=\"button\" class=\"btn btn-primary btn-large btn-block\">Edit Requested Pass</button></a>
                         <br>";
